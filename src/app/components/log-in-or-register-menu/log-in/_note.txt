@@ -1,0 +1,3 @@
+The task of this component is to log in a user. Once the user is logged in,
+the name of the logged in user will appear at the top. This is done through the code portion:
+document.getElementById ("header"). TextContent = "logged user:" + this.childInput;

@@ -1,0 +1,42 @@
+<ion-toolbar color="primary">
+  <ion-buttons slot="start">
+    <button (click)="close()">
+      <ion-icon name="close" slot="icon-only"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <button (click)="saveEvent()">
+      <ion-icon name="checkmark" slot="icon-only"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+<!--- con roba ion da problemi, meglio button normale-->
+<ion-content>
+  <ion-item button="true">
+    <ion-label position="stacked">Title</ion-label>
+    <input type="text" id="titolo" name="username" [(ngModel)]="event.title">
+  </ion-item>
+  <ion-item button="true">
+    <ion-label position="stacked">Description</ion-label>
+    <input id="descrizione" [(ngModel)]="event.desc">
+  </ion-item>
+  <ion-item button="true">
+    <ion-label position="stacked">StartTime</ion-label>
+    <input type="time" id="start" name="appt"
+           min="09:00" max="18:00" value="12:00" required >
+  </ion-item>
+  <ion-item button="true">
+    <ion-label position="stacked">EndTime</ion-label>
+    <input type="time" id="end" name="appt"
+           min="09:00" max="18:00"
+           value="12:00" required >
+  </ion-item>
+    <calendar
+      *ngIf="modalReady"
+      (onTimeSelected)="onTimeSelected($event)"
+      [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate"
+      (onTitleChanged)="onViewTitleChanged($event)"
+      lockSwipes="true">
+    </calendar>
+</ion-content>

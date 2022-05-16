@@ -1,0 +1,34 @@
+<ion-card>
+    <ion-card-header>
+        <ion-card-subtitle>ooooooo</ion-card-subtitle>
+        <ion-card-title>0000</ion-card-title>
+    </ion-card-header>
+    <div style="width: 60%">
+        <ion-item button="true" (click)="getProducts()">getProducts</ion-item>
+        <ion-item button="true" (click)="addProduct()">addProductsKey</ion-item>
+        <ion-item button="true" (click)="getProduct()">getProduct</ion-item>
+        <lib-input-error-handling   (newItemEvent)="addItem($event)"></lib-input-error-handling>
+    </div>
+    <div>
+        <div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                     [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                     aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br/>
+            <input type="file" (change)="onFileChangeImage($event);"/>
+        </div>
+        <div>
+            <div>
+                <img id="image" class="" height="200">
+            </div>
+        </div>
+        <div>
+            <div>
+                <img id="image2" class="" height="200">
+            </div>
+        </div>
+    </div>
+
+</ion-card>

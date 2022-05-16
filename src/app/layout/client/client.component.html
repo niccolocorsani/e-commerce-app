@@ -1,0 +1,60 @@
+<ion-app class="background-image">
+    <ion-header>
+        <ion-toolbar style="  --ion-background-color: linear-gradient(to right, #11998e, #38ef7d);">
+            <ion-title id="header" class="ion-text-center">Client portal</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <!-- tool tip doc at https://github.com/zyra/ionic-tooltips -->
+    <ion-card id="card-image" style="width:62px;" tooltip="Hey, you are correctly logged-in" positionV="bottom" arrow>
+        <div style="width:50px; height: 60px ; padding: 2px 2px 2px 2px">
+            <ion-img id="user-image"></ion-img>
+        </div>
+    </ion-card>
+    <ion-content>
+        <ion-item button="true" style="padding-top: 0px; width: 200px" tooltip="Home button clear the view" positionV="bottom" arrow>
+            <ion-icon *ngIf="!openComponentsService.openDialogMenu" (click)="openMenu()"
+                      name="home"></ion-icon>
+            <ion-icon *ngIf="openComponentsService.openDialogMenu" (click)="openMenu()"
+                      name="home"></ion-icon>
+        </ion-item>
+        <ion-grid class="ion-no-padding">
+            <ion-row>
+                <ion-col size="12" size-sm>
+                    <!--La combinazione di size="3" insieme a size-md renderizza 3 colonne solo quando è su sm device, l'idea è di partire a  fare un layout
+                    buono per i device desktop e poi aggiungere  sm, md, lg così da aggiustare gli small, medium e large devices-->
+                    <ion-card>
+                        <ion-list *ngIf="openComponentsService.openDialogMenu" id="inbox-list">
+                            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+                                <ion-item button="true" routerDirection="root" [routerLink]="[p.url]" lines="none"
+                                          detail="false"
+                                          routerLinkActive="selected" (click)="openDialog(p.title)">
+                                    <ion-icon slot="start" [ios]="p.icon + '-outline'"
+                                              [md]="p.icon + '-sharp'"></ion-icon>
+                                    <ion-label>{{ p.title }}</ion-label>
+                                </ion-item>
+                                <hr>
+                            </ion-menu-toggle>
+                        </ion-list>
+                    </ion-card>
+                </ion-col>
+                <ion-col size="12" size-sm style="height: 65vh">
+                    <app-consultant-e-commerce-features></app-consultant-e-commerce-features>
+
+                    <app-log-in-or-register-menu
+                            *ngIf="openComponentsService.openDialogVarAccount"></app-log-in-or-register-menu>
+                    <app-open-modal
+                            *ngIf="openComponentsService.openDialogCalendar"></app-open-modal>
+                    <app-show-products *ngIf="openComponentsService.openDialogVarShowUsers"></app-show-products>
+                </ion-col>
+                <ion-col size="12" size-sm>
+                    <app-push-notification *ngIf="openComponentsService.openDialogCalendar"></app-push-notification>
+                    <app-geolocation *ngIf="openComponentsService.openDialogVarShowUsers"></app-geolocation>
+                </ion-col>
+            </ion-row>
+            <img id="arrow-svg" src="assets/arrow.svg" height="87" style="transform: rotate(180deg);"/>
+        </ion-grid>
+    </ion-content>
+</ion-app>
+
+
+

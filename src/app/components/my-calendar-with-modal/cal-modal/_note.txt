@@ -1,0 +1,3 @@
+Obbiettivo di questo componentne è quello di gestire la creazione di un nuovo appuntamento.
+Per fare ciò vi è prima una lettura e parsing dei dati inseriti dall'utente (dopo che ha cliccato nel calendario)
+e successivamente attraverso le relative chiamate al back-end vengono salvati i nuovi dati

@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Select consultant</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <div style="width: 60%">
+                    <!--attraverso la specifica di width: 50%, verrà occupato meta dello spazio relativo allo spazio di ion-col-->
+                    <br/>
+                    <ion-item button="true" (click)="retriveUsers()">Show available consultants </ion-item>
+                    <div *ngIf="showUser==true">
+                        <div *ngFor="let item of listElements">
+                            <ion-card>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <br/>
+                                        <ion-button expand="block" fill="outline" (click)="loadAppointments(item.id)">
+                                            Select consultant
+                                        </ion-button>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <br/>
+                                        Nome: {{item.firstName}}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <br/>
+                                        Email: {{item.lastName}}
+                                    </li>
+                                </ul>
+                            </ion-card>
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col text-center>
+                <ion-button (click)="close()">Close</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

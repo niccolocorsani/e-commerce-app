@@ -1,0 +1,24 @@
+<ion-card tooltip="Below all consultants available" positionV="top" arrow>
+    <ion-card-header>
+        <ion-card-subtitle>Product list</ion-card-subtitle>
+    </ion-card-header>
+
+        <div *ngFor="let item of listElements">
+            <ion-card>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <br/>
+                        Nome: {{item.name}}
+                    </li>
+                    <li class="list-group-item">
+                        <br/>
+                        Email: {{item.description}}
+                    </li>
+                    <li class="list-group-item">
+                        <br/>
+                        Price: {{item.price}}
+                    </li>
+                </ul>
+            </ion-card>
+        </div>
+</ion-card>

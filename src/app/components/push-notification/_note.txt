@@ -1,0 +1,3 @@
+The goal of this component is to provide all UI features to schedule a Push Notification of the appointment which has been scheduled.
+It refers to the service: "push notification service". This service will create a post request to the OneSignal server with all the necessary information.
+The OneSignal server will then take care of managing the sending of the push notification to the client.

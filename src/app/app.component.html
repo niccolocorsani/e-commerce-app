@@ -1,0 +1,26 @@
+<ion-grid *ngIf="chosePage" class="ion-no-padding">
+    <ion-item button="true" (click)="fireBase()">firebase trigger</ion-item>
+    <lib-my-lib>
+    </lib-my-lib>
+    <br/>
+    <ion-row>
+        <ion-col offset="6" size-sm>
+            <app-social-sharing></app-social-sharing>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="6" size-sm>
+            <ion-item button="true" tooltip="Chose to enter client portal" (click)="openCliente()">Portale cliente
+            </ion-item>
+            <ion-item button="true" tooltip="Chose to enter consultant portal" (click)="openConsultant()">Portale
+                consulente
+            </ion-item>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<app-client *ngIf="pageClient"></app-client>
+<app-business-consultant *ngIf="pageConsultant"></app-business-consultant>
+
+
+
+

@@ -1,0 +1,2 @@
+The goal of this component is to expose the option of
+selecting an appointment with a consultant. Obviously, this option is only available if the "client portal" is open

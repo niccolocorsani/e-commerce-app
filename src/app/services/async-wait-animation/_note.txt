@@ -1,0 +1,2 @@
+The goal of this service is to provide a method which, taking as argument the id of an element of the html dom,
+replace for a few seconds that element with a svg showing an animated image representing the wait

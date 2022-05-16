@@ -1,0 +1,1 @@
+This service aim is to store the variable for opening and closing the principal views

@@ -1,0 +1,2 @@
+The goal of this component is to show the calendar view and to open any modal. This view only serves to show the fields of interest.
+In order to add or modify events, you need to open the modal, if any, by clicking on the relative button.

@@ -1,0 +1,4 @@
+This component mainly exposes 3 methods:
+- retriveUsers () whose purpose is to manage the call to the backend to obtain the various consultants
+- loadAppointments() which loads the recruiter's appointments
+- close () which closes the modal

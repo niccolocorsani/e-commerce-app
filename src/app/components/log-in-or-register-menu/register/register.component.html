@@ -1,0 +1,14 @@
+<div style="width: 60%; padding-right: 3%">
+    <app-my-input [inputStringValue]='userName'(newItemEvent)="addInputToUserName($event)"></app-my-input>  <!--(newItemEvent) trigger at each button release-->
+    <app-my-input [inputStringValue]='eMail' (newItemEvent)="addInputToEmail($event)"></app-my-input>
+    <app-my-input *ngIf="!consultant_or_client" [inputStringValue]='description'
+                  (newItemEvent)="addInputToDescription($event)"></app-my-input>
+    <ion-item button="true" id="submitLogin" (click)="submitToServerRegister()" style="width: 150px;">
+        Register new account
+    </ion-item>
+</div>
+<br/>
+<br/>
+
+
+<app-social-register></app-social-register>
