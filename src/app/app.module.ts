@@ -40,6 +40,7 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {
     ConsultantECommerceFeaturesComponent
 } from "./components/consultant-e-commerce-features/consultant-e-commerce-features.component";
+import {CarrelloComponent} from "./components/carrello/carrello.component";
 
 
 
@@ -62,6 +63,7 @@ import {
         SocialRegisterComponent,
         PushNotificationComponent,
         ConsultantECommerceFeaturesComponent,
+        CarrelloComponent,
 
     ],
     entryComponents: [],
@@ -82,7 +84,7 @@ import {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), MyLibModule, AngularFireStorageModule, MyLibModule],
+        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule],
     // https://www.youtube.com/watch?v=FLHi2pc8gX0 spiegazione LocalNotifications
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, LocalNotifications, AppComponent,
         MyCalendarComponent,

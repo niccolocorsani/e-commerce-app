@@ -2,7 +2,8 @@
     <ion-card-header>
         <ion-card-subtitle>Product list</ion-card-subtitle>
     </ion-card-header>
-
+    <ion-item button="true" (click)="getProducts()">getProducts</ion-item>
+    <ion-item button="true" (click)="getProduct()">getProduct</ion-item>
         <div *ngFor="let item of listElements">
             <ion-card>
                 <ul class="list-group">

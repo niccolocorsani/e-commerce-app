@@ -13,21 +13,22 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 export class FireBaseRequestProductsService {
 
 
+    productRef: AngularFireObject<any>;
+    productsRef: AngularFireList<any>;
+    products = []
+    charged_image_ref: string
+    last_product = ''
+
+
     constructor(private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage) {
     }
 
-
-    productRef: AngularFireObject<any>;
-    productsRef: AngularFireList<any>;
-
-    products = []
-
-    charged_image_ref: string
-
 ////CRUD
     public getProducts(): any {
-        this.db.list('/products').valueChanges().subscribe(value => (console.log(value)));
-
+        this.db.list('/products').valueChanges().subscribe(value => {
+            (console.log(value))
+            this.products = value
+        });
     }
 
 
@@ -47,6 +48,12 @@ export class FireBaseRequestProductsService {
 
 ////CRUD
 
+    public get_last_product_name(): any {
+        this.db.list('/products').snapshotChanges().subscribe(val =>{
+            console.log(val[val.length-1].key)
+            this.last_product = val[val.length-1].key
+        })
+    }
 
 //// Other methods
     public display_image(name: string, downloadUrl: string) {

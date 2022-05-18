@@ -64,17 +64,10 @@ ion-icon {
 //CSS
 .background-image {
   background-image: url(https://i2.wp.com/www.strategie3.com/wp-content/uploads/2020/04/sfondo.jpg?resize=1280%2C933&ssl=1);
-  background-size: cover;
-  background-repeat: no-repeat;
-
+  background-size: auto;
+  background-repeat: repeat;
 }
 
-body {
-  height: 30vh;
-  width: 100%;
-  //background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
-  color: #fff;
-}
 
 /////MyInput
 .form__label {
@@ -112,6 +105,56 @@ body {
 
 
 
+ion-title{
+
+  font-family : 'Vollkorn' !important;
+  color: #c1a977;
+  font-size: 0.8rem;
+  font-weight: bold;
+
+}
+
+
+ion-card-title{
+  font-family : 'Vollkorn' !important;
+  color: #c1a977;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+ion-card-subtitle{
+  font-family : 'Vollkorn' !important;
+  color: #c1a977;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+ion-icon{
+  color: #c1a977;
+  size: 4rem;
+}
+
+a{
+  font-family : 'Vollkorn' !important;
+  color: #c1a977;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+ion-label{
+  font-family : 'Vollkorn' !important;
+  color: #c1a977;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+ion-item{
+  font-family : 'Vollkorn' !important;
+  font-size: 1rem;
+  font-weight: bold;
+}
 
 
 
@@ -119,15 +162,16 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
+.icon-badge {
+  position: relative;
+  width: fit-content;
+  ion-badge {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    right: 0;
+  }
+}
 
 
 

@@ -11,7 +11,6 @@ import {ConsultantResponse} from "../../../services/response/consultant-response
 export class RegisterComponent {
 
 
-
     userName = 'username';
     eMail = 'email';
     description = 'description';
@@ -19,11 +18,6 @@ export class RegisterComponent {
     consultant_or_client: boolean;
 
     constructor(private consulantService: RequestConsultantServiceService, private clientService: RequestClientServiceService) {
-
-
-        if (document.getElementById("header").textContent.includes("Client"))
-            this.consultant_or_client = true;
-        else this.consultant_or_client = false;
     }
 
 

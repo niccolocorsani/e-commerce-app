@@ -5,22 +5,10 @@
     </ion-card-header>
     <div style="width: 60%">
         <!--attraverso la specifica di width: 60%, verrà occupato meta dello spazio relativo allo spazio di ion-col-->
-        <ion-item button="true" (click)="openLogInDialog()">
-            Log-in
-        </ion-item>
         <div>
-            <div style="
-    padding-left: 10%" *ngIf="collapsedLogIn">
+
                 <app-log-in></app-log-in>
-                <br/>
-            </div>
-        </div>
-        <ion-item button="true" (click)="openRegisterDialog()">
-            Register new account
-        </ion-item>
-        <div style="
-    padding-left: 10%" *ngIf="collapsedRegister">
-            <br/>
+
             <app-register></app-register>
         </div>
     </div>

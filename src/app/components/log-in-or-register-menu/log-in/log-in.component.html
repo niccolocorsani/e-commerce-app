@@ -1,11 +1,10 @@
 <div style="width: 60%; padding-right: 10px">
     <br/>
-    <app-my-input [inputStringValue]='userName' (newItemEvent)="addInputToVariable($event)"></app-my-input>
-    <ion-item button="true" id="submitLogin" (click)="submitToServerLogIn()" style="width: 150px;">
-        Log-in
-    </ion-item>
+    <ion-label>&nbsp;&nbsp;&nbsp;</ion-label>
+    <lib-normal-input [item]='eMail'></lib-normal-input>
+    <ion-label>&nbsp;&nbsp;&nbsp;</ion-label>
+    <lib-input-password [item]='eMail'></lib-input-password>
 </div>
-
 <br/>
 <br/>
 

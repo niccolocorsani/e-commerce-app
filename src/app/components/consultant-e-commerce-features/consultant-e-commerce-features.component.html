@@ -1,15 +1,31 @@
 <ion-card>
     <ion-card-header>
-        <ion-card-subtitle>ooooooo</ion-card-subtitle>
-        <ion-card-title>0000</ion-card-title>
+        <ion-card-title>Add product</ion-card-title>
     </ion-card-header>
-    <div style="width: 60%">
-        <ion-item button="true" (click)="getProducts()">getProducts</ion-item>
-        <ion-item button="true" (click)="addProduct()">addProductsKey</ion-item>
-        <ion-item button="true" (click)="getProduct()">getProduct</ion-item>
-        <lib-input-error-handling   (newItemEvent)="addItem($event)"></lib-input-error-handling>
-    </div>
+    <ion-row>
+        <lib-normal-input [item]="name"></lib-normal-input>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </ion-row>
+    <ion-row>
+        <lib-normal-input [item]="description"></lib-normal-input>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </ion-row>
+    <ion-row>
+        <lib-normal-input [item]="price"></lib-normal-input>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </ion-row>
     <div>
+        <ion-input type="file" (change)="onFileChangeImage($event);" placeholder="Enter Input" value="custom">
+        </ion-input>
         <div>
             <div class="progress">
                 <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
@@ -17,7 +33,6 @@
                      aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <br/>
-            <input type="file" (change)="onFileChangeImage($event);"/>
         </div>
         <div>
             <div>
@@ -30,5 +45,5 @@
             </div>
         </div>
     </div>
-
+    <ion-item button="true" (click)="addProduct()">Aggiungi prodotto</ion-item>
 </ion-card>

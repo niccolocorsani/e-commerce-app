@@ -7,33 +7,9 @@ import {FireBaseRequestProductsService} from "./services/request/fire-base-reque
 })
 export class AppComponent {
 
-
-
-  pageClient = false;
-  pageConsultant = false;
-  chosePage = true;
-  userLogged: string;
-
-
-  constructor(private fireBaseService: FireBaseRequestProductsService) {
-  }
-
-  async openCliente() {
-
-    this.pageConsultant = false;
-    this.chosePage = false;
-    this.pageClient = true;
-
-  }
-  async openConsultant() {
-    this.pageClient = false;
-    this.chosePage = false;
-    this.pageConsultant = true;
-
+  constructor() {
   }
 
 
-  fireBase() {
-    this.fireBaseService.getProducts()
-  }
+
 }

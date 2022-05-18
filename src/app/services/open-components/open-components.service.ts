@@ -13,6 +13,7 @@ export class OpenComponentsService {
   openDialogCalendar = false;
   openDialogMenu = true;
   openDialogMaps = false;
+  openCarrello = false
 
 
   constructor() {

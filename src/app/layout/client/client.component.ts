@@ -44,6 +44,8 @@ export class ClientComponent  implements  OnInit{
       this.openComponentsService.openDialogVarAccount = true;
       this.openComponentsService.openDialogVarShowUsers = false;
       this.openComponentsService.openDialogCalendar = false;
+      this.openComponentsService.openCarrello = false;
+
 
       return;
     }
@@ -52,6 +54,8 @@ export class ClientComponent  implements  OnInit{
       this.openComponentsService.openDialogVarShowUsers = true;
       this.openComponentsService.openDialogVarAccount = false;
       this.openComponentsService.openDialogCalendar = false;
+      this.openComponentsService.openCarrello = false;
+
 
       return;
     }
@@ -62,6 +66,18 @@ export class ClientComponent  implements  OnInit{
       this.openComponentsService.openDialogCalendar = true;
       this.openComponentsService.openDialogVarShowUsers = false;
       this.openComponentsService.openDialogVarAccount = false;
+      this.openComponentsService.openCarrello = false;
+
+    }
+
+    if (title === 'Carrello') {
+
+
+      if (window.innerHeight < 700) this.openComponentsService.openDialogMenu = false;
+      this.openComponentsService.openDialogCalendar = false;
+      this.openComponentsService.openDialogVarShowUsers = false;
+      this.openComponentsService.openDialogVarAccount = false;
+      this.openComponentsService.openCarrello = true;
     }
   }
 
