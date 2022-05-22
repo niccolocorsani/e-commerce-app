@@ -5,10 +5,9 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {OpenModal} from './components/select-appointmnent-with-modal/open-modal';
-import {LogInOrRegisterMenuComponent} from './components/log-in-or-register-menu/log-in-or-register-menu.component';
-import {LogInComponent} from './components/log-in-or-register-menu/log-in/log-in.component';
+import {LogInComponent} from './components/log-in/log-in.component';
 import {MyInputComponent} from './components/my-input/my-input.component';
-import {RegisterComponent} from './components/log-in-or-register-menu/register/register.component';
+import {RegisterComponent} from './components/register/register.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -41,6 +40,9 @@ import {
     ConsultantECommerceFeaturesComponent
 } from "./components/consultant-e-commerce-features/consultant-e-commerce-features.component";
 import {CarrelloComponent} from "./components/carrello/carrello.component";
+import {
+    SpinnerMaterialComponentComponent
+} from "./components/spinner-material-component/spinner-material-component.component";
 
 
 
@@ -48,7 +50,6 @@ import {CarrelloComponent} from "./components/carrello/carrello.component";
     declarations: [
         AppComponent,
         OpenModal,
-        LogInOrRegisterMenuComponent,
         LogInComponent,
         MyInputComponent,
         RegisterComponent,
@@ -64,6 +65,8 @@ import {CarrelloComponent} from "./components/carrello/carrello.component";
         PushNotificationComponent,
         ConsultantECommerceFeaturesComponent,
         CarrelloComponent,
+        SpinnerMaterialComponentComponent,
+
 
     ],
     entryComponents: [],
@@ -84,7 +87,9 @@ import {CarrelloComponent} from "./components/carrello/carrello.component";
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule],
+        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule,
+
+    ],
     // https://www.youtube.com/watch?v=FLHi2pc8gX0 spiegazione LocalNotifications
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, LocalNotifications, AppComponent,
         MyCalendarComponent,

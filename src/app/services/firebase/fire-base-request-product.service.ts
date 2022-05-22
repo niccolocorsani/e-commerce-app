@@ -4,13 +4,14 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {ProductResponse} from "../response/product-response";
 import {map} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {OpenComponentsService} from "../open-components/open-components.service";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
 @Injectable({
     providedIn: 'root'
 })
-export class FireBaseRequestProductsService {
+export class FireBaseRequestProductService {
 
 
     productRef: AngularFireObject<any>;
@@ -18,36 +19,39 @@ export class FireBaseRequestProductsService {
     products = []
     charged_image_ref: string
     last_product = ''
+    variable_to_wait: any;
 
 
-    constructor(private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage) {
+    constructor(private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
     }
 
 ////CRUD
-    public getProducts(): any {
-        this.db.list('/products').valueChanges().subscribe(value => {
+    public async getProducts() {
+        this.spinner_delay()
+        this.variable_to_wait = await this.db.list('/products').valueChanges().subscribe(value => {
             (console.log(value))
             this.products = value
         });
     }
 
 
-    public getProduct(product_key: string) {
-        this.db.object('products/' + product_key).valueChanges().subscribe(value => (console.log(value)));
+    public async getProduct(product_key: string) {
+        this.spinner_delay()
+        this.variable_to_wait = await this.db.object('products/' + product_key).valueChanges().subscribe(value => (console.log(value)));
     }
 
 
-    public addProduct(product: ProductResponse, product_key: string) {
-        this.db.object('products/' + product_key).update(product)
+    public async addProduct(product: ProductResponse, product_key: string) {
+        this.spinner_delay()
+        this.variable_to_wait = await this.db.object('products/' + product_key).update(product)
     }
 
 
     public deleteProduct(product_key: string) {
-        this.db.object('products/' + product_key).remove();
+         this.db.object('products/' + product_key).remove();
     }
 
 ////CRUD
-
     public get_last_product_name(): any {
         this.db.list('/products').snapshotChanges().subscribe(val =>{
             console.log(val[val.length-1].key)
@@ -74,4 +78,18 @@ export class FireBaseRequestProductsService {
 
 //// Other methods
 
+
+
+    delay(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async spinner_delay() {
+        this.openComponentService.spinner = true
+        while (this.variable_to_wait === undefined) {
+            console.log(this.variable_to_wait)
+            await this.delay(1000)
+        }
+        this.openComponentService.spinner = false
+    }
 }

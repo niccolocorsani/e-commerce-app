@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} from "@angular/fire/compat/storage";
 import {Observable} from "rxjs";
-import {FireBaseRequestProductsService} from "../../services/request/fire-base-request-products.service";
+import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
 import {FormBuilder} from "@angular/forms";
 
 @Component({
@@ -21,7 +21,7 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     type = 'tipologia'
 
 
-    constructor(private productsService: FireBaseRequestProductsService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
     }
 
     ngOnInit() {

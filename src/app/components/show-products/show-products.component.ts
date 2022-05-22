@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ProductResponse} from "../../services/response/product-response";
-import {FireBaseRequestProductsService} from "../../services/request/fire-base-request-products.service";
+import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
 import {FormBuilder, } from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 
@@ -13,7 +13,7 @@ export class ShowProductsComponent implements OnInit {
     public listElements: Array<ProductResponse> = [];
 
 
-    constructor(private productsService: FireBaseRequestProductsService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
     }
 
     ngOnInit() {

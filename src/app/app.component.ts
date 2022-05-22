@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FireBaseRequestProductsService} from "./services/request/fire-base-request-products.service";
+import {FireBaseRequestProductService} from "./services/firebase/fire-base-request-product.service";
 
 @Component({
   selector: 'app-root',

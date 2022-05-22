@@ -14,6 +14,8 @@ export class OpenComponentsService {
   openDialogMenu = true;
   openDialogMaps = false;
   openCarrello = false
+  openDialogVarNewAccount = false;
+  spinner = false;
 
 
   constructor() {

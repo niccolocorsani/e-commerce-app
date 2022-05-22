@@ -1,0 +1,54 @@
+<div id="log-in">
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title style="color: black; font-size: 2rem;">Registra un nuovo account
+            </ion-card-title>
+        </ion-card-header>
+    </ion-card>
+    <ion-card>
+        <ion-row>
+            <br/>
+            <br/>
+            <br/>
+            <ion-col size-xl="4">
+                <br/>
+
+                <div style="padding-left: 10px">
+                    <lib-input-error-handling [item]='eMail' (newItemEvent)="addEmail($event)"></lib-input-error-handling>
+                </div>
+                <br/>
+                <br/>
+                <div style="padding-left: 10px">
+                    <lib-normal-input [item]='name' (newItemEvent)="addName($event)"></lib-normal-input>
+                </div>
+                <br/>
+                <br/>
+                <div style="padding-left: 10px">
+                    <lib-normal-input [item]='surname' (newItemEvent)="addSurname($event)"></lib-normal-input>
+                </div>
+                <br/>
+                <br/>
+                <div style="padding-left: 10px">
+                    <lib-normal-input [item]='street' (newItemEvent)="addStreet($event)"></lib-normal-input>
+                </div>
+                <br/>
+                <br/>
+                <div style="padding-left: 10px">
+                    <lib-input-password (newItemEvent)="addPassword_1($event)"></lib-input-password>
+                </div>
+                <br/>
+                <div style="padding-left: 10px">
+                    <lib-input-password (newItemEvent)="addPassword_2($event)"></lib-input-password>
+                </div>
+                <div style="padding-left: 10px">
+                    <ion-item button="true" (click)="submitToFireBase()">Salva</ion-item>
+                </div>
+                <app-social-log-in></app-social-log-in>
+                <br/><br/>
+            </ion-col>
+            <ion-col offset="1" size-xl="3">
+                <img src="assets/images/img1.jpeg">
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</div>
