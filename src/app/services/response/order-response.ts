@@ -15,4 +15,5 @@ export class OrderResponse {
         this.product = data ? data.product : null;
         this.client = data ? data.client : null;
     }
+
 }
