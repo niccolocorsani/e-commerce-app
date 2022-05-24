@@ -63,14 +63,11 @@
                             *ngIf="openComponentsService.openDialogVarAccount"></app-log-in>
                     <app-register
                             *ngIf="openComponentsService.openDialogVarNewAccount"></app-register>
-                    <app-open-modal
-                            *ngIf="openComponentsService.openDialogCalendar"></app-open-modal>
                     <app-show-products *ngIf="openComponentsService.openDialogVarShowUsers"></app-show-products>
                     <app-carrello *ngIf="openComponentsService.openCarrello"></app-carrello>
                 </ion-col>
                 <ion-col size="12" size-sm>
                     <!--<app-consultant-e-commerce-features></app-consultant-e-commerce-features>-->
-                    <app-push-notification *ngIf="openComponentsService.openDialogCalendar"></app-push-notification>
                     <app-geolocation *ngIf="openComponentsService.openDialogVarShowUsers"></app-geolocation>
                 </ion-col>
             </ion-row>

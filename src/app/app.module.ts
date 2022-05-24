@@ -13,9 +13,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {NgCalendarModule} from 'ionic2-calendar';
-import {CalModalPageModule} from "./components/my-calendar-with-modal/cal-modal/cal-modal.module";
 import {FormsModule} from "@angular/forms";
-import {MyCalendarComponent} from "./components/my-calendar-with-modal/my-calendar.component";
 import {ClientComponent} from "./layout/client/client.component";
 import {BusinessConsultantComponent} from "./layout/business-consultant/business-consultant.component";
 import {SelectUsersModalComponent} from "./components/select-appointmnent-with-modal/select-users-modal/select-users-modal.component";
@@ -56,7 +54,6 @@ import {
         LogInComponent,
         MyInputComponent,
         RegisterComponent,
-        MyCalendarComponent,
         ClientComponent,
         BusinessConsultantComponent,
         SelectUsersModalComponent,
@@ -73,7 +70,7 @@ import {
 
     ],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgCalendarModule, CalModalPageModule,
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgCalendarModule,
         HttpClientModule, SocialLoginModule, TooltipsModule.forRoot(), BrowserAnimationsModule,
 
         //https://github.com/angular/angularfire/blob/master/docs/ionic/cli.md
@@ -94,7 +91,6 @@ import {
     ],
     // https://www.youtube.com/watch?v=FLHi2pc8gX0 spiegazione LocalNotifications
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, LocalNotifications, AppComponent,
-        MyCalendarComponent,
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {
