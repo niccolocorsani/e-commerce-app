@@ -1,0 +1,42 @@
+
+version: '3.3'
+
+services:
+
+  my-sql-db:
+   
+
+
+    image: mysql:latest
+    volumes:
+      - my-data:/var/lib/mysql
+
+    #container_name: mysql-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_USER=user
+      - MYSQL_DATABASE=spring-app
+
+    ports:
+      - "3306:3306"
+
+  customerservice:
+
+    
+
+    image: niccocorsa/spring-back-end #custome-service
+    #container_name: customer-service-app
+   # build:
+   #   context: .
+    #  dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - my-sql-db
+    environment:
+      SPRING_PROFILES_ACTIVE: MySQLdocker
+
+volumes:
+  my-data:

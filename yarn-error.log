@@ -1,0 +1,132 @@
+Arguments: 
+  /opt/homebrew/Cellar/node/17.8.0/bin/node /opt/homebrew/bin/yarn add ionic-stepper
+
+PATH: 
+  /Users/nicc/opt/anaconda3/bin:/Users/nicc/opt/anaconda3/condabin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/nicc/Desktop/front-end-hci/node_modules/.bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  17.8.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: connect ENETUNREACH 104.16.18.35:443 - Local (0.0.0.0:54997)
+      at internalConnect (node:net:953:16)
+      at defaultTriggerAsyncIdScope (node:internal/async_hooks:465:18)
+      at emitLookup (node:net:1097:9)
+      at /opt/homebrew/lib/node_modules/yarn/lib/cli.js:103580:28
+      at /opt/homebrew/lib/node_modules/yarn/lib/cli.js:103489:13
+      at RawTask.module.exports.RawTask.call (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:79577:19)
+      at flush (/opt/homebrew/lib/node_modules/yarn/lib/cli.js:79659:29)
+      at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+npm manifest: 
+  {
+    "name": "ionic-project-cordova",
+    "version": "0.0.1",
+    "author": "Ionic Framework",
+    "homepage": "https://ionicframework.com/",
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build",
+      "test": "ng test",
+      "lint": "ng lint",
+      "e2e": "ng e2e",
+      "compodoc": "npx compodoc -p tsconfig.doc.json"
+    },
+    "private": true,
+    "dependencies": {
+      "@agm/core": "^3.0.0-beta.0",
+      "@angular-mdl/core": "^13.0.0",
+      "@angular/animations": "^13.3.8",
+      "@angular/cdk": "~13.3.7",
+      "@angular/cli": "^13.3.5",
+      "@angular/common": "~13.3.8",
+      "@angular/core": "~13.3.8",
+      "@angular/fire": "^7.3.0",
+      "@angular/forms": "~13.3.8",
+      "@angular/platform-browser": "~13.3.8",
+      "@angular/platform-browser-dynamic": "~13.3.8",
+      "@angular/router": "~13.3.8",
+      "@capacitor/android": "3.5.1",
+      "@capacitor/app": "1.1.1",
+      "@capacitor/core": "^3.5.1",
+      "@capacitor/haptics": "1.1.4",
+      "@capacitor/ios": "^3.5.1",
+      "@capacitor/keyboard": "1.2.2",
+      "@capacitor/status-bar": "1.0.8",
+      "@ionic-native/core": "^5.36.0",
+      "@ionic-native/local-notifications": "^5.36.0",
+      "@ionic/angular": "^6.1.5",
+      "@ngx-translate/core": "^14.0.0",
+      "@ngx-translate/http-loader": "^7.0.0",
+      "angularx-social-login": "^4.0.1",
+      "bootstrap": "5.1.3",
+      "cordova-plugin-badge": "^0.8.8",
+      "cordova-plugin-device": "^2.1.0",
+      "cordova-plugin-geolocation": "^4.1.0",
+      "cordova-plugin-local-notification": "^0.9.0-beta.2",
+      "ionic-tooltips": "^4.0.0-beta.0",
+      "ionic2-calendar": "^0.6.9",
+      "ionicons": "^6.0.1",
+      "jetifier": "^2.0.0",
+      "jw-bootstrap-switch-ng2": "2.0.5",
+      "new-material-design-experiments": "^1.0.6",
+      "ng2-nouislider": "1.8.3",
+      "nouislider": "15.6.0",
+      "npm-install": "^1.8.12",
+      "onesignal-ngx": "^1.0.1",
+      "rxjs": "~7.5.5",
+      "tslib": "^2.4.0",
+      "zone.js": "~0.11.5"
+    },
+    "devDependencies": {
+      "@angular-devkit/build-angular": "~13.3.5",
+      "@angular-devkit/core": "~13.3.5",
+      "@angular-devkit/schematics": "~13.3.5",
+      "@angular-eslint/builder": "~13.2.1",
+      "@angular-eslint/eslint-plugin": "~13.2.1",
+      "@angular-eslint/eslint-plugin-template": "~13.2.1",
+      "@angular-eslint/template-parser": "~13.2.1",
+      "@angular/compiler": "~13.3.8",
+      "@angular/compiler-cli": "~13.3.8",
+      "@angular/language-service": "~13.3.8",
+      "@capacitor/cli": "3.5.1",
+      "@compodoc/compodoc": "^1.1.19",
+      "@ionic/angular-toolkit": "^6.1.0",
+      "@types/googlemaps": "^3.39.13",
+      "@types/jasmine": "~4.0.3",
+      "@types/jasminewd2": "~2.0.10",
+      "@types/node": "^17.0.33",
+      "@typescript-eslint/eslint-plugin": "5.23.0",
+      "@typescript-eslint/parser": "5.23.0",
+      "eslint": "^8.15.0",
+      "eslint-plugin-import": "2.26.0",
+      "eslint-plugin-jsdoc": "39.2.9",
+      "eslint-plugin-prefer-arrow": "1.2.3",
+      "jasmine-core": "~4.1.1",
+      "jasmine-spec-reporter": "~7.0.0",
+      "karma": "~6.3.20",
+      "karma-chrome-launcher": "~3.1.1",
+      "karma-coverage": "~2.2.0",
+      "karma-coverage-istanbul-reporter": "~3.0.3",
+      "karma-jasmine": "~5.0.1",
+      "karma-jasmine-html-reporter": "^1.7.0",
+      "ng-packagr": "^13.3.1",
+      "protractor": "~7.0.0",
+      "ts-node": "~10.7.0",
+      "typescript": "~4.6.4"
+    },
+    "description": "An Ionic project"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
