@@ -27,35 +27,33 @@ export class FireBaseRequestProductService {
 
 ////CRUD
     public async getProducts() {
-        this.spinner_delay()
-        this.variable_to_wait = await this.db.list('/products').valueChanges().subscribe(value => {
-            (console.log(value))
-            this.products = value
-        });
+        this.db.list('/products').valueChanges().subscribe(value => this.variable_to_wait = value);
+        await this.spinner_delay()
+        return this.variable_to_wait
     }
 
 
     public async getProduct(product_key: string) {
-        this.spinner_delay()
-        this.variable_to_wait = await this.db.object('products/' + product_key).valueChanges().subscribe(value => (console.log(value)));
+        this.variable_to_wait = await this.db.object('products/' + product_key).valueChanges().subscribe(value => this.variable_to_wait = value);
+        await this.spinner_delay()
+        return this.variable_to_wait
     }
 
 
     public async addProduct(product: ProductResponse, product_key: string) {
-        this.spinner_delay()
-        this.variable_to_wait = await this.db.object('products/' + product_key).update(product)
+        this.variable_to_wait = await this.db.object('products/' + product.name).update(product)
     }
 
 
     public deleteProduct(product_key: string) {
-         this.db.object('products/' + product_key).remove();
+        this.db.object('products/' + product_key).remove();
     }
 
 ////CRUD
     public get_last_product_name(): any {
-        this.db.list('/products').snapshotChanges().subscribe(val =>{
-            console.log(val[val.length-1].key)
-            this.last_product = val[val.length-1].key
+        this.db.list('/products').snapshotChanges().subscribe(val => {
+            console.log(val[val.length - 1].key)
+            this.last_product = val[val.length - 1].key
         })
     }
 
@@ -77,7 +75,6 @@ export class FireBaseRequestProductService {
     }
 
 //// Other methods
-
 
 
     delay(ms: number) {

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OpenComponentsService} from "../../services/open-components/open-components.service";
-import {AsyncWaitAnimationService} from "../../services/async-wait-animation/async-wait-animation.service";
+import Stepper from "bs-stepper";
 
 @Component({
     selector: 'app-client',
@@ -14,6 +14,7 @@ export class ClientComponent implements OnInit {
 
     ngOnInit(): void {
         document.getElementById("card-image").style.display = "none";
+
     }
 
     public appPages = [

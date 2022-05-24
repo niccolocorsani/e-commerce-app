@@ -12,7 +12,6 @@ export class FireBaseRequestClientService {
 
     variable_to_wait: any
 
-    client
 
     clientRef: AngularFireObject<any>;
     clientsRef: AngularFireList<any>;
@@ -25,29 +24,29 @@ export class FireBaseRequestClientService {
 
 ////CRUD
     public async getClients() {
-        this.spinner_delay()
-        this.variable_to_wait = this.db.list('/clients').valueChanges().subscribe(value => (this.variable_to_wait = value));
+        this.db.list('/clients').valueChanges().subscribe(value => (this.variable_to_wait = value));
+        await this.spinner_delay()
+        return this.variable_to_wait
+
     }
 
 
-    public getClient(client_key: string) {
-        this.spinner_delay()
+    public async getClient(client_key: string) {
         this.db.object('clients/' + client_key).valueChanges().subscribe(value => (this.variable_to_wait = value));
+        await this.spinner_delay()
+        return this.variable_to_wait
     }
 
 
     public async addClient(client: FirebaseClientResponse) {
-        await this.get_last_client_name();
-        try {
-            this.db.object('clients/' + client.email).update(client)
-        } catch (e) {
-            console.log(e.message);//conversion to Error type
-        }
+        console.log(client.email)
+        this.db.object('clients/' + client.email).update(client)
     }
 
 
     public deleteClient(client_key: string) {
         this.db.object('clients/' + client_key).remove();
+        this.spinner_delay()
     }
 
 ////CRUD

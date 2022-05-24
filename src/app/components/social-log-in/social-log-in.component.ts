@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {SocialAuthService, SocialUser} from "angularx-social-login";
 import {FacebookLoginProvider, GoogleLoginProvider} from "angularx-social-login";
 import {RequestClientServiceService} from "../../services/request/request-client-service.service";
 import {RequestConsultantServiceService} from "../../services/request/request-consultant-service.service";
+import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
+import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 
 
 @Component({
@@ -12,8 +14,9 @@ import {RequestConsultantServiceService} from "../../services/request/request-co
 export class SocialLogInComponent implements OnInit {
 
     user = new SocialUser();
+    @Output() mail
 
-    constructor(private authService: SocialAuthService, private clientService: RequestClientServiceService, private consultantService: RequestConsultantServiceService) {
+    constructor(private authService: SocialAuthService, private fireBaseclientService: FireBaseRequestClientService, private alertService: AlertIonicService) {
     }
 
     ngOnInit(): void {
@@ -24,44 +27,25 @@ export class SocialLogInComponent implements OnInit {
 
     async logInWithFB() {
         await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-        let userName = this.user.name.split(" ")[0] + "_" + this.user.name.split(" ")[1];
-        this.checkIfUserPresentOnDB(userName)
+        console.log(this.user)
+        this.checkIfUserPresentOnDB(this.user.email)
     }
 
     async logInWithGoogle() {
         await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-        let userName = this.user.name.split(" ")[0] + "_" + this.user.name.split(" ")[1];
-        this.checkIfUserPresentOnDB(userName)
+        console.log(this.user)
+        this.checkIfUserPresentOnDB(this.user.email)
     }
 
 
-    checkIfUserPresentOnDB(userName: string) {
-        if (document.getElementById("header").textContent === "Consultant portal") {
-            for (let element of this.consultantService.getSynchronousConsultants()) {
-                if (element.userName === userName) {
-                    alert("User " + userName + " found..");
-                    document.getElementById("header").textContent = document.getElementById("header").textContent
-                        + " logged user: " + userName;
-                    alert("ooooo")
-                    document.getElementById("user-image").setAttribute("src",this.user.photoUrl);
-                    document.getElementById("card-image").style.display="";
-                    return;
-                }
+    checkIfUserPresentOnDB(mail: string) {
+            if (this.fireBaseclientService.getClient(mail.split('.',).join('-').split('@',).join('_')) != null) {
+                this.alertService.presentAlert('Login eseguito con successo', '', '')
+                document.getElementById("logged").textContent = mail;
+                return;
             }
-            alert("Consultant not found..");
-        } else {
-            for (let element of this.clientService.getSynchronousClients()) {
-                if (element.userName === userName) {
-                    alert("User " + userName + " found..");
-                    document.getElementById("header").textContent = document.getElementById("header").textContent
-                        + " logged user: " + userName;
-                    document.getElementById("user-image").setAttribute("src",this.user.photoUrl);
-                    document.getElementById("card-image").style.display="";
+            else
+            this.alertService.presentAlert('Utente non trovato', '', '')
 
-                    return;
-                }
-            }
-            alert("Client not found..");
-        }
     }
 }

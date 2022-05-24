@@ -46,6 +46,9 @@ import {
 
 
 
+
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -87,8 +90,7 @@ import {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule,
-
+        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule
     ],
     // https://www.youtube.com/watch?v=FLHi2pc8gX0 spiegazione LocalNotifications
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, LocalNotifications, AppComponent,

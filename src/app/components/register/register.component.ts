@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {ClientResponse} from "../../services/response/client-response";
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
 import {AlertController} from "@ionic/angular";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
+import Stepper from "bs-stepper";
 
 
 @Component({
@@ -25,14 +25,44 @@ export class RegisterComponent {
 
 
     client = new FirebaseClientResponse()
-    name_client= "";
-    surname_client= "";
-    street_client= '';
-    email_client= ""
-    cap_client= '' //// se qualche valore è undefined o null la richiesta http non
+    name_client = "";
+    surname_client = "";
+    street_client = '';
+    email_client = ""
+    cap_client = '' //// se qualche valore è undefined o null la richiesta http non
 
 
-    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService : AlertIonicService) {
+    private stepper: Stepper;
+
+    next2() {
+        this.stepper.to(2);
+        document.getElementById("step2").setAttribute("style","background-color: black;")
+        document.getElementById("step1").setAttribute("style","background-color: #c1a977;")
+        document.getElementById("step3").setAttribute("style","background-color: #c1a977;")
+
+    }
+
+    next3() {
+        this.stepper.to(3);
+        document.getElementById("step3").setAttribute("style","background-color: black;")
+        document.getElementById("step2").setAttribute("style","background-color: #c1a977;")
+        document.getElementById("step1").setAttribute("style","background-color: #c1a977;")
+
+    }
+
+    onSubmit() {
+        return false;
+    }
+
+    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService) {
+    }
+
+
+    ngOnInit(): void {
+        this.stepper = new Stepper(document.querySelector('#stepper1'), {
+            linear: true,
+            animation: true
+        })
     }
 
     selectChange(e) {
@@ -71,20 +101,29 @@ export class RegisterComponent {
     submitToFireBase() {
 
 
+        if (document.getElementById('mail').textContent != '') {
+            this.client.email = document.getElementById('mail').textContent.split('.',).join('-').split('@',).join('_')
+            alert('sdms')
+
+
+            console.log(this.client.email)
+        }
+
+        else
+            this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
+        alert(this.client.email)
         this.client.name = this.name_client
         this.client.surname = this.surname_client
-        this.client.email = this.email_client
         this.client.cap = this.cap_client
         this.client.street = this.street_client
 
         if (this.password_1 !== this.password_2)
-            this.alertService.presentAlert('Le due password inserite non corrispondono','Errore','')
+            this.alertService.presentAlert('Le due password inserite non corrispondono', 'Errore', '')
         else this.client.password = this.password_1
-
         this.fireBaseClientservice.addClient(this.client)
-
+        this.alertService.presentAlert('Utente registrato con successo', '', '')
         //this.client
-
     }
+
 
 }

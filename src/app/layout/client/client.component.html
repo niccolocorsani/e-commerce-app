@@ -1,7 +1,8 @@
 <ion-app class="background-image">
-    <app-spinner-material-component  *ngIf="openComponentsService.spinner"></app-spinner-material-component>
+    <app-spinner-material-component *ngIf="openComponentsService.spinner"></app-spinner-material-component>
     <ion-header>
         <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
+            <ion-title id="header" class="ion-text-center">Client portal</ion-title>
             <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
             <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
             <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
@@ -10,13 +11,13 @@
     <ion-header>
         <ion-toolbar style="  --ion-background-color: white;" size="small">
             <div slot="end" (click)="openDialog('Account')" style="cursor: pointer;">
-                <ion-label slot="end">Registrati/Accedi</ion-label>
+                <ion-label slot="end" id="logged">Registrati/Accedi</ion-label>
                 <ion-icon style=" padding-right: 25px ;"
                           name="man" slot="end" style="zoom:2.8;">
                 </ion-icon>
             </div>
             <ion-label slot="end">&nbsp;&nbsp;&nbsp;</ion-label>
-            <div  class="icon-badge"  slot="end" (click)="openDialog('Carrello')"  style="cursor: pointer;">
+            <div class="icon-badge" slot="end" (click)="openDialog('Carrello')" style="cursor: pointer;">
                 <ion-label slot="end">Carrello</ion-label>
                 <ion-icon
                         name="cart" slot="end" style=" padding-right: 25px" style="zoom:2.8;"></ion-icon>
@@ -73,6 +74,7 @@
                     <app-geolocation *ngIf="openComponentsService.openDialogVarShowUsers"></app-geolocation>
                 </ion-col>
             </ion-row>
+            <ion-row>
             <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
                 <br/>
                 <ion-row>
@@ -116,6 +118,7 @@
                     </ion-col>
                 </ion-row>
             </ion-toolbar>
+            </ion-row>
         </ion-grid>
     </ion-content>
 </ion-app>
