@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <app-social-register (click)="next3()" (click)="addPassword_1('not_needed')" (click)="addPassword_2('not_needed')"></app-social-register>
+        <app-social-register (newItemEvent)="addEmail($event)" (click)="next3()" (click)="addPassword_1('not_needed')" (click)="addPassword_2('not_needed')"></app-social-register>
        <!-- <img src="assets/images/img1.jpeg">-->
     </ion-card>
 </div>

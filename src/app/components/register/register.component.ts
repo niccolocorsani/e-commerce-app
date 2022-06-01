@@ -4,6 +4,7 @@ import {FirebaseClientResponse} from "../../services/response/firebase-client-re
 import {AlertController} from "@ionic/angular";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import Stepper from "bs-stepper";
+import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 
 
 @Component({
@@ -30,23 +31,24 @@ export class RegisterComponent {
     street_client = '';
     email_client = ""
     cap_client = '' //// se qualche valore è undefined o null la richiesta http non
+    products = []
 
 
     private stepper: Stepper;
 
     next2() {
         this.stepper.to(2);
-        document.getElementById("step2").setAttribute("style","background-color: black;")
-        document.getElementById("step1").setAttribute("style","background-color: #c1a977;")
-        document.getElementById("step3").setAttribute("style","background-color: #c1a977;")
+        document.getElementById("step2").setAttribute("style", "background-color: black;")
+        document.getElementById("step1").setAttribute("style", "background-color: #c1a977;")
+        document.getElementById("step3").setAttribute("style", "background-color: #c1a977;")
 
     }
 
     next3() {
         this.stepper.to(3);
-        document.getElementById("step3").setAttribute("style","background-color: black;")
-        document.getElementById("step2").setAttribute("style","background-color: #c1a977;")
-        document.getElementById("step1").setAttribute("style","background-color: #c1a977;")
+        document.getElementById("step3").setAttribute("style", "background-color: black;")
+        document.getElementById("step2").setAttribute("style", "background-color: #c1a977;")
+        document.getElementById("step1").setAttribute("style", "background-color: #c1a977;")
 
     }
 
@@ -100,28 +102,35 @@ export class RegisterComponent {
 
     submitToFireBase() {
 
-
-        if (document.getElementById('mail').textContent != '') {
+        /// SE mail inserita con Google
+        if (document.getElementById('mail').textContent != null) {
             this.client.email = document.getElementById('mail').textContent.split('.',).join('-').split('@',).join('_')
-            alert('sdms')
-
-
             console.log(this.client.email)
-        }
+        } else this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
+        /// SE mail inserita con Google
 
-        else
-            this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
+        if (this.password_1 !== this.password_2)
+            this.alertService.presentAlert('Le due password inserite non corrispondono', 'Errore', '')
+        else this.client.password = this.password_1
+
+
         alert(this.client.email)
         this.client.name = this.name_client
         this.client.surname = this.surname_client
         this.client.cap = this.cap_client
         this.client.street = this.street_client
+        this.products.push({
+            description: "", id: "", img_name_ref: "", name: "", type: "",
+            price: 3
 
-        if (this.password_1 !== this.password_2)
-            this.alertService.presentAlert('Le due password inserite non corrispondono', 'Errore', '')
-        else this.client.password = this.password_1
+        })
+        this.client.products = this.products
         this.fireBaseClientservice.addClient(this.client)
         this.alertService.presentAlert('Utente registrato con successo', '', '')
+
+
+        document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
+
         //this.client
     }
 

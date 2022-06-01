@@ -19,3 +19,4 @@
 /tsconfig.doc.json
 /request-user-service.service.ts
 /user-response.ts
+sendgrid.env

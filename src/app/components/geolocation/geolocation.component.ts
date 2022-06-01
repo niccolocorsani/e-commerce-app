@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RequestConsultantServiceService} from "../../services/request/request-consultant-service.service";
-import {ConsultantResponse} from "../../services/response/consultant-response";
+
 import {AsyncWaitAnimationService} from "../../services/async-wait-animation/async-wait-animation.service";
+import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 
 
 @Component({
@@ -20,19 +20,19 @@ export class GeolocationComponent implements OnInit {
     lng = 11.24626;  // Florence coordinates
     options: any;
     map: google.maps.Map;
-    consultants: ConsultantResponse[];
     checkConsultantOnMap = false;
     address: any;
     hideGetPositionOptionForClient = true;
     openMap = false;
+    client
 
 
-    constructor(private consultantService: RequestConsultantServiceService, private waitAnimationSerivce: AsyncWaitAnimationService) {
+    constructor(private fireBaseRequestClient: FireBaseRequestClientService, private waitAnimationSerivce: AsyncWaitAnimationService) {
         this.options = {
             enableHighAccuracy: false,
             timeout: 5000,
         };
-            this.consultants = this.consultantService.getSynchronousConsultants();
+            this.client = this.fireBaseRequestClient.getClients();
 
         setTimeout(() => {
             this.waitAnimationSerivce.replaceWithWaitingAnimation("map");

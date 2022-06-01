@@ -1,8 +1,11 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {ProductResponse} from "../../services/response/product-response";
+import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
-import {FormBuilder, } from "@angular/forms";
+import {FormBuilder,} from "@angular/forms";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
+import {ModalController} from "@ionic/angular";
+import {ModalProductComponent} from "./modal-product/modal-product.component";
 
 @Component({
     selector: 'app-show-products',
@@ -10,21 +13,33 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 })
 export class ShowProductsComponent implements OnInit {
 
-    public listElements: Array<ProductResponse> = [];
+    public listElements: Array<FirebaseProductResponse> = [];
+
+    list = []
 
 
-    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertIonic: AlertIonicService, public modalController: ModalController) {
     }
 
-    ngOnInit() {
+    async ngOnInit() {
+        this.listElements = await this.productsService.getProducts()
+        console.log(this.list)
     }
 
-    getProducts() {
-        this.productsService.getProducts();
+
+    displayProductInfoModal(item: FirebaseProductResponse) {
+        this.presentModal(item)
+        //this.alertIonic.presentAlert('<img id="img-product" src="'+item.img_name_ref+'" class="" height="200">','a skdfna n dsna sdnas d askjd bajbdjasbdjasbdjasdbajsidjfn',item.description)
     }
 
-    getProduct() {
-        this.productsService.getProduct('product_1');
-    }
 
+    async presentModal(product: FirebaseProductResponse) {
+        const modal = await this.modalController.create({
+                component: ModalProductComponent,
+                cssClass: 'my-custom-class',
+                componentProps: {product: product}
+            },
+        );
+        return await modal.present();
+    }
 }

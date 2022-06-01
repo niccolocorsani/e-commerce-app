@@ -1,3 +1,5 @@
+import {FirebaseProductResponse} from "./firebase-product-response";
+
 export class FirebaseClientResponse {
 
 
@@ -8,6 +10,7 @@ export class FirebaseClientResponse {
     street: string;
     cap: string
     password: string
+    products : any
 
 
     constructor(data?: any) {
@@ -17,6 +20,6 @@ export class FirebaseClientResponse {
         this.password = data ? data.password : null;
         this.street = data ? data.street : null;
         this.email = data ? data.email : null;
-
+        this.products = data ? data.products : null;
     }
 }

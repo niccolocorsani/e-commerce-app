@@ -1,11 +1,11 @@
-import {ProductResponse} from "./product-response";
+import {FirebaseProductResponse} from "./firebase-product-response";
 import {FirebaseClientResponse} from "./firebase-client-response";
 
 export class OrderResponse {
 
 
     id: string;
-    product: ProductResponse;
+    product: FirebaseProductResponse;
     client: FirebaseClientResponse
 
 

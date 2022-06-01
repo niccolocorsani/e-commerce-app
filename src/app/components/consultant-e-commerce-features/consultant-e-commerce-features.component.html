@@ -3,21 +3,28 @@
         <ion-card-title>Add product</ion-card-title>
     </ion-card-header>
     <ion-row>
-        <lib-normal-input [item]="name"></lib-normal-input>
+        <lib-normal-input [item]="name" (newItemEvent)="addName($event)"></lib-normal-input>
         <br/>
         <br/>
         <br/>
         <br/>
     </ion-row>
     <ion-row>
-        <lib-normal-input [item]="description"></lib-normal-input>
+        <lib-normal-input [item]="description" (newItemEvent)="addDescription($event)"></lib-normal-input>
         <br/>
         <br/>
         <br/>
         <br/>
     </ion-row>
     <ion-row>
-        <lib-normal-input [item]="price"></lib-normal-input>
+        <lib-normal-input [item]="price" (newItemEvent)="addPrice($event)"></lib-normal-input>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </ion-row>
+    <ion-row>
+        <lib-normal-input [item]="type" (newItemEvent)="addType($event)"></lib-normal-input>
         <br/>
         <br/>
         <br/>

@@ -3,6 +3,8 @@ import {AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask} 
 import {Observable} from "rxjs";
 import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
 import {FormBuilder} from "@angular/forms";
+import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
+import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 
 @Component({
     selector: 'app-consultant-e-commerce-features',
@@ -16,16 +18,39 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     task: AngularFireUploadTask;
     uploadProgress: Observable<number>;
     price = 'prezzo';
+
+
     description = 'descrizione';
     name = 'nome';
     type = 'tipologia'
 
+    product = new FirebaseProductResponse()
+    url: any;
 
-    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage) {
+
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertService: AlertIonicService) {
     }
 
     ngOnInit() {
     }
+
+
+    addName(newItem: string) {
+        this.name = newItem;
+    }
+
+    addDescription(newItem: string) {
+        this.description = newItem;
+    }
+
+    addPrice(newItem: string) {
+        this.price = newItem;
+    }
+
+    addType(newItem: string) {
+        this.type = newItem;
+    }
+
 
     async onFileChangeImage(event: any) {
         const reader = new FileReader();
@@ -45,36 +70,36 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
 
             }
         }
-
-        const id = 'name1';
+        const id = (Math.random() + 1).toString(36).substring(7);
         this.ref = this.afStorage.ref(id);
         this.task = this.ref.put(event.target.files[0]);
         this.uploadProgress = this.task.percentageChanges();
 
-        let url
-        //// il problema sta nell'asincronia delle cose.....         await this.ref.getDownloadURL().subscribe(value =>{url = value} non lo aspetta
-        await this.ref.getDownloadURL().subscribe(value => (this.productsService.display_image('name1', value)))
-        this.delay(4000)
-        console.log(url)
+
+        await this.ref.getDownloadURL().subscribe(value => (this.url = value))
+        await this.delay(4000)
+        this.productsService.display_image('name1', this.url)
     }
 
     addProduct() {
-        ////TODO da finire per bene...... che prende l'ultimo nome del prodotto e lo aggiunge
-        this.productsService.get_last_product_name()
-        ////TODO da finire per bene...... che prende l'ultimo nome del prodotto e lo aggiunge
 
-
+        alert(this.url)
 
         this.productsService.addProduct({
-            name: 'ds',
-            price: 32,
-            id: 'de',
-            description: "",
-            img_name_ref: ""
-        }, 'product_3')
+            name: this.name,
+            price: Number(this.price),
+            id: '',
+            description: this.description,
+            img_name_ref: this.url,
+            type: this.type
+        }, '')
+        this.alertService.presentAlert('Prodotto aggiunto con successo', '', '')
+
     }
 
     delay(ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+
 }

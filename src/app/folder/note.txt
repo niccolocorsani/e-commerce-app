@@ -1,4 +1,0 @@
-The aim of this folder is to provide the functionality of app routing for the side drop-down menu:
-
-path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)

@@ -19,8 +19,10 @@ export class BusinessConsultantComponent  implements  OnInit{
 
 
     public appPages = [
-        {title: 'Account', url: '/folder/Inbox', icon: 'cafe'},
+        {title: 'Aggiungi prodotti', url: '/folder/Inbox', icon: 'cafe'},
         {title: 'Calendar', url: '/folder/Trash', icon: 'calendar'},
+        {title: 'prodotti', url: '/first-component', icon: 'calendar'},
+
     ];
 
 
@@ -28,20 +30,16 @@ export class BusinessConsultantComponent  implements  OnInit{
         if (this.openComponentsService.openDialogMenu === false) {
             this.openComponentsService.openDialogMenu = true;
         } else {
-            this.openComponentsService.openDialogVarAccount = false;
-            this.openComponentsService.openDialogCalendar = false;
-            this.openComponentsService.openDialogMaps = false;
+            this.openComponentsService.openAggiungiProdotti = false;
 
 
         }
     }
 
     openDialog(title: any) {
-        if (title === 'Account') {
+        if (title === 'Aggiungi prodotti') {
             if (window.innerHeight < 700) this.openComponentsService.openDialogMenu = false;
-            this.openComponentsService.openDialogVarAccount = true;
-            this.openComponentsService.openDialogMaps = true;
-            this.openComponentsService.openDialogCalendar = false;
+            this.openComponentsService.openAggiungiProdotti = true;
 
             return;
         }
@@ -49,9 +47,7 @@ export class BusinessConsultantComponent  implements  OnInit{
 
         if (title === 'Calendar') {
             if (window.innerHeight < 700) this.openComponentsService.openDialogMenu = false;
-            this.openComponentsService.openDialogCalendar = true;
-            this.openComponentsService.openDialogVarAccount = false;
-            this.openComponentsService.openDialogMaps = false;
+            this.openComponentsService.openAggiungiProdotti = false;
 
         }
     }

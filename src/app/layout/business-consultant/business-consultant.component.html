@@ -1,16 +1,18 @@
 <ion-app class="background-image">
     <ion-header>
-        <ion-toolbar style="  --ion-background-color: linear-gradient(113deg,#2484FD 4%,#00B4FF 14%,#767BF3 53%,#FA42AB 65%,#FB6B9D 87%,#FD978D 100%)">
+        <ion-toolbar
+                style="  --ion-background-color: linear-gradient(113deg,#2484FD 4%,#00B4FF 14%,#767BF3 53%,#FA42AB 65%,#FB6B9D 87%,#FD978D 100%)">
             <ion-title id="header" class="ion-text-center">Consultant portal</ion-title>
         </ion-toolbar>
     </ion-header>
     <ion-card id="card-image" style="width:62px;" tooltip="I'm a tooltip below a button" positionV="bottom" arrow>
         <div style="width:50px; height: 60px ; padding: 2px 2px 2px 2px">
-            <ion-img id="user-image" ></ion-img>
+            <ion-img id="user-image"></ion-img>
         </div>
     </ion-card>
     <ion-content>
-        <ion-item button="true" style="padding-top: 0px; width: 200px" tooltip="Torna alla pagina iniziale" positionV="bottom" arrow>
+        <ion-item button="true" style="padding-top: 0px; width: 200px" tooltip="Torna alla pagina iniziale"
+                  positionV="bottom" arrow>
             <ion-icon *ngIf="!openComponentsService.openDialogMenu" (click)="openMenu()"
                       name="home"></ion-icon>
             <ion-icon *ngIf="openComponentsService.openDialogMenu" (click)="openMenu()"
@@ -35,17 +37,13 @@
                     </ion-card>
                 </ion-col>
                 <ion-col size="12" size-sm style="height: 85vh">
-                    <app-log-in-or-register-menu
-                            *ngIf="openComponentsService.openDialogVarAccount"></app-log-in-or-register-menu>
-                    <app-my-calendar *ngIf="openComponentsService.openDialogCalendar"></app-my-calendar>
+                    <app-consultant-e-commerce-features></app-consultant-e-commerce-features>
                 </ion-col>
                 <ion-col size="12" size-sm>
-                    <app-geolocation *ngIf="openComponentsService.openDialogMaps"></app-geolocation>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </ion-content>
 </ion-app>
-
 
 

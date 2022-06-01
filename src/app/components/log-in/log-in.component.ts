@@ -3,6 +3,7 @@ import {OpenComponentsService} from "../../services/open-components/open-compone
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-log-in',
@@ -18,7 +19,7 @@ export class LogInComponent {
 
     client_firebase = new FirebaseClientResponse()
 
-    constructor(private openComponentsService: OpenComponentsService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService) {
+    constructor(private openComponentsService: OpenComponentsService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router) {
     }
 
 
@@ -31,26 +32,32 @@ export class LogInComponent {
     }
 
 
-     async login() {
+    async login() {
 
-         this.client_firebase = await this.fireBaseClientservice.getClient(this.email_client)
+        this.email_client = this.email_client.split('.',).join('-').split('@',).join('_')
+        if (this.email_client === 'ConsulenteNumero1') {
+            this.openComponentsService.openClient = false
+            this.openComponentsService.openConsultant = true
+            return
+        }
 
-         console.log(this.client_firebase)
 
-         if (this.client_firebase == null)
-             this.alertService.presentAlert('Utente non presente', '', '')
-         if (this.client_firebase.password === this.password_client) {
-             this.alertService.presentAlert('Login eseguito con successo', '', '')
-             document.getElementById("logged").textContent = this.client_firebase.email;
+        alert(this.email_client)
+        this.client_firebase = await this.fireBaseClientservice.getClient(this.email_client)
 
-         } else this.alertService.presentAlert('Password errata', '', '')
-     }
+        console.log(this.client_firebase)
+
+        if (this.client_firebase == null)
+            this.alertService.presentAlert('Utente non presente', '', '')
+        if (this.client_firebase.password === this.password_client) {
+            this.alertService.presentAlert('Login eseguito con successo', '', '')
+            document.getElementById("logged").textContent = this.client_firebase.email.split('-',).join('.').split('_',).join('@');
+
+        } else this.alertService.presentAlert('Password errata', '', '')
+    }
 
     apriRegisterComponent() {
-        this.openComponentsService.openDialogVarNewAccount = true;
-        this.openComponentsService.openDialogCalendar = false;
-        this.openComponentsService.openDialogVarShowUsers = false;
-        this.openComponentsService.openDialogVarAccount = false;
-        this.openComponentsService.openCarrello = false;
+        this.router.navigate(['/register'])
+
     }
 }

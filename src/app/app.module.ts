@@ -1,10 +1,8 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import {RouteReuseStrategy, RouterModule} from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {OpenModal} from './components/select-appointmnent-with-modal/open-modal';
 import {LogInComponent} from './components/log-in/log-in.component';
 import {MyInputComponent} from './components/my-input/my-input.component';
 import {RegisterComponent} from './components/register/register.component';
@@ -13,10 +11,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {LocalNotifications} from '@ionic-native/local-notifications/ngx';
 import {NgCalendarModule} from 'ionic2-calendar';
-import {FormsModule} from "@angular/forms";
 import {ClientComponent} from "./layout/client/client.component";
 import {BusinessConsultantComponent} from "./layout/business-consultant/business-consultant.component";
-import {SelectUsersModalComponent} from "./components/select-appointmnent-with-modal/select-users-modal/select-users-modal.component";
 import {ShowProductsComponent} from "./components/show-products/show-products.component";
 import {GeolocationComponent} from "./components/geolocation/geolocation.component";
 import {AgmCoreModule} from "@agm/core";
@@ -27,7 +23,6 @@ import {SocialLogInComponent} from "./components/social-log-in/social-log-in.com
 import {SocialRegisterComponent} from "./components/social-register/social-register.component";
 import {TooltipsModule} from "ionic-tooltips";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {PushNotificationComponent} from "./components/push-notification/push-notification.component";
 import {firebaseConfig} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
@@ -41,36 +36,32 @@ import {CarrelloComponent} from "./components/carrello/carrello.component";
 import {
     SpinnerMaterialComponentComponent
 } from "./components/spinner-material-component/spinner-material-component.component";
-
-
-
-
+import {NgxPayPalModule} from "ngx-paypal";
+import {PaymentsComponent} from "./components/payments/payments.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        OpenModal,
         LogInComponent,
         MyInputComponent,
         RegisterComponent,
         ClientComponent,
         BusinessConsultantComponent,
-        SelectUsersModalComponent,
         ShowProductsComponent,
         GeolocationComponent,
         SocialSharingComponent,
         SocialLogInComponent,
         SocialRegisterComponent,
-        PushNotificationComponent,
         ConsultantECommerceFeaturesComponent,
         CarrelloComponent,
         SpinnerMaterialComponentComponent,
+        PaymentsComponent,
 
 
     ],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, NgCalendarModule,
+    imports: [BrowserModule, IonicModule.forRoot(), NgCalendarModule,
         HttpClientModule, SocialLoginModule, TooltipsModule.forRoot(), BrowserAnimationsModule,
 
         //https://github.com/angular/angularfire/blob/master/docs/ionic/cli.md
@@ -87,7 +78,14 @@ import {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule
+        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule, NgxPayPalModule, RouterModule.forRoot([
+            {path: 'first-component', component: GeolocationComponent},
+            {path:'carrello',component:CarrelloComponent},
+            {path: 'client', component: ClientComponent},
+            {path: 'login', component: LogInComponent},
+            {path: 'register', component: RegisterComponent},
+            {path: '', redirectTo: '/client', pathMatch: 'full'},
+        ]),
     ],
     // https://www.youtube.com/watch?v=FLHi2pc8gX0 spiegazione LocalNotifications
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, LocalNotifications, AppComponent,
@@ -112,7 +110,6 @@ import {
     ],
     bootstrap: [AppComponent],
     exports: [
-        PushNotificationComponent
     ]
 })
 export class AppModule {

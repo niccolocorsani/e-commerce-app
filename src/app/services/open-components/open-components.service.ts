@@ -1,24 +1,25 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class OpenComponentsService {
 
 
-
-  openDialogVarAccount = false;
-  openDialogVarShowUsers = false;
-  openDialogNotification = false;
-  openDialogCalendar = false;
-  openDialogMenu = true;
-  openDialogMaps = false;
-  openCarrello = false
-  openDialogVarNewAccount = false;
-  spinner = false;
+    openClient = true;
+    openConsultant = false;
 
 
-  constructor() {
+    openAggiungiProdotti = false;
+    openDialogRegister = false;
+    openDialogNotification = false;
+    openDialogMenu = true;
+    spinner = false;
+    openLogIn = false;
+    openShowProducts = true;
 
-  }
+
+    constructor() {
+
+    }
 }

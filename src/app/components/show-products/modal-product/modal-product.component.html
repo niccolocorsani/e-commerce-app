@@ -1,0 +1,36 @@
+<ion-grid>
+    <ion-row>
+        <br/>
+        <br/>
+    </ion-row>
+    <ion-row>
+        <ion-col offset="1">
+            <ion-card>
+                <img id="img-product" src="{{this.product.img_name_ref}}">
+            </ion-card>
+        </ion-col>
+        <ion-col>
+            <!--*ngIf="index == 0 || index ==1"-->
+            <div>
+                <br/>
+                Nome: {{this.product.name}}
+            </div>
+            <div>
+                <br/>
+                Prezzo: {{this.product.price}}
+            </div>
+            <div>
+                <br/>
+                Descrizione: {{this.product.description}}
+            </div>
+            <br/>
+            <br/> <br/>
+            <br/>
+            <ion-item button="true" (click)="aggiungiAlCarrello(this.product)"> Aggiungi al carrello</ion-item>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+
+
+

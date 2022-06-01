@@ -1,124 +1,19 @@
-<ion-app class="background-image">
-    <app-spinner-material-component *ngIf="openComponentsService.spinner"></app-spinner-material-component>
-    <ion-header>
-        <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
-            <ion-title id="header" class="ion-text-center">Client portal</ion-title>
-            <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
-            <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
-            <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
-        </ion-toolbar>
-    </ion-header>
-    <ion-header>
-        <ion-toolbar style="  --ion-background-color: white;" size="small">
-            <div slot="end" (click)="openDialog('Account')" style="cursor: pointer;">
-                <ion-label slot="end" id="logged">Registrati/Accedi</ion-label>
-                <ion-icon style=" padding-right: 25px ;"
-                          name="man" slot="end" style="zoom:2.8;">
-                </ion-icon>
-            </div>
-            <ion-label slot="end">&nbsp;&nbsp;&nbsp;</ion-label>
-            <div class="icon-badge" slot="end" (click)="openDialog('Carrello')" style="cursor: pointer;">
-                <ion-label slot="end">Carrello</ion-label>
-                <ion-icon
-                        name="cart" slot="end" style=" padding-right: 25px" style="zoom:2.8;"></ion-icon>
-                <ion-badge color="dark">2</ion-badge>
-            </div>
-            <ion-label slot="end">&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
-        </ion-toolbar>
-    </ion-header>
-    <!-- tool tip doc at https://github.com/zyra/ionic-tooltips -->
-    <ion-card id="card-image" style="width:62px;" tooltip="Hey, you are correctly logged-in" positionV="bottom" arrow>
-        <div style="width:50px; height: 60px ; padding: 2px 2px 2px 2px">
-            <ion-img id="user-image"></ion-img>
-        </div>
-    </ion-card>
-    <ion-content>
-        <ion-item button="true" style="padding-top: 0px; width: 200px" tooltip="Torna alla pagina iniziale"
-                  positionV="bottom" arrow>
-            <ion-icon *ngIf="!openComponentsService.openDialogMenu" (click)="openMenu()"
-                      name="home"></ion-icon>
-            <ion-icon *ngIf="openComponentsService.openDialogMenu" (click)="openMenu()"
-                      name="home"></ion-icon>
-        </ion-item>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <ion-grid class="ion-no-padding">
-            <ion-row>
-                <ion-col size-sm="12" size-xl="2">
-                    <ion-card>
-                        <ion-list *ngIf="openComponentsService.openDialogMenu" id="inbox-list">
-                            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                                <ion-item button="true" routerDirection="root" [routerLink]="[p.url]" lines="none"
-                                          detail="false"
-                                          routerLinkActive="selected" (click)="openDialog(p.title)">
-                                    <ion-icon slot="start" [ios]="p.icon + '-outline'"
-                                              [md]="p.icon + '-sharp'"></ion-icon>
-                                    <ion-label>{{ p.title }}</ion-label>
-                                </ion-item>
-                                <hr>
-                            </ion-menu-toggle>
-                        </ion-list>
-                    </ion-card>
-                </ion-col>
-                <ion-col size-xl="10" size-sm="12" style="height: 65vh">
-                    <app-log-in
-                            *ngIf="openComponentsService.openDialogVarAccount"></app-log-in>
-                    <app-register
-                            *ngIf="openComponentsService.openDialogVarNewAccount"></app-register>
-                    <app-show-products *ngIf="openComponentsService.openDialogVarShowUsers"></app-show-products>
-                    <app-carrello *ngIf="openComponentsService.openCarrello"></app-carrello>
-                </ion-col>
-                <ion-col size="12" size-sm>
-                    <!--<app-consultant-e-commerce-features></app-consultant-e-commerce-features>-->
-                    <app-geolocation *ngIf="openComponentsService.openDialogVarShowUsers"></app-geolocation>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-            <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
-                <br/>
-                <ion-row>
-                    <ion-col offset="2">
-                        <ion-label>Condividi</ion-label>
-                        <br/>
-                        <br/>
-                        <app-social-sharing></app-social-sharing>
-                    </ion-col>
-                    <ion-col>
-                        <ion-label>Chi siamo</ion-label>
-                    </ion-col>
-                    <ion-col>
-                        <ion-label>Utility</ion-label>
-                        <p style="color: white;">Contattaci</p>
-                        <p style="color: white;">Termini d'acquisto</p>
-                        <p style="color: white;">Rimborsi</p>
-                    </ion-col>
-                    <ion-col>
-                        <ion-label>Pagamenti sicuri</ion-label>
-                        <br/>
-                        <br/>
-                        <p><img src="https://veniceoriginal.it/img/cms/grafica/payment.svg" alt="" width="244"
-                                height="20"></p>
-                        <ion-label>Seguici su</ion-label>
-                        <br/>
-                        <br/>
-                        <p><a href="https://www.facebook.com/veniceoriginal" target="_blank"><img
-                                src="https://veniceoriginal.it/img/cms/grafica/icon-facebook_1.svg"
-                                style="width: 15px; margin-right: 15px;" alt="Pagina Facebook di VeniceOriginal"
-                                width="10" height="20"></a><a href="https://www.instagram.com/veniceoriginal/"
-                                                              target="_blank"><img style="width: 30px;"
-                                                                                   src="https://veniceoriginal.it/img/cms/grafica/icon-instagram.svg"
-                                                                                   alt="Pagina Instagram di Venice Original"
-                                                                                   width="50"></a> <a
-                                href="https://www.youtube.com/channel/UCPJifmVgbI9-YbT_RMmuIpw" target="_blank"><img
-                                src="https://veniceoriginal.it/img/cms/grafica/icon-youtube.svg"
-                                style="margin-left: 15px;" width="40"></a></p>
-                    </ion-col>
-                    <ion-col>
-                    </ion-col>
-                </ion-row>
-            </ion-toolbar>
-            </ion-row>
+            <br/>
+            <app-show-products *ngIf="openComponentsService.openShowProducts"></app-show-products>
+            <app-log-in
+                    *ngIf="openComponentsService.openLogIn"></app-log-in>
+            <app-register
+                    *ngIf="openComponentsService.openDialogRegister"></app-register>
+            <br/>
         </ion-grid>
-    </ion-content>
-</ion-app>
+<app-business-consultant *ngIf="openComponentsService.openConsultant"></app-business-consultant>
 
 
 

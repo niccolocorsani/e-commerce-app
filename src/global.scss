@@ -1,4 +1,3 @@
-
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 
 @import "~@ionic/angular/css/core.css";
@@ -18,40 +17,36 @@
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-
-
-
 @import '~bs-stepper/dist/css/bs-stepper.min.css';
-
-
-
-
-
-
 
 
 ion-content {
   --background: transparent;
 }
+
 ion-list {
   //--ion-background-color: linear-gradient(to right, #11998e, #38ef7d);
   height: 100vh;
 }
+
 ion-app {
   height: 100vh;
 }
+
 ion-item {
- // --background: linear-gradient(to right, #11998e, #38ef7d);
+  // --background: linear-gradient(to right, #11998e, #38ef7d);
   cursor: pointer;
   padding-top: 5%;
   border-radius: 10% 10% 10% 10%;
 }
+
 ion-icon {
   --background: linear-gradient(to right, #11998e, #38ef7d);
   cursor: pointer;
   name: close-outline;
 
 }
+
 .ion-icon-open {
   --background: linear-gradient(to right, #11998e, #38ef7d);
   cursor: pointer;
@@ -65,7 +60,6 @@ ion-icon {
 }
 
 
-
 @import "./node_modules/bootstrap/scss/bootstrap.scss";
 
 ///////////////////////////////////////////////
@@ -74,7 +68,7 @@ ion-icon {
 
 //CSS
 .background-image {
- // background-image: url(https://i2.wp.com/www.strategie3.com/wp-content/uploads/2020/04/sfondo.jpg?resize=1280%2C933&ssl=1);
+  // background-image: url(https://i2.wp.com/www.strategie3.com/wp-content/uploads/2020/04/sfondo.jpg?resize=1280%2C933&ssl=1);
   background-size: auto;
   background-repeat: repeat;
 }
@@ -114,11 +108,9 @@ ion-icon {
 }
 
 
+ion-title {
 
-
-ion-title{
-
-  font-family : 'Vollkorn' !important;
+  font-family: 'Vollkorn' !important;
   color: #c1a977;
   font-size: 0.8rem;
   font-weight: bold;
@@ -126,55 +118,51 @@ ion-title{
 }
 
 
-ion-card-title{
-  font-family : 'Vollkorn' !important;
+ion-card-title {
+  font-family: 'Vollkorn' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
 }
 
-ion-card-subtitle{
-  font-family : 'Vollkorn' !important;
+ion-card-subtitle {
+  font-family: 'Vollkorn' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
 }
 
 
-ion-icon{
+ion-icon {
   color: #c1a977;
   size: 4rem;
 }
 
-a{
-  font-family : 'Vollkorn' !important;
+a {
+  font-family: 'Vollkorn' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
 }
 
-ion-label{
-  font-family : 'Vollkorn' !important;
+ion-label {
+  font-family: 'Vollkorn' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
 }
 
-ion-item{
-  font-family : 'Vollkorn' !important;
+ion-item {
+  font-family: 'Vollkorn' !important;
   font-size: 1rem;
 }
-
-
-
-
-
 
 
 .icon-badge {
   position: relative;
   width: fit-content;
+
   ion-badge {
     position: absolute;
     z-index: 99;
@@ -184,18 +172,33 @@ ion-item{
 }
 
 
-ion-button{
-  font-family : 'Vollkorn' !important;
+ion-button {
+  font-family: 'Vollkorn' !important;
   color: #c1a977;
   text-transform: none
 
 }
 
 
-
 .hide-this-element {
   display: none;
 }
 
+
+.zoom {
+  transition: transform .2s; /* Animation */
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+.my-custom-class {
+  --height: 90%;
+  top: 5%;
+  --width: 90%;
+  border-radius: 25px;
+}
 
 

@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from "@angular/fire/compat/database";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {ProductResponse} from "../response/product-response";
+import {FirebaseProductResponse} from "../response/firebase-product-response";
 import {map} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {OpenComponentsService} from "../open-components/open-components.service";
+import {AngularFireFunctions} from "@angular/fire/compat/functions";
+import {AlertController} from "@ionic/angular";
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -22,7 +24,7 @@ export class FireBaseRequestProductService {
     variable_to_wait: any;
 
 
-    constructor(private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
+    constructor(private alertController: AlertController,private functions: AngularFireFunctions, private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
     }
 
 ////CRUD
@@ -40,8 +42,10 @@ export class FireBaseRequestProductService {
     }
 
 
-    public async addProduct(product: ProductResponse, product_key: string) {
+    public async addProduct(product: FirebaseProductResponse, product_key: string) {
         this.variable_to_wait = await this.db.object('products/' + product.name).update(product)
+
+
     }
 
 
@@ -70,9 +74,12 @@ export class FireBaseRequestProductService {
             price: 32,
             id: 'de',
             description: "",
-            img_name_ref: ""
+            img_name_ref: "",
+            type: ""
         }, 'product_3')
     }
+
+
 
 //// Other methods
 
