@@ -1,16 +1,33 @@
-<div *ngIf="!paidFor">
-
-    <h1>Buy this Couch - ${{ product.price }} OBO</h1>
-
-    <p>{{ product.description }}</p>
-
-    <img width="400" [src]="product.img">
-
-</div>
-
-<div *ngIf=paidFor>
-    <h1>Yay, you bought a sweet couch!</h1>
-</div>
+<ion-row>
+    <ion-col size-xl="8">
+        <div *ngIf="!paidFor">
 
 
-<div [hidden]="paidFor" #paypal></div>
+            <p>{{ totalOrders.description }}</p>
+
+        </div>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <div *ngIf=paidFor>
+        <h1>Yay, you bought a sweet couch!</h1>
+    </div>
+
+    <ion-col size-xl="8">
+        <div [hidden]="paidFor" #paypal></div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </ion-col>
+</ion-row>

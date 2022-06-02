@@ -8,6 +8,7 @@ import {OneSignal} from "onesignal-ngx";
 })
 export class PushNotificationServiceService {
 
+    // per renderlo disponibile anche online: https://app.onesignal.com/apps/206e4ddb-a9f7-4d03-a059-ae34ed5cdf00/settings/webpush/configure
 
     private url = 'https://onesignal.com/api/v1/notifications';
 
@@ -53,6 +54,7 @@ export class PushNotificationServiceService {
             this.http.post<Object>(this.url, {
                 "app_id": "206e4ddb-a9f7-4d03-a059-ae34ed5cdf00",
                 "include_player_ids": [userId],
+                url:'https://mail.google.com/mail/u/0/#inbox',
                 "contents": {
                     "en": message
                 },

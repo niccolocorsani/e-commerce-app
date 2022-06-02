@@ -19,6 +19,7 @@ export class OpenComponentsService {
     openShowProducts = true;
 
 
+
     constructor() {
 
     }

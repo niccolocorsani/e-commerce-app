@@ -38,6 +38,10 @@ export class CarrelloComponent implements OnInit {
       this.router.navigate(['/client'])
   }
 
+  navigateToCheckOut() {
+    this.router.navigate(['/checkout'])
+  }
+
   async getProducts() {
 
   }
@@ -50,4 +54,6 @@ export class CarrelloComponent implements OnInit {
     //this.fireBaseClientService.addClient()
    // await this.fireBaseClientService.getClient(mail)
   }
+
+
 }

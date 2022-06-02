@@ -38,6 +38,7 @@ import {
 } from "./components/spinner-material-component/spinner-material-component.component";
 import {NgxPayPalModule} from "ngx-paypal";
 import {PaymentsComponent} from "./components/payments/payments.component";
+import {CheckOutComponent} from "./components/check-out/check-out.component";
 
 
 @NgModule({
@@ -84,6 +85,9 @@ import {PaymentsComponent} from "./components/payments/payments.component";
             {path: 'client', component: ClientComponent},
             {path: 'login', component: LogInComponent},
             {path: 'register', component: RegisterComponent},
+            {path: 'checkout', component: CheckOutComponent},
+
+
             {path: '', redirectTo: '/client', pathMatch: 'full'},
         ]),
     ],

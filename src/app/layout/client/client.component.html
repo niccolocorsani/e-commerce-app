@@ -1,18 +1,13 @@
-
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <ion-grid class="ion-no-padding">
-            <br/>
-            <app-show-products *ngIf="openComponentsService.openShowProducts"></app-show-products>
-            <app-log-in
-                    *ngIf="openComponentsService.openLogIn"></app-log-in>
-            <app-register
-                    *ngIf="openComponentsService.openDialogRegister"></app-register>
-            <br/>
-        </ion-grid>
+<br/>
+<ion-grid class="ion-no-padding">
+    <br/>
+    <app-show-products *ngIf="openComponentsService.openShowProducts"></app-show-products>
+    <app-log-in
+            *ngIf="openComponentsService.openLogIn"></app-log-in>
+    <app-register
+            *ngIf="openComponentsService.openDialogRegister"></app-register>
+    <br/>
+</ion-grid>
 <app-business-consultant *ngIf="openComponentsService.openConsultant"></app-business-consultant>
 
 

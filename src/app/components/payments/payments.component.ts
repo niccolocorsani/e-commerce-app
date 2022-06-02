@@ -14,10 +14,10 @@ export class PaymentsComponent implements OnInit {
 
     @ViewChild('paypal', {static: true}) paypalElement: ElementRef;
 
-    product = {
-        price: 777.77,
-        description: 'used couch, decent condition',
-        img: 'assets/couch.jpg'
+    totalOrders = {
+        price: 100,
+        description: 'Ordini ',
+        img: []
     };
 
     paidFor = false;
@@ -29,10 +29,10 @@ export class PaymentsComponent implements OnInit {
                     return actions.order.create({
                         purchase_units: [
                             {
-                                description: this.product.description,
+                                description: this.totalOrders.description,
                                 amount: {
-                                    currency_code: 'USD',
-                                    value: this.product.price
+                                    currency_code: 'EUR',
+                                    value: this.totalOrders.price
                                 }
                             }
                         ]

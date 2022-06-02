@@ -8,7 +8,6 @@
             <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
             <app-push-notification></app-push-notification>
         </ion-toolbar>
-
             <ion-toolbar style="  --ion-background-color: white;" size="small">
                 <div slot="end" style="cursor: pointer;" (click)="navigateToLogin()">
                     <ion-label slot="end" id="logged">Registrati/Accedi</ion-label>
@@ -31,7 +30,11 @@
                 </ion-item>
             </ion-toolbar>
     </ion-header>
+
+
     <router-outlet></router-outlet>
+
+
         <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
             <ion-row>
                 <br/>
@@ -75,7 +78,6 @@
                 </ion-col>
             </ion-row>
         </ion-toolbar>
-
     </ion-content>
 </ion-app>
 
