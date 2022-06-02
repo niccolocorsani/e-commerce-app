@@ -14,7 +14,6 @@ export class AlertIonicService {
 
     async presentAlert(message: string, header: string, subHeader: string) {
         const alert = await this.alertController.create({
-            cssClass: 'my-custom-class',
             header: header,
             subHeader: subHeader,
             message: message,

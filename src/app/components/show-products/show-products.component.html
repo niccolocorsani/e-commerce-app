@@ -1,33 +1,28 @@
-<ion-card positionV="top" arrow>
-    <ion-card-header>
-        <ion-card-subtitle>Product list</ion-card-subtitle>
-    </ion-card-header>
-    <ion-row>
-        <div *ngFor="let item of listElements">
-            <ion-col>
-                <ul class="list-group" style="margin-left: 100px;">
-                    <ion-card style="cursor: pointer;" (click)="displayProductInfoModal(item)">
-                        <li class="list-group-item">
-                            <br/>
-                            <div class="zoom">
-                                <img id="img-product" src="{{item.img_name_ref}}" class="" height="200">
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <br/>
-                            Nome: {{item.name}}
-                        </li>
-                        <li class="list-group-item">
-                            <br/>
-                            Price: {{item.price}}
-                        </li>
-                    </ion-card>
-                </ul>
-            </ion-col>
-        </div>
-    </ion-row>
-    <br/>
-    <br/>
+<ion-row>
+    <div *ngFor="let item of listElements">
+        <ion-col>
+            <ul class="list-group" style="margin-left: 100px;">
+                <ion-card style="cursor: pointer;" (click)="displayProductInfoModal(item)">
+                    <li class="list-group-item">
+                        <br/>
+                        <div class="zoom">
+                            <img id="img-product" src="{{item.img_name_ref}}" class="" height="200">
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <br/>
+                        Nome: {{item.name}}
+                    </li>
+                    <li class="list-group-item">
+                        <br/>
+                        Price: {{item.price}}
+                    </li>
+                </ion-card>
+            </ul>
+        </ion-col>
+    </div>
+</ion-row>
+<br/>
+<br/>
 
 
-</ion-card>

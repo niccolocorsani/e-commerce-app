@@ -1,61 +1,57 @@
 import {Component, OnInit} from '@angular/core';
-
-import {AsyncWaitAnimationService} from "../../services/async-wait-animation/async-wait-animation.service";
-import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
-
+import {FireBaseRequestClientService} from "../../../services/firebase/fire-base-request-client.service";
+import {AsyncWaitAnimationService} from "../../../services/async-wait-animation/async-wait-animation.service";
+import {ModalController} from "@ionic/angular";
+import {AlertIonicService} from "../../../services/alert-popup-ionic/alert-ionic.service";
 
 @Component({
-    selector: 'app-geolocation',
-    templateUrl: './geolocation.component.html',
-    styleUrls: ['./geolocation.component.scss'],
+    selector: 'app-geo-location-modal-helper',
+    templateUrl: './geo-location-modal-helper.component.html',
+    styleUrls: ['./geo-location-modal-helper.component.scss'],
 })
-export class GeolocationComponent implements OnInit {
+export class GeoLocationModalHelperComponent implements OnInit {
 
     ///documentation for google maps at: https://angular-maps.com/
     /// is important to set the version of the dependency at "@types/googlemaps": "^3.36.4", because the leatest version doesn't work with @agm
 
-
     title = 'My first AGM project';
     lat = 44.77925;
     lng = 11.24626;  // Florence coordinates
-    options: any;
-    map: google.maps.Map;
-    checkConsultantOnMap = false;
     address: any;
-    hideGetPositionOptionForClient = true;
-    openMap = false;
     client
+    city: any;
+    cap: any;
+    street: any;
 
+    options
 
-    constructor(private fireBaseRequestClient: FireBaseRequestClientService, private waitAnimationSerivce: AsyncWaitAnimationService) {
+    constructor(private fireBaseRequestClient: FireBaseRequestClientService, private animationService: AsyncWaitAnimationService, public modalController: ModalController, private ionicAlert: AlertIonicService) {
         this.options = {
             enableHighAccuracy: false,
             timeout: 5000,
         };
-            this.client = this.fireBaseRequestClient.getClients();
 
         setTimeout(() => {
-            this.waitAnimationSerivce.replaceWithWaitingAnimation("map");
+            this.animationService.replaceWithWaitingAnimation("map");
         }, 10); // necessary for google maps to load correctly
-    }
 
-
-    ngOnInit() {
-        if (document.getElementById("header").textContent.includes("Client"))
-            this.hideGetPositionOptionForClient = false;
-
-        document.getElementById("consultantLatLng").style.display = "none";
-        document.getElementById("consultant_city_street_cap").style.display = "none";
+        this.getLocation()
 
     }
 
 
-    getLocation() {
+    async ngOnInit() {
+
+
+
+    }
+
+
+    async getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 this.lat = position.coords.latitude;
                 this.lng = position.coords.longitude;
-
             }, null, this.options);
             this.getAddressFromCoordinates();
         } else {
@@ -63,12 +59,8 @@ export class GeolocationComponent implements OnInit {
         }
     }
 
-    city: any;
-    cap: any;
-    street: any;
 
     getAddressFromCoordinates() {
-
 
         if (navigator.geolocation) {
             let geocoder = new google.maps.Geocoder();
@@ -81,10 +73,12 @@ export class GeolocationComponent implements OnInit {
                     if (result != null) {
 
                         this.address = rsltAdrComponent;
+                        console.log(this.address)
                         this.city = this.address[2].long_name;
                         this.street = this.address[1].long_name;
                         this.cap = this.address[7].long_name;
-                        alert("Your position is: "+this.city+ " "+this.street+ " "+this.cap)
+                        this.ionicAlert.presentAlert("La tua posizione: " + this.city + " " + this.street + " " + this.cap,'','')
+                        this.modalController.dismiss({'city':this.city,'cap':this.cap,'street':this.street});
 
                     } else {
                         alert('No address available!');
@@ -95,10 +89,10 @@ export class GeolocationComponent implements OnInit {
     }
 
 
-    checkAllConsultant() {
-        this.checkConsultantOnMap = true;
-        this.openMap = true;
+    confermaPosizione() {
+
+        this.getLocation()
+
+
     }
-
-
 }

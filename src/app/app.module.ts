@@ -14,7 +14,6 @@ import {NgCalendarModule} from 'ionic2-calendar';
 import {ClientComponent} from "./layout/client/client.component";
 import {BusinessConsultantComponent} from "./layout/business-consultant/business-consultant.component";
 import {ShowProductsComponent} from "./components/show-products/show-products.component";
-import {GeolocationComponent} from "./components/geolocation/geolocation.component";
 import {AgmCoreModule} from "@agm/core";
 import {SocialSharingComponent} from "./components/social-sharing/social-sharing.component";
 import {SocialLoginModule, SocialAuthServiceConfig} from 'angularx-social-login';
@@ -39,6 +38,9 @@ import {
 import {NgxPayPalModule} from "ngx-paypal";
 import {PaymentsComponent} from "./components/payments/payments.component";
 import {CheckOutComponent} from "./components/check-out/check-out.component";
+import {
+    GeoLocationModalHelperComponent
+} from "./components/register/geo-location-modal-helper/geo-location-modal-helper.component";
 
 
 @NgModule({
@@ -50,7 +52,6 @@ import {CheckOutComponent} from "./components/check-out/check-out.component";
         ClientComponent,
         BusinessConsultantComponent,
         ShowProductsComponent,
-        GeolocationComponent,
         SocialSharingComponent,
         SocialLogInComponent,
         SocialRegisterComponent,
@@ -58,7 +59,8 @@ import {CheckOutComponent} from "./components/check-out/check-out.component";
         CarrelloComponent,
         SpinnerMaterialComponentComponent,
         PaymentsComponent,
-        CheckOutComponent
+        CheckOutComponent,
+        GeoLocationModalHelperComponent
 
 
     ],
@@ -71,7 +73,7 @@ import {CheckOutComponent} from "./components/check-out/check-out.component";
         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
         AngularFireAuthModule, // imports firebase/auth, only needed for auth features
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyCrl5bxS7fNnPW5o5K9x7IeqXH-lS3gnLw'
+            apiKey: 'AIzaSyCAUya-I9pe7stgs6QZqLNRxRKeBWTT6dQ'
         }),
         // https://medium.com/letsboot/translate-angular-4-apps-with-ngx-translate-83302fb6c10d
         TranslateModule.forRoot({
@@ -81,7 +83,6 @@ import {CheckOutComponent} from "./components/check-out/check-out.component";
                 deps: [HttpClient]
             }
         }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule, NgxPayPalModule, RouterModule.forRoot([
-            {path: 'first-component', component: GeolocationComponent},
             {path:'carrello',component:CarrelloComponent},
             {path: 'client', component: ClientComponent},
             {path: 'login', component: LogInComponent},

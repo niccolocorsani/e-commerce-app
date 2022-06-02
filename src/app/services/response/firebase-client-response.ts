@@ -13,7 +13,6 @@ export class FirebaseClientResponse {
     products : any
 
     city: string
-    provincia: string
     phone: string
 
 
@@ -27,7 +26,6 @@ export class FirebaseClientResponse {
         this.products = data ? data.products : null;
 
         this.city = data ? data.city : null;
-        this.provincia = data ? data.provincia : null;
         this.phone = data ? data.phone : null;
 
     }

@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Google map</ion-card-title>
+  </ion-card-header>
+  <ion-card>
+    <div id="map">
+      <agm-map [zoom]="13"  [latitude]="this.lat" [longitude]="this.lng">
+        <agm-marker [latitude]="this.lat" [longitude]="this.lng">
+          <agm-info-window [disableAutoPan]="true">
+            Here is your position
+          </agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
+  </ion-card>
+  <ion-item button="true" (click)="confermaPosizione()">Conferma posizione</ion-item>
+</ion-card>

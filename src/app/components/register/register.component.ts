@@ -1,11 +1,15 @@
 import {Component} from '@angular/core';
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
-import {AlertController} from "@ionic/angular";
+import {AlertController, ModalController} from "@ionic/angular";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import Stepper from "bs-stepper";
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {Router} from "@angular/router";
+import {
+    ModalConfirmOrderComponent
+} from "../show-products/modal-product/modal-confirm-order/modal-confirm-order.component";
+import {GeoLocationModalHelperComponent} from "./geo-location-modal-helper/geo-location-modal-helper.component";
 
 
 @Component({
@@ -20,6 +24,9 @@ export class RegisterComponent {
     surname = 'Cognome'
     street = 'Indirizzo'
     cap = 'cap'
+    city = 'Città';
+    phone= 'Numero di telefono';
+
 
 
     password_1: string
@@ -31,6 +38,9 @@ export class RegisterComponent {
     surname_client = "";
     street_client = '';
     email_client = ""
+    city_client = "";
+    phone_client = ""
+
     cap_client = '' //// se qualche valore è undefined o null la richiesta http non
     products = []
 
@@ -53,11 +63,19 @@ export class RegisterComponent {
 
     }
 
+    next4() {
+        this.stepper.to(4);
+        document.getElementById("step3").setAttribute("style", "background-color: #c1a977;")
+        document.getElementById("step44").setAttribute("style", "background-color: black;")
+
+
+    }
+
     onSubmit() {
         return false;
     }
 
-    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService,private router: Router) {
+    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController) {
     }
 
 
@@ -92,6 +110,11 @@ export class RegisterComponent {
         this.cap_client = newItem;
     }
 
+    addPhone(newItem: string) {
+        this.phone_client = newItem;
+    }
+
+
     addPassword_1(newItem: string) {
         this.password_1 = newItem;
     }
@@ -100,6 +123,9 @@ export class RegisterComponent {
         this.password_2 = newItem;
     }
 
+    addCity(newItem: string) {
+        this.city_client = newItem;
+    }
 
     submitToFireBase() {
 
@@ -121,16 +147,38 @@ export class RegisterComponent {
         this.client.surname = this.surname_client
         this.client.cap = this.cap_client
         this.client.street = this.street_client
+        this.client.phone = this.phone_client
+        this.client.city = this.city_client
         this.products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 3})
         this.client.products = this.products
-        alert(this.client.email)
         this.fireBaseClientservice.addClient(this.client)
         this.alertService.presentAlert('Utente registrato con successo', '', '')
-
-
         document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
         this.router.navigate(['/client'])
 
+    }
+
+
+    async openModalLocation() {
+        const modal = await this.modalController.create({
+                component: GeoLocationModalHelperComponent,
+            },
+        );
+        modal.onDidDismiss()
+            .then((data) => {
+
+                this.cap = data.data['cap']
+                this.cap_client = data.data['cap'];
+
+                this.city = data.data['city']
+                this.city_client = data.data['city']
+
+                this.street = data.data['street']
+                this.street_client = data.data['street']; // Here's your selected user!
+
+            });
+
+        return await modal.present();
     }
 
 

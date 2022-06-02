@@ -43,7 +43,7 @@ export class LogInComponent {
 
 
         this.client_firebase = await this.fireBaseClientservice.getClient(this.email_client)
-
+        await this.fireBaseClientservice.delay(3000)
         console.log(this.client_firebase)
 
         if (this.client_firebase == null)
