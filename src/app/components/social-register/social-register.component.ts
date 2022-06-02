@@ -17,6 +17,7 @@ export class SocialRegisterComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.user.email = ''
         this.authService.authState.subscribe((user) => {
             this.user = user;
         });

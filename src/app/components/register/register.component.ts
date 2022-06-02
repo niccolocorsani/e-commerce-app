@@ -5,6 +5,7 @@ import {AlertController} from "@ionic/angular";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import Stepper from "bs-stepper";
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -56,7 +57,7 @@ export class RegisterComponent {
         return false;
     }
 
-    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService) {
+    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService,private router: Router) {
     }
 
 
@@ -103,35 +104,33 @@ export class RegisterComponent {
     submitToFireBase() {
 
         /// SE mail inserita con Google
-        if (document.getElementById('mail').textContent != null) {
+        if (document.getElementById('mail').textContent != '') {
             this.client.email = document.getElementById('mail').textContent.split('.',).join('-').split('@',).join('_')
             console.log(this.client.email)
+
         } else this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
         /// SE mail inserita con Google
+
 
         if (this.password_1 !== this.password_2)
             this.alertService.presentAlert('Le due password inserite non corrispondono', 'Errore', '')
         else this.client.password = this.password_1
 
 
-        alert(this.client.email)
         this.client.name = this.name_client
         this.client.surname = this.surname_client
         this.client.cap = this.cap_client
         this.client.street = this.street_client
-        this.products.push({
-            description: "", id: "", img_name_ref: "", name: "", type: "",
-            price: 3
-
-        })
+        this.products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 3})
         this.client.products = this.products
+        alert(this.client.email)
         this.fireBaseClientservice.addClient(this.client)
         this.alertService.presentAlert('Utente registrato con successo', '', '')
 
 
         document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
+        this.router.navigate(['/client'])
 
-        //this.client
     }
 
 

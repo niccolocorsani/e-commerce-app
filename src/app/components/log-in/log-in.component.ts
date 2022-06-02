@@ -42,7 +42,6 @@ export class LogInComponent {
         }
 
 
-        alert(this.email_client)
         this.client_firebase = await this.fireBaseClientservice.getClient(this.email_client)
 
         console.log(this.client_firebase)

@@ -58,6 +58,7 @@ import {CheckOutComponent} from "./components/check-out/check-out.component";
         CarrelloComponent,
         SpinnerMaterialComponentComponent,
         PaymentsComponent,
+        CheckOutComponent
 
 
     ],

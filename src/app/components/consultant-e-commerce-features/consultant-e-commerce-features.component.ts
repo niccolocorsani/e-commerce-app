@@ -83,7 +83,6 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
 
     addProduct() {
 
-        alert(this.url)
 
         this.productsService.addProduct({
             name: this.name,

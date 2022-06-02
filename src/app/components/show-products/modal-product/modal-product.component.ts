@@ -26,9 +26,10 @@ export class ModalProductComponent implements OnInit {
 
 
         if (document.getElementById("logged").textContent.includes('Accedi')) {
-            alert('Esegui il login prima di aggiungere prodotti')
+            this.alertIonicService.presentAlert('Esegui il login prima di aggiungere prodotti','','')
             return
         }
+
         let badgeValue = document.getElementById('badge').textContent;
         if (badgeValue == '') badgeValue = '1'
         else {

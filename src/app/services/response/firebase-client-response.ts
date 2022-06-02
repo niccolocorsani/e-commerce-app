@@ -12,6 +12,10 @@ export class FirebaseClientResponse {
     password: string
     products : any
 
+    city: string
+    provincia: string
+    phone: string
+
 
     constructor(data?: any) {
         this.name = data ? data.name : null;
@@ -21,5 +25,10 @@ export class FirebaseClientResponse {
         this.street = data ? data.street : null;
         this.email = data ? data.email : null;
         this.products = data ? data.products : null;
+
+        this.city = data ? data.city : null;
+        this.provincia = data ? data.provincia : null;
+        this.phone = data ? data.phone : null;
+
     }
 }
