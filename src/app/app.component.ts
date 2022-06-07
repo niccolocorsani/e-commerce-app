@@ -1,14 +1,17 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {OpenComponentsService} from "./services/open-components/open-components.service";
 import {Router} from "@angular/router";
 import {MailServiceService} from "./services/mail-notification-service/mail-service.service";
 import {PushNotificationServiceService} from "./services/mail-notification-service/push-notification-service.service";
+import {IonContent} from "@ionic/angular";
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
+
+
 
   constructor(private openComponentsService: OpenComponentsService,private router: Router,private mailService: MailServiceService, private pushNotificationService : PushNotificationServiceService) {
   }

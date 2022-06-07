@@ -186,7 +186,7 @@ ion-button {
 
 
 .zoom {
-  transition: transform .2s; /* Animation */
+  transition: transform .6s; /* Animation */
 }
 
 .zoom:hover {
@@ -201,4 +201,40 @@ ion-button {
   border-radius: 25px;
 }
 
+
+
+
+.zoom2 {
+  transition: transform .6s; /* Animation */
+}
+
+.zoom2:hover {
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+
+
+
+
+
+
+
+
+
+//// Horizonatal scrolling  //https://codepen.io/kevinpowell/pen/ExbKBQa
+
+.media-scroller {
+  display: grid;
+  gap: 30px;
+  grid-auto-flow: column;
+  grid-auto-columns: 21%;
+  overflow-y: hidden; /* Hide vertical scrollbar */
+}
+
+
+div::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
 

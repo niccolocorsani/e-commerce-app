@@ -34,10 +34,13 @@ export class LogInComponent {
 
     async login() {
 
+
+        if (this.email_client === undefined) this.alertService.presentAlert('Inserisci prima le credenziali', '', '')
+
         this.email_client = this.email_client.split('.',).join('-').split('@',).join('_')
+
         if (this.email_client === 'ConsulenteNumero1') {
-            this.openComponentsService.openClient = false
-            this.openComponentsService.openConsultant = true
+            this.router.navigate(['/consultant123123-number123'])
             return
         }
 

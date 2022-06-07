@@ -1,56 +1,77 @@
-<ion-card>
-    <ion-card-header>
-        <ion-card-title>Add product</ion-card-title>
-    </ion-card-header>
-    <ion-row>
+<ion-card-header>
+    <ion-card-title>Add product</ion-card-title>
+</ion-card-header>
+<ion-row>
+    <ion-col>
         <lib-normal-input [item]="name" (newItemEvent)="addName($event)"></lib-normal-input>
         <br/>
         <br/>
-        <br/>
-        <br/>
-    </ion-row>
-    <ion-row>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
         <lib-normal-input [item]="description" (newItemEvent)="addDescription($event)"></lib-normal-input>
         <br/>
         <br/>
-        <br/>
-        <br/>
-    </ion-row>
-    <ion-row>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
         <lib-normal-input [item]="price" (newItemEvent)="addPrice($event)"></lib-normal-input>
         <br/>
         <br/>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
+        <lib-normal-input [item]="peso" (newItemEvent)="addPeso($event)"></lib-normal-input>
         <br/>
         <br/>
-    </ion-row>
-    <ion-row>
-        <lib-normal-input [item]="type" (newItemEvent)="addType($event)"></lib-normal-input>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
+        <ion-item>
+            <ion-label>Tipologia prodotto</ion-label>
+            <ion-select value="brown" okText="Okay" (ionChange)="selectedType($event)">
+                <ion-select-option value="arredamento">arredamento</ion-select-option>
+                <ion-select-option value="orecchini">orecchini</ion-select-option>
+                <ion-select-option value="cappelli">cappelli</ion-select-option>
+                <ion-select-option value="sciarpe">sciarpe</ion-select-option>
+                <ion-select-option value="arazzi">arazzi</ion-select-option>
+                <ion-select-option value="fashion">fashion</ion-select-option>
+                <ion-select-option value="ecosostenibili">ecosostenibili</ion-select-option>
+                <ion-select-option value="accessori">accessori</ion-select-option>
+                <ion-select-option value="borse">borse</ion-select-option>
+                <ion-select-option value="arredamento">arredamento</ion-select-option>
+                <ion-select-option value="cuscini">cuscini</ion-select-option>
+            </ion-select>
+        </ion-item>
         <br/>
         <br/>
-        <br/>
-        <br/>
-    </ion-row>
+    </ion-col>
+</ion-row>
+<div>
+    <ion-input type="file" (change)="onFileChangeImage($event);" placeholder="Enter Input" value="custom">
+    </ion-input>
+    <br/>
+    <br/>
     <div>
-        <ion-input type="file" (change)="onFileChangeImage($event);" placeholder="Enter Input" value="custom">
-        </ion-input>
-        <div>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                     [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
-                     aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <br/>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                 [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                 aria-valuemin="0" aria-valuemax="100"></div>
         </div>
+        <br/>
+    </div>
+    <div>
         <div>
-            <div>
-                <img id="image" class="" height="200">
-            </div>
-        </div>
-        <div>
-            <div>
-                <img id="image2" class="" height="200">
-            </div>
+            <img id="image" class="" height="200">
         </div>
     </div>
-    <ion-item button="true" (click)="addProduct()">Aggiungi prodotto</ion-item>
-</ion-card>
+    <div>
+        <div>
+            <img id="image2" class="" height="200">
+        </div>
+    </div>
+</div>

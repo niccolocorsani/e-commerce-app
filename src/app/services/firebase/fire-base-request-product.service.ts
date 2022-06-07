@@ -24,19 +24,24 @@ export class FireBaseRequestProductService {
     variable_to_wait: any;
 
 
+    myObserver = {
+        next: (value: any) => this.variable_to_wait = value,
+        error: (err: any) => alert('Observer got an error: ' + err + '..'),
+    };
     constructor(private alertController: AlertController,private functions: AngularFireFunctions, private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
     }
 
 ////CRUD
     public async getProducts() {
-        this.db.list('/products').valueChanges().subscribe(value => this.variable_to_wait = value);
+        this.db.list('/products').valueChanges().subscribe(this.myObserver);
+        console.log('getProducts API')
         await this.spinner_delay()
         return this.variable_to_wait
     }
 
 
     public async getProduct(product_key: string) {
-        this.variable_to_wait = await this.db.object('products/' + product_key).valueChanges().subscribe(value => this.variable_to_wait = value);
+        this.variable_to_wait = await this.db.object('products/' + product_key).valueChanges().subscribe(this.myObserver);
         await this.spinner_delay()
         return this.variable_to_wait
     }
@@ -63,24 +68,15 @@ export class FireBaseRequestProductService {
 
 //// Other methods
     public display_image(name: string, downloadUrl: string) {
+
+        alert(downloadUrl)
+        console.log(downloadUrl)
         let url
         let img = document.getElementById('image2');
         img.setAttribute('src', downloadUrl);
         this.charged_image_ref = downloadUrl
         console.log(this.charged_image_ref);
-
-        this.addProduct({
-            name: 'ds',
-            price: 32,
-            id: 'de',
-            description: "",
-            img_name_ref: "",
-            type: ""
-        }, 'product_3')
     }
-
-
-
 //// Other methods
 
 
@@ -92,7 +88,7 @@ export class FireBaseRequestProductService {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
             console.log(this.variable_to_wait)
-            await this.delay(1000)
+            await this.delay(2000)
         }
         this.openComponentService.spinner = false
     }

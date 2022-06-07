@@ -18,13 +18,17 @@ export class FireBaseRequestClientService {
     clients = []
     last_client = ''
 
+    myObserver = {
+        next: (value: any) => this.variable_to_wait = value,
+        error: (err: any) => alert('Observer got an error: ' + err + '..'),
+    };
 
     constructor(private db: AngularFireDatabase, private openComponentService: OpenComponentsService) {
     }
 
 ////CRUD
     public async getClients() {
-        this.db.list('/clients').valueChanges().subscribe(value => (this.variable_to_wait = value));
+        this.db.list('/clients').valueChanges().subscribe(this.myObserver);
         await this.spinner_delay()
         return this.variable_to_wait
 
@@ -32,7 +36,7 @@ export class FireBaseRequestClientService {
 
 
     public async getClient(client_key: string) {
-        this.db.object('clients/' + client_key).valueChanges().subscribe(value => (this.variable_to_wait = value));
+        this.db.object('clients/' + client_key).valueChanges().subscribe(this.myObserver);
         await this.spinner_delay()
         return this.variable_to_wait
     }

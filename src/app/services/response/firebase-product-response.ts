@@ -7,6 +7,7 @@ export class FirebaseProductResponse {
     price: number
     img_name_ref: string
     type: string
+    peso: number
 
 
     constructor(data?: any) {
@@ -16,5 +17,7 @@ export class FirebaseProductResponse {
         this.price = data ? data.price : null;
         this.img_name_ref = data ? data.img_name_ref : null;
         this.type = data ? data.type : null;
+        this.peso = data ? data.peso : null;
+
     }
 }

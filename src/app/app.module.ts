@@ -4,7 +4,6 @@ import {RouteReuseStrategy, RouterModule} from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {AppComponent} from './app.component';
 import {LogInComponent} from './components/log-in/log-in.component';
-import {MyInputComponent} from './components/my-input/my-input.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -41,13 +40,15 @@ import {CheckOutComponent} from "./components/check-out/check-out.component";
 import {
     GeoLocationModalHelperComponent
 } from "./components/register/geo-location-modal-helper/geo-location-modal-helper.component";
+import {
+    ConsultantFeatureSeeOrdersComponent
+} from "./components/consultant-feature-see-orders/consultant-feature-see-orders.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
         LogInComponent,
-        MyInputComponent,
         RegisterComponent,
         ClientComponent,
         BusinessConsultantComponent,
@@ -60,7 +61,8 @@ import {
         SpinnerMaterialComponentComponent,
         PaymentsComponent,
         CheckOutComponent,
-        GeoLocationModalHelperComponent
+        GeoLocationModalHelperComponent,
+        ConsultantFeatureSeeOrdersComponent
 
 
     ],
@@ -88,6 +90,8 @@ import {
             {path: 'login', component: LogInComponent},
             {path: 'register', component: RegisterComponent},
             {path: 'checkout', component: CheckOutComponent},
+            {path: 'consultant123123-number123', component: BusinessConsultantComponent},
+
 
 
             {path: '', redirectTo: '/client', pathMatch: 'full'},
