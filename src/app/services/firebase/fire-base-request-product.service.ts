@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {AngularFireDatabase, AngularFireList, AngularFireObject} from "@angular/fire/compat/database";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {FirebaseProductResponse} from "../response/firebase-product-response";
-import {map} from "rxjs";
+import {catchError, map, throwError} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {OpenComponentsService} from "../open-components/open-components.service";
 import {AngularFireFunctions} from "@angular/fire/compat/functions";
 import {AlertController} from "@ionic/angular";
+import {HttpErrorResponse} from "@angular/common/http";
 
-// TODO: Add SDKs for Firebase products that you want to use
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +28,8 @@ export class FireBaseRequestProductService {
         next: (value: any) => this.variable_to_wait = value,
         error: (err: any) => alert('Observer got an error: ' + err + '..'),
     };
-    constructor(private alertController: AlertController,private functions: AngularFireFunctions, private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
+
+    constructor(private alertController: AlertController, private functions: AngularFireFunctions, private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
     }
 
 ////CRUD
@@ -69,25 +70,22 @@ export class FireBaseRequestProductService {
 //// Other methods
     public display_image(name: string, downloadUrl: string) {
 
-        alert(downloadUrl)
         console.log(downloadUrl)
         let url
         let img = document.getElementById('image2');
         img.setAttribute('src', downloadUrl);
         this.charged_image_ref = downloadUrl
         console.log(this.charged_image_ref);
+
     }
+
 //// Other methods
-
-
     delay(ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-
     async spinner_delay() {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
-            console.log(this.variable_to_wait)
             await this.delay(2000)
         }
         this.openComponentService.spinner = false

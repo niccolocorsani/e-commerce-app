@@ -3,73 +3,77 @@
     <br/>
     <br/>
     <ion-col size-xl="4">
-                <ion-col style="padding-left:10px">
-                    <ion-row>
-                        <ion-col class="col-6">Product</ion-col>
-                        <ion-col class="col-6">
-                            <ion-col class="row small-gutters">
-                                <ion-col class="col">Price</ion-col>
-                                <ion-col class="col">Nome</ion-col>
-                                <ion-col class="col">Tipo</ion-col>
-                                <ion-col class="col">Descrizione</ion-col>
-                                <ion-col class="col"></ion-col>
-
-                                <ion-col class="col col-auto"><i class="invisible" aria-hidden="true"></i>
-                                </ion-col>
-                            </ion-col>
+        <ion-col style="padding-left:10px">
+            <ion-row>
+                <ion-col class="col-6">Product</ion-col>
+                <ion-col class="col-6">
+                    <ion-col class="row small-gutters">
+                        <ion-col class="col">Price</ion-col>
+                        <ion-col class="col">Nome</ion-col>
+                        <ion-col class="col">Tipo</ion-col>
+                        <ion-col class="col">Descrizione</ion-col>
+                        <ion-col class="col"></ion-col>
+                        <ion-col class="col col-auto"><i class="invisible" aria-hidden="true"></i>
                         </ion-col>
-                    </ion-row>
                     </ion-col>
                 </ion-col>
-                <ul>
-                    <li *ngFor="let product of products ;let i = index">
-                        <ion-col class=" row align-items-center">
-                            <ion-col class=" col-12 col-sm-6 col-md-6">
-                                <ion-col class="row align-items-center">
-                                    <ion-col class="col"><a
-                                            data-id_customization="0"> <img
-                                            src="{{product.img_name_ref}}"
-                                            alt="Fazzoletto in punto Burano" class="img-fluid"> </a></ion-col>
-                                    <ion-col class="col col-9">
-                                    </ion-col>
-                                    <ion-col class="col col-9">
-                                    </ion-col>
-                                </ion-col>
-                            </ion-col>
-                            <ion-col class="col-12 col-sm-6 col-md-6 ">
-                                <ion-col class="row align-items-center  justify-content-end">
-                                    <ion-col class="col col-auto col-md">
-                                        <span> <strong> {{product.price}}&nbsp;€ </strong> </span>
-                                    </ion-col>
-                                    <ion-col class="col col-auto col-md">
-                                        <span> <strong> {{product.name}} </strong> </span>
-                                    </ion-col>
-                                    <ion-col class="col col-auto col-md">
-                                        <span> <strong> {{product.type}} </strong> </span>
-                                    </ion-col>
-                                    <ion-col class="col col-auto col-md">
-                                        <span> <strong> {{product.descritpion}}</strong> </span>
-                                    </ion-col>
-                                    <ion-col class="col col-auto col-md" (click)="removeProduct(i)" style="cursor: pointer;">
-                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                            <path fill-rule="evenodd"
-                                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                        </svg>
-                                    </ion-col>
-                                </ion-col>
-                            </ion-col>
+            </ion-row>
+        </ion-col>
+    </ion-col>
+    <ul>
+        <li *ngFor="let product of products ;let i = index">
+            <ion-col class=" row align-items-center">
+                <ion-col class=" col-12 col-sm-6 col-md-6">
+                    <ion-col class="row align-items-center">
+                        <ion-col class="col"><a
+                                data-id_customization="0"> <img
+                                src="{{product.img_name_ref}}"
+                                alt="Fazzoletto in punto Burano" class="img-fluid"> </a></ion-col>
+                        <ion-col class="col col-9">
                         </ion-col>
-                    </li>
-                </ul>
-    <ion-item button="true" (click)="navigateToCheckOut()">
-        Procedi al checkout
-    </ion-item>
-
-        <ion-item button="true" (click)="navigateToProducts()">
-            Continua
-            lo shopping
+                        <ion-col class="col col-9">
+                        </ion-col>
+                    </ion-col>
+                </ion-col>
+                <ion-col class="col-12 col-sm-6 col-md-6 ">
+                    <ion-col class="row align-items-center  justify-content-end">
+                        <ion-col class="col col-auto col-md">
+                            <span> <strong> {{product.price}}&nbsp;€ </strong> </span>
+                        </ion-col>
+                        <ion-col class="col col-auto col-md">
+                            <span> <strong> {{product.name}} </strong> </span>
+                        </ion-col>
+                        <ion-col class="col col-auto col-md">
+                            <span> <strong> {{product.type}} </strong> </span>
+                        </ion-col>
+                        <ion-col class="col col-auto col-md">
+                            <span> <strong> {{product.descritpion}}</strong> </span>
+                        </ion-col>
+                        <ion-col class="col col-auto col-md" (click)="removeProduct(i)" style="cursor: pointer;">
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd"
+                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </ion-col>
+                    </ion-col>
+                </ion-col>
+            </ion-col>
+        </li>
+    </ul>
+</ion-row>
+<ion-row>
+    <br/>
+    <br/>
+    <br/>
+    <ion-col size-xl="4">
+        <ion-item button="true" (click)="navigateToCheckOut()">
+            Procedi al pagamento
         </ion-item>
+        <ion-item button="true" (click)="navigateToProducts()">
+            Continua lo shopping
+        </ion-item>
+    </ion-col>
 </ion-row>

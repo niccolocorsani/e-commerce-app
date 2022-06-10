@@ -126,7 +126,10 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
                 description: this.description,
                 img_name_ref: this.url,
                 type: this.type,
-                peso: this.product_peso
+                peso: this.product_peso,
+                city: '',
+                street: '',
+                cap:''
             }, this.product_name)
             this.alertService.presentAlert('Prodotto aggiunto con successo', '', '')
         })

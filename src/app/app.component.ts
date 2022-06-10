@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {MailServiceService} from "./services/mail-notification-service/mail-service.service";
 import {PushNotificationServiceService} from "./services/mail-notification-service/push-notification-service.service";
 import {IonContent} from "@ionic/angular";
+import {GlobalVariablesService} from "./services/utility-services/global-variables.service";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
 
 
 
-  constructor(private openComponentsService: OpenComponentsService,private router: Router,private mailService: MailServiceService, private pushNotificationService : PushNotificationServiceService) {
+  constructor(private openComponentsService: OpenComponentsService,private router: Router,private mailService: MailServiceService, private pushNotificationService : PushNotificationServiceService, private globalVariableService : GlobalVariablesService) {
   }
 
   returnHome() {

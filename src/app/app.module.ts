@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy, RouterModule} from '@angular/router';
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
@@ -34,15 +34,17 @@ import {CarrelloComponent} from "./components/carrello/carrello.component";
 import {
     SpinnerMaterialComponentComponent
 } from "./components/spinner-material-component/spinner-material-component.component";
-import {NgxPayPalModule} from "ngx-paypal";
 import {PaymentsComponent} from "./components/payments/payments.component";
-import {CheckOutComponent} from "./components/check-out/check-out.component";
+import {CheckOutComponent} from "./components/confirm-order/check-out.component";
 import {
     GeoLocationModalHelperComponent
 } from "./components/register/geo-location-modal-helper/geo-location-modal-helper.component";
 import {
     ConsultantFeatureSeeOrdersComponent
 } from "./components/consultant-feature-see-orders/consultant-feature-see-orders.component";
+import {CookiesComponent} from "./components/cookies/cookies.component";
+import {CookieService} from "ngx-cookie-service";
+import {GlobalErrorHandlerService} from "./services/global-error-handler/global-error-handler.service";
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import {
         PaymentsComponent,
         CheckOutComponent,
         GeoLocationModalHelperComponent,
-        ConsultantFeatureSeeOrdersComponent
+        ConsultantFeatureSeeOrdersComponent,
+        CookiesComponent
 
 
     ],
@@ -84,8 +87,8 @@ import {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule, NgxPayPalModule, RouterModule.forRoot([
-            {path:'carrello',component:CarrelloComponent},
+        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule, RouterModule.forRoot([
+            {path: 'carrello', component: CarrelloComponent},
             {path: 'client', component: ClientComponent},
             {path: 'login', component: LogInComponent},
             {path: 'register', component: RegisterComponent},
@@ -93,12 +96,15 @@ import {
             {path: 'consultant123123-number123', component: BusinessConsultantComponent},
 
 
-
             {path: '', redirectTo: '/client', pathMatch: 'full'},
         ]),
     ],
     // https://www.youtube.com/watch?v=FLHi2pc8gX0 spiegazione LocalNotifications
-    providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, LocalNotifications, AppComponent,
+    providers: [
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},
+        LocalNotifications,
+        AppComponent,
+        {provide: ErrorHandler, useClass: GlobalErrorHandlerService},
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {
@@ -116,11 +122,10 @@ import {
                     }
                 ]
             } as SocialAuthServiceConfig,
-        }
+        }, CookieService,
     ],
     bootstrap: [AppComponent],
-    exports: [
-    ]
+    exports: []
 })
 export class AppModule {
 }

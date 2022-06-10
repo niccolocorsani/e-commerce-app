@@ -55,7 +55,6 @@ export class FireBaseRequestOrderService {
     async spinner_delay() {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
-            console.log(this.variable_to_wait)
             await this.delay(1000)
         }
         this.openComponentService.spinner = false

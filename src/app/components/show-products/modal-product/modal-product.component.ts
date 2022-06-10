@@ -5,6 +5,8 @@ import {FirebaseProductResponse} from "../../../services/response/firebase-produ
 import {ModalConfirmOrderComponent} from "./modal-confirm-order/modal-confirm-order.component";
 import {FireBaseRequestClientService} from "../../../services/firebase/fire-base-request-client.service";
 import {FirebaseClientResponse} from "../../../services/response/firebase-client-response";
+import {FireBaseRequestProductService} from "../../../services/firebase/fire-base-request-product.service";
+import {GlobalVariablesService} from "../../../services/utility-services/global-variables.service";
 
 @Component({
     selector: 'app-modal-product',
@@ -15,7 +17,7 @@ export class ModalProductComponent implements OnInit {
 
     @Input() product
 
-    constructor(public modalController: ModalController, private alertIonicService: AlertIonicService, private fireBaseRequestClientService: FireBaseRequestClientService) {
+    constructor(public modalController: ModalController, private alertIonicService: AlertIonicService, private fireBaseRequestClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService) {
     }
 
     ngOnInit() {
@@ -24,12 +26,6 @@ export class ModalProductComponent implements OnInit {
     async aggiungiAlCarrello(product) {
 
 
-
-        if (document.getElementById("logged").textContent.includes('Accedi')) {
-            this.alertIonicService.presentAlert('Esegui il login prima di aggiungere prodotti','','')
-            return
-        }
-
         let badgeValue = document.getElementById('badge').textContent;
         if (badgeValue == '') badgeValue = '1'
         else {
@@ -37,27 +33,40 @@ export class ModalProductComponent implements OnInit {
             badgeValue = String(num + 1)
         }
         document.getElementById('badge').textContent = badgeValue
-        this.dismiss()
 
+
+        this.dismiss()
 
 
         this.presentModal(product)
 
 
         let client = new FirebaseClientResponse()
+
         client = await this.fireBaseRequestClientService.getClient(document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_'))
+        if (client == null) {
 
-        console.log(client)
+            await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
+            client.products.push(product)
+            this.fireBaseRequestClientService.addClient(client)
 
+        } else {
+            console.log(client)
+            client.products.push(product)
+            this.fireBaseRequestClientService.addClient(client)
+        }
 
-        client.products.push(product)
-        this.fireBaseRequestClientService.addClient(client)
+        ////TODO capire come funzionano i cockies per servire anche utente non loggato
+        if (client == undefined) {
 
+            await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
+            client.products.push(product)
+            this.fireBaseRequestClientService.addClient(client)
+
+        }
     }
 
     dismiss() {
-        // using the injected ModalController this page
-        // can "dismiss" itself and optionally pass back data
         this.modalController.dismiss({
             'dismissed': true
         });

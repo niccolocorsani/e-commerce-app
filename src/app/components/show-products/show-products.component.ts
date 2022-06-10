@@ -26,11 +26,7 @@ export class ShowProductsComponent implements OnInit {
         this.listElements = await this.productsService.getProducts()
         console.log(this.listElements)
         while (true) {
-            document.getElementById('scroller').scrollTo({
-                top: 0,
-                left: scrolling,
-                behavior: 'smooth'
-            });
+            document.getElementById('scroller').scrollTo({top: 0, left: scrolling, behavior: 'smooth'});
             i++
             scrolling = scrolling + document.getElementById('scroller').scrollWidth / 5
             await this.delay(5000)
@@ -38,7 +34,6 @@ export class ShowProductsComponent implements OnInit {
                 scrolling = -scrolling
                 i = 0
             }
-            console.log(scrolling)
         }
     }
 
@@ -111,17 +106,7 @@ export class ShowProductsComponent implements OnInit {
                 product => product.type === 'sciarpe');
         }
 
-
-
-
-
-
-
-
-
-
-        this.ionContent.scrollToPoint(0,300,300);
-        console.log(this.listElements)
+        this.ionContent.scrollToPoint(0, 300, 300);
     }
 
 }

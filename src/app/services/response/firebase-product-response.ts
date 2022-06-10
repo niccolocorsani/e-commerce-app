@@ -8,6 +8,11 @@ export class FirebaseProductResponse {
     img_name_ref: string
     type: string
     peso: number
+    //// questi dati qua sotto sono utili se il cliente non ha fatto il log-in
+    street = ''
+    cap = ''
+    city = ''
+
 
 
     constructor(data?: any) {
@@ -18,6 +23,8 @@ export class FirebaseProductResponse {
         this.img_name_ref = data ? data.img_name_ref : null;
         this.type = data ? data.type : null;
         this.peso = data ? data.peso : null;
-
+        this.street = data ? data.street : null;
+        this.cap = data ? data.cap : null;
+        this.city = data ? data.city : null;
     }
 }

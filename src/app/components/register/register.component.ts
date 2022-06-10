@@ -10,6 +10,8 @@ import {
     ModalConfirmOrderComponent
 } from "../show-products/modal-product/modal-confirm-order/modal-confirm-order.component";
 import {GeoLocationModalHelperComponent} from "./geo-location-modal-helper/geo-location-modal-helper.component";
+import {CookieService} from "ngx-cookie-service";
+import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
 
 
 @Component({
@@ -28,7 +30,6 @@ export class RegisterComponent {
     phone= 'Numero di telefono';
 
 
-
     password_1: string
     password_2: string
 
@@ -40,7 +41,6 @@ export class RegisterComponent {
     email_client = ""
     city_client = "";
     phone_client = ""
-
     cap_client = '' //// se qualche valore è undefined o null la richiesta http non
     products = []
 
@@ -52,7 +52,6 @@ export class RegisterComponent {
         document.getElementById("step2").setAttribute("style", "background-color: black;")
         document.getElementById("step1").setAttribute("style", "background-color: #c1a977;")
         document.getElementById("step3").setAttribute("style", "background-color: #c1a977;")
-
     }
 
     next3() {
@@ -60,22 +59,19 @@ export class RegisterComponent {
         document.getElementById("step3").setAttribute("style", "background-color: black;")
         document.getElementById("step2").setAttribute("style", "background-color: #c1a977;")
         document.getElementById("step1").setAttribute("style", "background-color: #c1a977;")
-
     }
 
     next4() {
         this.stepper.to(4);
         document.getElementById("step3").setAttribute("style", "background-color: #c1a977;")
         document.getElementById("step44").setAttribute("style", "background-color: black;")
-
-
     }
 
     onSubmit() {
         return false;
     }
 
-    constructor(private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController) {
+    constructor(private cookieService: CookieService,private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService) {
     }
 
 
@@ -133,7 +129,6 @@ export class RegisterComponent {
         if (document.getElementById('mail').textContent != '') {
             this.client.email = document.getElementById('mail').textContent.split('.',).join('-').split('@',).join('_')
             console.log(this.client.email)
-
         } else this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
         /// SE mail inserita con Google
 
@@ -154,6 +149,7 @@ export class RegisterComponent {
         this.fireBaseClientservice.addClient(this.client)
         this.alertService.presentAlert('Utente registrato con successo', '', '')
         document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
+        this.setLoginCookie(this.email_client,this.client.password)
         this.router.navigate(['/client'])
 
     }
@@ -181,5 +177,9 @@ export class RegisterComponent {
         return await modal.present();
     }
 
+    setLoginCookie(mail: string, password: string){
+        this.cookieService.set('stextile_mail', mail, 1);
+        this.cookieService.set('stextile_password', password, 1);
+    }
 
 }

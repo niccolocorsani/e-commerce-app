@@ -5,12 +5,13 @@ import {FireBaseRequestClientService} from "../../services/firebase/fire-base-re
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
+import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
+import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
+import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
 
 @Component({
     selector: 'app-carrello',
     templateUrl: './carrello.component.html'
-    //,
-//  styleUrls: ['./carrello.component.scss'],
 })
 export class CarrelloComponent implements OnInit {
 
@@ -19,19 +20,32 @@ export class CarrelloComponent implements OnInit {
     client
 
 
-    constructor(private openComponentsService: OpenComponentsService, private router: Router, private fireBaseClientService: FireBaseRequestClientService) {
+    constructor(private openComponentsService: OpenComponentsService, private router: Router, private fireBaseClientService: FireBaseRequestClientService, private ionicAlert: AlertIonicService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService) {
     }
 
 
     async ngOnInit() {
 
+        this.myCookieService.initCookie()
+
         let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
         mail = mail.split('.',).join('-').split('@',).join('_')
-        this.client = await this.fireBaseClientService.getClient(mail)
+
+        if (mail.includes('ccedi') && this.globalVariableService.currentLoggedUserId != '') {
+            mail = this.globalVariableService.currentLoggedUserId
+            this.client = await this.fireBaseClientService.getClient(mail)
+            await this.fireBaseClientService.delay(500)
+        }
         console.log(this.client)
         this.products = this.client.products
         this.products.shift()
+        this.products = this.products.filter((value, index, self) =>
+                index === self.findIndex((t) => (
+                    t.place === value.place && t.name === value.name
+                ))
+        )
 
+        console.log(this.products)
     }
 
     navigateToProducts() {
@@ -39,6 +53,10 @@ export class CarrelloComponent implements OnInit {
     }
 
     navigateToCheckOut() {
+        if (this.products.length == 0) {
+            this.ionicAlert.presentAlert('Nessun prodotto presente nel carrello', '', '')
+            return
+        }
         this.router.navigate(['/checkout'])
     }
 

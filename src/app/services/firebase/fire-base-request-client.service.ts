@@ -3,6 +3,8 @@ import {AngularFireDatabase, AngularFireList, AngularFireObject} from "@angular/
 import {FirebaseClientResponse} from "../response/firebase-client-response";
 import {OpenComponentsService} from "../open-components/open-components.service";
 import {variable} from "@angular/compiler/src/output/output_ast";
+import {catchError, throwError} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +38,8 @@ export class FireBaseRequestClientService {
 
 
     public async getClient(client_key: string) {
-        this.db.object('clients/' + client_key).valueChanges().subscribe(this.myObserver);
+        this.db.object('clients/' + client_key).valueChanges()
+        .subscribe(this.myObserver);
         await this.spinner_delay()
         return this.variable_to_wait
     }
@@ -79,9 +82,12 @@ export class FireBaseRequestClientService {
     async spinner_delay() {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
-            console.log(this.variable_to_wait)
             await this.delay(1000)
         }
         this.openComponentService.spinner = false
     }
+
+
+
+
 }

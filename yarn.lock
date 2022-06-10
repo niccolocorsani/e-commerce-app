@@ -7934,10 +7934,10 @@
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
 
-"new-material-design-experiments@1.0.8":
-  "integrity" "sha512-WGOGc4jx9ulMK+PjpBBD5R6EfCzd/0tLxGcX5q6wRnyQWVlrRI0Q/6GtjwXx5FKCrTtJJERSnyygNzk50MNVAw=="
-  "resolved" "https://registry.npmjs.org/new-material-design-experiments/-/new-material-design-experiments-1.0.8.tgz"
-  "version" "1.0.8"
+"new-material-design-experiments@2.0.1":
+  "integrity" "sha512-6bUpySIBlj5JjZ5f0rDUHwrD2056FOyA+0YVrOF6nMPS8kDphUvPNhLaeZmfxY4P+nn7/v/JkmI0h4ZYenwFFg=="
+  "resolved" "https://registry.npmjs.org/new-material-design-experiments/-/new-material-design-experiments-2.0.1.tgz"
+  "version" "2.0.1"
   dependencies:
     "@angular/animations" "~13.0.0"
     "@angular/cdk" "13.3.6"
@@ -7995,12 +7995,12 @@
   "resolved" "https://registry.npmjs.org/ng2-nouislider/-/ng2-nouislider-1.8.3.tgz"
   "version" "1.8.3"
 
-"ngx-paypal@^9.0.0":
-  "integrity" "sha512-pfdICpfasWzlfrnd81rSVUVeoXReOEnV4U/iA7DZMeiYQleloQYfBAOaqVgns+cls/EnCVvKbOwLAxCeAtociA=="
-  "resolved" "https://registry.npmjs.org/ngx-paypal/-/ngx-paypal-9.0.0.tgz"
-  "version" "9.0.0"
+"ngx-cookie-service@^14.0.0":
+  "integrity" "sha512-Yur9aIrtcqkI40UgvIN8VLoOzxhI3o/yWc16Q/buvprapTQzYdplNZ5chjb50SYaREiJdXfj7Wc49YG+9ABX1A=="
+  "resolved" "https://registry.npmjs.org/ngx-cookie-service/-/ngx-cookie-service-14.0.0.tgz"
+  "version" "14.0.0"
   dependencies:
-    "tslib" "^2.3.0"
+    "tslib" "^2.0.0"
 
 "nice-napi@^1.0.2":
   "integrity" "sha512-px/KnJAJZf5RuBGcfD+Sp2pAKq0ytz8j+1NehvgIGFkvtvFrDM3T8E4x/JJODXK9WZow8RRGrbA9QQ3hs+pDhA=="
