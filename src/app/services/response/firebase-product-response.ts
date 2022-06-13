@@ -12,6 +12,8 @@ export class FirebaseProductResponse {
     street = ''
     cap = ''
     city = ''
+    materiale = ''
+    dimensioni = ''
 
 
 
@@ -26,5 +28,9 @@ export class FirebaseProductResponse {
         this.street = data ? data.street : null;
         this.cap = data ? data.cap : null;
         this.city = data ? data.city : null;
+        this.materiale = data ? data.materiale : null;
+        this.dimensioni = data ? data.dimensioni : null;
+
+
     }
 }

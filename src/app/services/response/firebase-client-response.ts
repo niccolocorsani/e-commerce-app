@@ -1,4 +1,3 @@
-import {FirebaseProductResponse} from "./firebase-product-response";
 
 export class FirebaseClientResponse {
 

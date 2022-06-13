@@ -50,13 +50,13 @@ export class FireBaseRequestProductService {
 
     public async addProduct(product: FirebaseProductResponse, product_key: string) {
         this.variable_to_wait = await this.db.object('products/' + product.name).update(product)
-
-
+        await this.spinner_delay()
     }
 
 
-    public deleteProduct(product_key: string) {
-        this.db.object('products/' + product_key).remove();
+    public async deleteProduct(product_key: string) {
+        this.variable_to_wait = await this.db.object('products/' + product_key).remove();
+        await this.spinner_delay()
     }
 
 ////CRUD
@@ -86,7 +86,7 @@ export class FireBaseRequestProductService {
     async spinner_delay() {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
-            await this.delay(2000)
+            await this.delay(1000)
         }
         this.openComponentService.spinner = false
     }

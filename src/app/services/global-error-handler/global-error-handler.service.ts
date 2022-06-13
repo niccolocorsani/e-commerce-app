@@ -10,8 +10,8 @@ export class GlobalErrorHandlerService implements ErrorHandler {
 
     handleError(error: any): void {
 
-        if (error.stack.toString().includes('.ts'))
-            console.log(error)
+        //if (error.stack.toString().includes('.ts'))
+            console.error(error)
         /*   let splittedError = []
          splittedError = error.stack.toString().split(' ')
          let logged = false

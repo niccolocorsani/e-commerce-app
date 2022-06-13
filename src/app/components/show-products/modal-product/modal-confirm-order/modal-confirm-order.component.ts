@@ -16,7 +16,7 @@ export class ModalConfirmOrderComponent implements OnInit {
 
 
     navigateToCarrello() {
-        this.router.navigate(['/carrello'])
+        this.router.navigate(['/carrello']).then(page => { window.location.reload(); });
         this.dismiss()
     }
 

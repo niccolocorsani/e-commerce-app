@@ -41,8 +41,8 @@
                 <form (ngSubmit)="onSubmit()">
                     <div id="test-l-1" class="content">
                         <div class="form-group">
-                            <lib-input-error-handling [item]='eMail'
-                                                      (newItemEvent)="addEmail($event)"></lib-input-error-handling>
+                            <lib-normal-input item='E-mail'
+                                                      (newItemEvent)="addEmail($event)"></lib-normal-input>
                         </div>
                         <ion-item button="true" (click)="next2()">Next</ion-item>
                     </div>

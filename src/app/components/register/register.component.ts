@@ -20,18 +20,17 @@ import {GlobalVariablesService} from "../../services/utility-services/global-var
 })
 export class RegisterComponent {
 
-    eMail = 'E-mail';
     password = 'Password'
     name = 'Nome'
     surname = 'Cognome'
     street = 'Indirizzo'
     cap = 'cap'
     city = 'Città';
-    phone= 'Numero di telefono';
+    phone = 'Numero di telefono';
 
 
-    password_1: string
-    password_2: string
+    password_1 = ''
+    password_2 = ''
 
 
     client = new FirebaseClientResponse()
@@ -47,7 +46,24 @@ export class RegisterComponent {
 
     private stepper: Stepper;
 
+    constructor(private cookieService: CookieService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService) {
+    }
+
+    ngOnInit(): void {
+        console.log('Register')
+        this.stepper = new Stepper(document.querySelector('#stepper1'), {
+            linear: true,
+            animation: true
+        })
+    }
+
     next2() {
+
+    if(this.email_client == '' ) {
+        this.alertService.presentAlert('Email non inserita', 'Ricontrolla i dati', '')
+        return
+
+    }
         this.stepper.to(2);
         document.getElementById("step2").setAttribute("style", "background-color: black;")
         document.getElementById("step1").setAttribute("style", "background-color: #c1a977;")
@@ -55,6 +71,16 @@ export class RegisterComponent {
     }
 
     next3() {
+        if(this.password_1 == ''  || this.password_2 == '') {
+            this.alertService.presentAlert('Password non inserita', 'Ricontrolla i dati', '')
+            return
+
+        }
+
+        if (this.password_1 !== this.password_2) {
+            this.alertService.presentAlert('Le due password inserite non corrispondono', 'Errore', '')
+            return
+        }
         this.stepper.to(3);
         document.getElementById("step3").setAttribute("style", "background-color: black;")
         document.getElementById("step2").setAttribute("style", "background-color: #c1a977;")
@@ -62,25 +88,17 @@ export class RegisterComponent {
     }
 
     next4() {
+
+
         this.stepper.to(4);
         document.getElementById("step3").setAttribute("style", "background-color: #c1a977;")
-        document.getElementById("step44").setAttribute("style", "background-color: black;")
+        document.getElementById("step4").setAttribute("style", "background-color: black;")
     }
 
     onSubmit() {
         return false;
     }
 
-    constructor(private cookieService: CookieService,private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService) {
-    }
-
-
-    ngOnInit(): void {
-        this.stepper = new Stepper(document.querySelector('#stepper1'), {
-            linear: true,
-            animation: true
-        })
-    }
 
     selectChange(e) {
         console.log(e);
@@ -125,32 +143,37 @@ export class RegisterComponent {
 
     submitToFireBase() {
 
-        /// SE mail inserita con Google
-        if (document.getElementById('mail').textContent != '') {
-            this.client.email = document.getElementById('mail').textContent.split('.',).join('-').split('@',).join('_')
-            console.log(this.client.email)
-        } else this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
-        /// SE mail inserita con Google
+        try {
+            /// SE mail inserita con Google
+            if (document.getElementById('mail').textContent != '') {
+                this.client.email = document.getElementById('mail').textContent.split('.',).join('-').split('@',).join('_')
+            } else this.client.email = this.email_client.split('.',).join('-').split('@',).join('_')
+            /// SE mail inserita con Google
 
 
-        if (this.password_1 !== this.password_2)
-            this.alertService.presentAlert('Le due password inserite non corrispondono', 'Errore', '')
-        else this.client.password = this.password_1
+      this.client.password = this.password_1
 
 
-        this.client.name = this.name_client
-        this.client.surname = this.surname_client
-        this.client.cap = this.cap_client
-        this.client.street = this.street_client
-        this.client.phone = this.phone_client
-        this.client.city = this.city_client
-        this.products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 3})
-        this.client.products = this.products
-        this.fireBaseClientservice.addClient(this.client)
-        this.alertService.presentAlert('Utente registrato con successo', '', '')
-        document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
-        this.setLoginCookie(this.email_client,this.client.password)
-        this.router.navigate(['/client'])
+            this.client.name = this.name_client
+            this.client.surname = this.surname_client
+            this.client.cap = this.cap_client
+            this.client.street = this.street_client
+            this.client.phone = this.phone_client
+            this.client.city = this.city_client
+            this.products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 3})
+            this.client.products = this.products
+            this.fireBaseClientservice.addClient(this.client)
+            this.alertService.presentAlert('Utente registrato con successo', '', '')
+            document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
+            this.setLoginCookie(this.email_client, this.client.password)
+            this.globalVariableService.currentLoggedUserId = this.email_client
+            this.router.navigate(['/client']).then(page => {
+                window.location.reload();
+            });
+        } catch (e) {
+            this.alertService.presentAlert('Problema nella creazione nuovo utente', 'Ricontrolla i dati', '')
+            this.stepper.to(1);
+        }
 
     }
 
@@ -177,7 +200,7 @@ export class RegisterComponent {
         return await modal.present();
     }
 
-    setLoginCookie(mail: string, password: string){
+    setLoginCookie(mail: string, password: string) {
         this.cookieService.set('stextile_mail', mail, 1);
         this.cookieService.set('stextile_password', password, 1);
     }

@@ -16,16 +16,43 @@
                 <div class="container">
                     <div id="stepper1" class="bs-stepper">
                         <div class="bs-stepper-header">
-                            <div class="step" data-target="#test-l-1" *ngIf="logged()">
+                            <div class="step" data-target="#test-l-1" *ngIf="addressesPresent">
+                                dfs
                                 <button class="step-trigger">
+                                    fd
                                     <span id="step1" class="bs-stepper-circle"
                                           style="background-color: #c1a977;">1</span>
                                     <span class="bs-stepper-label">Indirizzo di consegna</span>
-                                    <div>{{this.client.city}}</div>
+                                    dsasd
+                                    <div>{{this.client.city}}
+                                    dsadoooooooo</div>
                                     <div>{{this.client.street}}</div>
                                     <div>{{this.client.cap}}</div>
                                 </button>
+                                fdsfd
                             </div>
+                            <div class="step" data-target="#test-l-1" *ngIf="!addressesPresent">
+                                <button class="step-trigger">
+                                    <span id="stepx" class="bs-stepper-circle"
+                                          style="background-color: #c1a977;">1</span>
+                                    <span class="bs-stepper-label">Indirizzo di consegna</span>
+
+                                    <div style="padding-left: 10px">
+                                        <lib-normal-input [item]='city' (newItemEvent)="addCity($event)"></lib-normal-input>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div style="padding-left: 10px">
+                                        <lib-normal-input [item]='street' (newItemEvent)="addStreet($event)"></lib-normal-input>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div style="padding-left: 10px">
+                                        <lib-normal-input [item]='cap' (newItemEvent)="addCap($event)"></lib-normal-input>
+                                    </div>
+                                </button>
+                            </div>
+
                             <div class="line"></div>
                             <div class="step" data-target="#test-l-2">
                                 <button class="step-trigger">

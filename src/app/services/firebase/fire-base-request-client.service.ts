@@ -38,6 +38,7 @@ export class FireBaseRequestClientService {
 
 
     public async getClient(client_key: string) {
+        await this.delay(100) //// Questo cosino qua mi risolve alcuni problemi, controllare poi se mettendo questo cosino qui anche nelle altre chiamate rest api non cambia il comportamento dell'applicazione
         this.db.object('clients/' + client_key).valueChanges()
         .subscribe(this.myObserver);
         await this.spinner_delay()
@@ -46,14 +47,15 @@ export class FireBaseRequestClientService {
 
 
     public async addClient(client: FirebaseClientResponse) {
-        console.log(client.email)
-        this.db.object('clients/' + client.email).update(client)
+        this.variable_to_wait = this.db.object('clients/' + client.email).update(client)
+        await this.spinner_delay()
+
     }
 
 
-    public deleteClient(client_key: string) {
-        this.db.object('clients/' + client_key).remove();
-        this.spinner_delay()
+    public async deleteClient(client_key: string) {
+        this.variable_to_wait = this.db.object('clients/' + client_key).remove();
+        await this.spinner_delay()
     }
 
 ////CRUD
@@ -82,7 +84,7 @@ export class FireBaseRequestClientService {
     async spinner_delay() {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
-            await this.delay(1000)
+            await this.delay(400)
         }
         this.openComponentService.spinner = false
     }

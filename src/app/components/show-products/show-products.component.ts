@@ -6,6 +6,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {IonContent, ModalController} from "@ionic/angular";
 import {ModalProductComponent} from "./modal-product/modal-product.component";
+import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
 
 @Component({
     selector: 'app-show-products',
@@ -17,10 +18,21 @@ export class ShowProductsComponent implements OnInit {
     public listElements: Array<FirebaseProductResponse> = [];
 
 
-    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertIonic: AlertIonicService, public modalController: ModalController, private ionContent: IonContent) {
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertIonic: AlertIonicService, public modalController: ModalController, private ionContent: IonContent, private myCookieService : MyCookieServiceService) {
     }
 
     async ngOnInit() {
+
+        let id = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
+        if(id.includes('ccedi')) // caso in cui utente non sia loggato
+            await this.myCookieService.initCookie()
+
+
+        await this.myCookieService.initCookieCredential()
+
+
+
+
         let scrolling = 0
         let i = 0
         this.listElements = await this.productsService.getProducts()

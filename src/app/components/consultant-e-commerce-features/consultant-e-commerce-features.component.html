@@ -31,6 +31,20 @@
 </ion-row>
 <ion-row>
     <ion-col>
+        <lib-normal-input [item]="materiale" (newItemEvent)="addMateriale($event)"></lib-normal-input>
+        <br/>
+        <br/>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
+        <lib-normal-input [item]="dimensioni" (newItemEvent)="addDimensioni($event)"></lib-normal-input>
+        <br/>
+        <br/>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
         <ion-item>
             <ion-label>Tipologia prodotto</ion-label>
             <ion-select value="brown" okText="Okay" (ionChange)="selectedType($event)">

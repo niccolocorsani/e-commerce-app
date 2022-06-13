@@ -26,26 +26,38 @@ export class CarrelloComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.myCookieService.initCookie()
 
-        let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
-        mail = mail.split('.',).join('-').split('@',).join('_')
 
-        if (mail.includes('ccedi') && this.globalVariableService.currentLoggedUserId != '') {
-            mail = this.globalVariableService.currentLoggedUserId
-            this.client = await this.fireBaseClientService.getClient(mail)
-            await this.fireBaseClientService.delay(500)
-        }
+
+        console.log('carrello')
+        let id = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
+        if(id.includes('ccedi')) // caso in cui utente non sia loggato
+        await this.myCookieService.initCookie()
+        await this.myCookieService.initCookieCredential()
+
+        if (this.globalVariableService.currentLoggedUserId == '')
+            alert('accetta i cookie o registrati per procedere con gli acquisti')// caso in cui utente non è ne registrato ne ha accettato i cookies
+
+        this.client = await this.fireBaseClientService.getClient(this.globalVariableService.currentLoggedUserId)
+
+        await this.fireBaseClientService.delay(500)
+
+        this.client = await this.fireBaseClientService.getClient(this.globalVariableService.currentLoggedUserId)
+
         console.log(this.client)
         this.products = this.client.products
-        this.products.shift()
-        this.products = this.products.filter((value, index, self) =>
-                index === self.findIndex((t) => (
-                    t.place === value.place && t.name === value.name
-                ))
-        )
 
-        console.log(this.products)
+        this.products = this.products.filter((value, index, self) =>
+                index === self.findIndex((t) => (t.place === value.place && t.name === value.name))
+        )
+        this.products = this.products.filter(product => product.description != '')
+
+        document.getElementById('badge').textContent = String( this.products.length)
+
+        console.log('Prodotti' + this.client.products)
+
+
+
     }
 
     navigateToProducts() {
@@ -62,11 +74,21 @@ export class CarrelloComponent implements OnInit {
 
 
     removeProduct(index: any) {
-        this.client.products.splice(index, 1)
+
+        console.log('prima della rimozione '+this.client.products)
+
+
+
+        if(this.client.products[index+ 1 ].description != '') {
+            this.client.products.splice(index + 1, 1)
+        }
+        console.log('dopo la rimozione '+this.client.products)
         this.fireBaseClientService.addClient(this.client)
-        this.products = this.client.products
         //this.fireBaseClientService.addClient()
         // await this.fireBaseClientService.getClient(mail)
+        this.router.navigate(['/carrello']).then(page => { window.location.reload(); });
+
+
     }
 
 

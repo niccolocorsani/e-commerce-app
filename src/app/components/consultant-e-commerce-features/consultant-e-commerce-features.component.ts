@@ -25,14 +25,19 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     name = 'Nome';
     type = 'Tipologia'
     peso = 'Peso'
+    materiale = 'Materiale';
+    dimensioni= 'Dimensioni';
+
 
 
     product_price = ''
     product_description = ''
     product_name = ''
     product_type = ''
-    product_peso = 10
+    product_materiale = '';
+    product_dimensioni = '';
 
+    product_peso = 10
 
     product = new FirebaseProductResponse()
     url: any;
@@ -68,7 +73,22 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     }
 
 
+    addMateriale($event: any) {
+        this.product_materiale = $event.target.value;
+
+    }
+
+    addDimensioni($event: any) {
+        this.product_dimensioni = $event.target.value;
+
+    }
+
     async onFileChangeImage(event: any) {
+
+        if(this.product_peso == 10 || this.product_type == '' || this.product_name == ''|| this.product_description == ''|| this.product_price == ''|| this.product_type == '') {
+            this.alertService.presentAlert('Riempire tutti i campi prima di procedere', '', '')
+            return
+        }
         const reader = new FileReader();
         let arrayBuffer: any;
         if (event.target.files && event.target.files.length) {
@@ -100,11 +120,13 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
         await this.uploadProgress.subscribe(value => {
             progress = value
             console.log(value)
+            if(value == 100) alert('Prodotto caricato')
             //// Fondamentale che il file sia caricato completamente, altrimenti il flusso andrà male
         })
 
 
         await this.delay(1000)
+
         if (progress != 100)
             await this.delay(3000)
         if (progress != 100)
@@ -112,7 +134,22 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
         if (progress != 100)
             await this.delay(3000)
         if (progress != 100)
-            await this.delay(3000)
+            await this.delay(5000)
+        if (progress != 100)
+            await this.delay(6000)
+        if (progress != 100)
+            await this.delay(7000)
+        if (progress != 100)
+            await this.delay(8000)
+        if (progress != 100)
+            await this.delay(9000)
+        if (progress != 100)
+            await this.delay(10000)
+        if (progress != 100)
+            await this.delay(12000)
+        if (progress != 100)
+            await this.delay(15000)
+
 
 
         await this.ref.getDownloadURL().subscribe(value => {
@@ -127,6 +164,8 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
                 img_name_ref: this.url,
                 type: this.type,
                 peso: this.product_peso,
+                materiale: this.product_materiale,
+                dimensioni: this.product_dimensioni,
                 city: '',
                 street: '',
                 cap:''
@@ -148,6 +187,5 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
         }
         this.openComponentService.spinner = false
     }
-
 
 }

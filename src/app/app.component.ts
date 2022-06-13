@@ -19,20 +19,20 @@ export class AppComponent {
 
   returnHome() {
     this.spinner_delay()
-    this.router.navigate(['/client'])
+    this.router.navigate(['/client']).then(page => { window.location.reload(); }); //// To trigger the refresh of the page even if in the same page  https://stackoverflow.com/questions/39613093/angular2-router-navigate-to-the-current-page-with-different-parameters
   }
 
 
   navigateToLogin() {
     this.spinner_delay()
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']).then(page => { window.location.reload(); });
   }
 
 
   navigateToCarrello() {
     this.spinner_delay()
     this.pushNotificationService.createPushNotification('oooooo')
-    this.router.navigate(['/carrello'])
+    this.router.navigate(['/carrello']).then(page => { window.location.reload(); });
   }
 
   delay(ms: number) {

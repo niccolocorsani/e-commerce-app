@@ -4,6 +4,7 @@ import {FireBaseRequestClientService} from "../../services/firebase/fire-base-re
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
+import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
 
 @Component({
     selector: 'app-check-out',
@@ -17,16 +18,22 @@ export class CheckOutComponent implements OnInit {
     private client = new FirebaseClientResponse();
     private products: any;
     totalPrice = 0
+    addressesPresent = true;
+    city: any;
+    street: any;
+    cap: any;
 
-    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService) {
+    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService) {
     }
 
     async ngOnInit() {
 
-        let mail
-        mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
+        await this.myCookieService.initCookie()
+        await this.myCookieService.initCookieCredential()
 
-        if (this.globalVariableService.currentLoggedUserId != '')
+        let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
+
+        if (this.globalVariableService.currentLoggedUserId != '') // se non ha accettato i cookie
             mail = this.globalVariableService.currentLoggedUserId
 
         this.client = await this.fireBaseClientService.getClient(mail)
@@ -45,7 +52,15 @@ export class CheckOutComponent implements OnInit {
             linear: true,
             animation: true
         })
+
+
+        /////TODO da finire che se non è presente l'indirizzo a cui inviare le cose.. Lo chiede nello stepper, altrimenti lo mostra
+
+       if ( this.client.street == '')  this.addressesPresent = false
     }
+
+
+
 
     next() {
         this.stepper.next()
@@ -59,10 +74,15 @@ export class CheckOutComponent implements OnInit {
         this.pay = true
     }
 
-    logged() {
+    addCity($event: any) {
+        
+    }
 
-        if (this.client.city == undefined)
-            return true
-        else return false
+    addStreet($event: any) {
+        
+    }
+
+    addCap($event: any) {
+        
     }
 }

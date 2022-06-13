@@ -26,6 +26,7 @@ export class ModalProductComponent implements OnInit {
     async aggiungiAlCarrello(product) {
 
 
+        console.log('Prodotto: ' + product.name + 'aggiunto al carrello')
         let badgeValue = document.getElementById('badge').textContent;
         if (badgeValue == '') badgeValue = '1'
         else {
@@ -43,27 +44,51 @@ export class ModalProductComponent implements OnInit {
 
         let client = new FirebaseClientResponse()
 
-        client = await this.fireBaseRequestClientService.getClient(document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_'))
+
+
+        // Ridondanza di chiamate perchè spersso non funzionano
+        client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
+        await this.fireBaseRequestClientService.delay(100)
+
         if (client == null) {
 
-            await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
+            let client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
             client.products.push(product)
             this.fireBaseRequestClientService.addClient(client)
+            return
 
-        } else {
-            console.log(client)
-            client.products.push(product)
-            this.fireBaseRequestClientService.addClient(client)
         }
+        if (client == undefined) {
 
-        ////TODO capire come funzionano i cockies per servire anche utente non loggato
+            let client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
+            client.products.push(product)
+            this.fireBaseRequestClientService.addClient(client)
+            return
+
+
+        }
+        if (client == undefined) {
+
+            client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
+            client.products.push(product)
+            this.fireBaseRequestClientService.addClient(client)
+            return
+
+        }
         if (client == undefined) {
 
             await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
             client.products.push(product)
             this.fireBaseRequestClientService.addClient(client)
+            return
 
         }
+        client.products.push(product)
+        this.fireBaseRequestClientService.addClient(client)
+
+
+        // Ridondanza di chiamate perchè spersso non funzionano
+
     }
 
     dismiss() {

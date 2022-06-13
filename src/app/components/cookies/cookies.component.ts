@@ -20,8 +20,8 @@ export class CookiesComponent implements OnInit {
         await this.myCookieService.initCookie()
     }
 
-    setCookie() {
-        const id = (Math.random() + 1).toString(36).substring(7);
+    async setCookie() {
+        const id = (Math.random() + 1).toString(36).substring(7) + 'cookie';
         this.cookieService.set('id', id, 0.25);
         // 1 day -> 24 hrs
         // ? day -> 6 hrs
@@ -33,5 +33,7 @@ export class CookiesComponent implements OnInit {
         client.products = products
         this.fireBaseClientService.addClient(client)
         this.globalVariableService.hideCookieCard = true
+        await this.myCookieService.initCookie()
+
     }
 }
