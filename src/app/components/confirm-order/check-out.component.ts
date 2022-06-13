@@ -5,6 +5,7 @@ import {FirebaseClientResponse} from "../../services/response/firebase-client-re
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
 import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-check-out',
@@ -12,7 +13,6 @@ import {MyCookieServiceService} from "../../services/my-cookies-service/my-cooki
 })
 export class CheckOutComponent implements OnInit {
 
-    pay = false;
 
     private stepper: Stepper;
     private client = new FirebaseClientResponse();
@@ -23,20 +23,38 @@ export class CheckOutComponent implements OnInit {
     street: any;
     cap: any;
 
-    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService) {
+    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService, private router: Router) {
     }
 
     async ngOnInit() {
 
+
+        this.stepper = new Stepper(document.querySelector('#stepper2'), {
+            linear: true,
+            animation: true
+        })
+
         await this.myCookieService.initCookie()
         await this.myCookieService.initCookieCredential()
 
-        let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
+        let id = this.globalVariableService.currentLoggedUserId
+        this.client = await this.fireBaseClientService.getClient(id)
+        await this.fireBaseClientService.delay(500)
 
-        if (this.globalVariableService.currentLoggedUserId != '') // se non ha accettato i cookie
-            mail = this.globalVariableService.currentLoggedUserId
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
 
-        this.client = await this.fireBaseClientService.getClient(mail)
+
         console.log(this.client)
         this.products = this.client.products
         this.products.shift()
@@ -45,21 +63,15 @@ export class CheckOutComponent implements OnInit {
             this.totalPrice = this.totalPrice + product.price
         })
 
-        if (this.client == undefined) {
-
-        }
-        this.stepper = new Stepper(document.querySelector('#stepper1'), {
-            linear: true,
-            animation: true
-        })
-
 
         /////TODO da finire che se non è presente l'indirizzo a cui inviare le cose.. Lo chiede nello stepper, altrimenti lo mostra
 
-       if ( this.client.street == '')  this.addressesPresent = false
+        try {
+            this.client.street
+        } catch (e) {
+            this.addressesPresent = false
+        }
     }
-
-
 
 
     next() {
@@ -71,18 +83,20 @@ export class CheckOutComponent implements OnInit {
     }
 
     openPayments() {
-        this.pay = true
+        this.router.navigate(['/payments']).then(page => {
+            window.location.reload();
+        });
     }
 
     addCity($event: any) {
-        
+
     }
 
     addStreet($event: any) {
-        
+
     }
 
     addCap($event: any) {
-        
+
     }
 }

@@ -26,6 +26,15 @@ export class ModalProductComponent implements OnInit {
     async aggiungiAlCarrello(product) {
 
 
+        var price = document.getElementById('price');
+        var total = document.getElementById('total')
+        total.style.position = "absolute";
+        total.style.left = price.style.left
+
+
+
+
+
         console.log('Prodotto: ' + product.name + 'aggiunto al carrello')
         let badgeValue = document.getElementById('badge').textContent;
         if (badgeValue == '') badgeValue = '1'

@@ -8,7 +8,7 @@ export class FirebaseProductResponse {
     img_name_ref: string
     type: string
     peso: number
-    //// questi dati qua sotto sono utili se il cliente non ha fatto il log-in
+    ////alcuni di questi dati qua sotto sono utili se il cliente non ha fatto il log-in, ma va solo di cookie
     street = ''
     cap = ''
     city = ''

@@ -94,6 +94,8 @@ import {GlobalErrorHandlerService} from "./services/global-error-handler/global-
             {path: 'register', component: RegisterComponent},
             {path: 'checkout', component: CheckOutComponent},
             {path: 'consultant123123-number123', component: BusinessConsultantComponent},
+            {path: 'payments', component: PaymentsComponent},
+
             {path: '', redirectTo: '/client', pathMatch: 'full'},
         ]),
     ],

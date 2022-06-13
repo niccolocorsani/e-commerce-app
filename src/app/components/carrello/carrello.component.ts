@@ -18,6 +18,7 @@ export class CarrelloComponent implements OnInit {
 
     products = []
     client
+    totalePrezzo = 0;
 
 
     constructor(private openComponentsService: OpenComponentsService, private router: Router, private fireBaseClientService: FireBaseRequestClientService, private ionicAlert: AlertIonicService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService) {
@@ -27,12 +28,10 @@ export class CarrelloComponent implements OnInit {
     async ngOnInit() {
 
 
-
-
         console.log('carrello')
         let id = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
-        if(id.includes('ccedi')) // caso in cui utente non sia loggato
-        await this.myCookieService.initCookie()
+        if (id.includes('ccedi')) // caso in cui utente non sia loggato
+            await this.myCookieService.initCookie()
         await this.myCookieService.initCookieCredential()
 
         if (this.globalVariableService.currentLoggedUserId == '')
@@ -48,16 +47,19 @@ export class CarrelloComponent implements OnInit {
         this.products = this.client.products
 
         this.products = this.products.filter((value, index, self) =>
-                index === self.findIndex((t) => (t.place === value.place && t.name === value.name))
+            index === self.findIndex((t) => (t.place === value.place && t.name === value.name))
         )
         this.products = this.products.filter(product => product.description != '')
 
-        document.getElementById('badge').textContent = String( this.products.length)
+        document.getElementById('badge').textContent = String(this.products.length)
 
         console.log('Prodotti' + this.client.products)
 
 
-
+        this.products.forEach(product => {
+            this.totalePrezzo =  this.totalePrezzo + Number(product.price)
+            console.log(this.totalePrezzo)
+        })
     }
 
     navigateToProducts() {
@@ -75,19 +77,19 @@ export class CarrelloComponent implements OnInit {
 
     removeProduct(index: any) {
 
-        console.log('prima della rimozione '+this.client.products)
+        console.log('prima della rimozione ' + this.client.products)
 
 
-
-        if(this.client.products[index+ 1 ].description != '') {
+        if (this.client.products[index + 1].description != '') {
             this.client.products.splice(index + 1, 1)
         }
-        console.log('dopo la rimozione '+this.client.products)
+        console.log('dopo la rimozione ' + this.client.products)
         this.fireBaseClientService.addClient(this.client)
         //this.fireBaseClientService.addClient()
         // await this.fireBaseClientService.getClient(mail)
-        this.router.navigate(['/carrello']).then(page => { window.location.reload(); });
-
+        this.router.navigate(['/carrello']).then(page => {
+            window.location.reload();
+        });
 
     }
 
