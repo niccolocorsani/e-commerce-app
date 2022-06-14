@@ -8,27 +8,25 @@
 - **Students**: Niccolò Corsani
 - **CFUs**: 9
 
-The Project concerns the development of a web application for the management, saving and manipulation of different types of data useful for the interaction between generic customers and consultants. In particular, the functions made available by the application are those of: saving data that identify a customer and a consultant, booking an appointment between them and displaying the consultants' position on a map.
+Il progetto prevede lo sviluppo di un applicativo Ecommerce in grado di gestire automaticamente vari aspetti della compra vendita, di pubblicità dei prodotti e di gestione degli aspetti commerciali legati agli acquisti
 
-# Tools and Techniques
+# Tecniche e strumenti
 
 The main tools and techniques we will employ are:
 
-- **Angular**: For front-end implementation \[1\].
-- **Ionic**: For the support of the front-end implementation \[2\].
-- **Spring-Boot**: For back-end implementation \[3\].
-- **MySQL**: For the persistence of data and query manipulation \[4\].
-- **Docker**: For the deploy of the back-end \[5\].
-- **Capacitor Android**: For cross-platform development \[6\].
+- **Angular 2+**: For front-end implementation \[1\].
+- **Ionic Bootstrap Angular Material**: For the support of the front-end implementation \[2\].
+- **Firebase**: For back-end implementation \[3\].
+- **Google Cloud Services**: For cross-platform development \[4\].
+- **Capacitor Android**: For cross-platform development \[5\].
 
 
 ...
 
 
-# Simulation of the project
+# Simulazione del progetto
 
-Below is the final report, as well as some animated gifs to illustrate some examples of possible interactions with the GUI.
-Some Client features:
+Di seguito è possibile osservare alcune simulazioni di scenari tipici e flussi di eventi che un utente può eseguire
 
 
 
@@ -51,27 +49,23 @@ Flow to schedule a notification:
 
 
 
-# Instructions to execute system
+# Istruzioni per testare il sistema
 
+Il sistema si trova distribuito al link di seguito:
+https://spring-ship-344311.firebaseapp.com/folder/Inbox
 
-
-
-To run the Front-end do the project clone and then run the command:
+Tuttavia se è necessario usuffruire di tutte le features che offre il sistema è necessario fare l'installazione del sistema in locale. Ciò è dovuto al fatto che il sistema si appoggia a prodotti di terze parti ad esempio "Google Login" o "Google maps" che risultano registrati solo sotto il dominio di "localhost".
+Per installare e testare il software fare il clone del progetto ed eseguire il comando:
 
 ```
  npm i --legacy-peer-deps
  ```
- to install the dependencies.
-
-Since there is a reference to the Google API and the domain registered in google-dev-console is http://localhost:8100, it is important to connect to that address making sure that the port is actually 8100. With the command 
+Successivamente eseguire il comando:
 ```
 ionic serve
 ```
-the connection will be oriented to that port by default.
-To get the services in the back-end it is necessary to initialize two containers through Docker. The two containers (Spring-app and MySQL engine) can be initialized by running the command from terminal: 
-```
-docker-compose up
-```
+Aprire adesso il browser alla pagina http://localhost:8100/client
+
 
 inside the project where there is the target file "docker-compose.yml".
 
