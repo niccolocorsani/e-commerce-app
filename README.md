@@ -15,7 +15,7 @@ Il progetto prevede lo sviluppo di un applicativo Ecommerce in grado di gestire 
 The main tools and techniques we will employ are:
 
 - **Angular 2+**: For front-end implementation \[1\].
-- **Ionic Bootstrap Angular Material**: For the support of the front-end implementation \[2\].
+- **Ionic, Bootstrap, Angular Material**: For the support of the front-end implementation \[2\].
 - **Firebase**: For back-end implementation \[3\].
 - **Google Cloud Services**: For cross-platform development \[4\].
 - **Capacitor Android**: For cross-platform development \[5\].
@@ -66,14 +66,18 @@ ionic serve
 ```
 Aprire adesso il browser alla pagina http://localhost:8100/client
 
+Ricordarsi di dare il consenso alle notifiche push al browser a livello di sistema operativo per poterle utilizzare nel sistema.
 
-inside the project where there is the target file "docker-compose.yml".
 
-As mentioned earlier the project has been partially developed as an Android app, to do this see the script "ionic-to-andorid.sh".
-There is a possibility to download the apk directly from the smartphone. Such apk can be found at the path "front-end-hci/android/app/build/outputs/apk/release/"
-of this repository
 
-Last note about push-notifications: in fact it is necessary, in order to receive these notifications, to specify in the operating system the consent to receive push notifications. In particular, it will be necessary to give consent to the Chrome application.
+# Strumenti e tecniche
+
+Come premesso precedentemente, il sistema utilizza il framework di angular material. Vi è la possibilità di utilizzare la libreria pubblicata nel repository npm:
+
+```
+npm i new-material-design-experiments
+```
+
 
 # Project Documents
 
