@@ -81,7 +81,7 @@ import {TerminiAcquistoComponent} from "./static-pages/termini-acquisto/termini-
 
     ],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), NgCalendarModule,
+    imports: [BrowserModule, IonicModule.forRoot(),
         HttpClientModule, SocialLoginModule, TooltipsModule.forRoot(), BrowserAnimationsModule,
 
         //https://github.com/angular/angularfire/blob/master/docs/ionic/cli.md

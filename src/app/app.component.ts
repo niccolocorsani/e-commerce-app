@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
   constructor(private openComponentsService: OpenComponentsService,private router: Router,private mailService: MailServiceService, private pushNotificationService : PushNotificationServiceService, private globalVariableService : GlobalVariablesService, private initializeCurrentClient: InitializeCurrentClientService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        gtag('config', 'G-73WSX3H8QT', { page_path: event.urlAfterRedirects });
+        gtag('config', 'G-NHJ6YKVEFT', { page_path: event.urlAfterRedirects });
         alert('url: '+ event.urlAfterRedirects )
       }
     })
