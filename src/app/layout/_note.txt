@@ -1,1 +1,0 @@
-The goal of these two components is to offer client or business-consultant views.
