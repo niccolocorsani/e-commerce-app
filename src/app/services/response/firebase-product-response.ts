@@ -31,6 +31,5 @@ export class FirebaseProductResponse {
         this.materiale = data ? data.materiale : null;
         this.dimensioni = data ? data.dimensioni : null;
 
-
     }
 }

@@ -6,6 +6,7 @@ import {FormBuilder} from "@angular/forms";
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {OpenComponentsService} from "../../services/open-components/open-components.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-consultant-e-commerce-features',
@@ -26,8 +27,7 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     type = 'Tipologia'
     peso = 'Peso'
     materiale = 'Materiale';
-    dimensioni= 'Dimensioni';
-
+    dimensioni = 'Dimensioni';
 
 
     product_price = ''
@@ -43,10 +43,11 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     url: any;
 
 
-    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertService: AlertIonicService, private openComponentService: OpenComponentsService) {
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertService: AlertIonicService, private openComponentService: OpenComponentsService, private router : Router) {
     }
 
     ngOnInit() {
+        console.log('oo')
     }
 
 
@@ -56,7 +57,6 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
 
     addDescription(newItem: string) {
         this.product_description = newItem;
-        console.log(this.product_description)
     }
 
     addPrice(newItem: string) {
@@ -85,9 +85,19 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
 
     async onFileChangeImage(event: any) {
 
-        if(this.product_peso == 10 || this.product_type == '' || this.product_name == ''|| this.product_description == ''|| this.product_price == ''|| this.product_type == '') {
+        if (this.product_peso == 10 || this.product_type == '' || this.product_name == '' || this.product_description == '' || this.product_price == '' || this.product_type == '') {
             this.alertService.presentAlert('Riempire tutti i campi prima di procedere', '', '')
-            return
+            this.router.navigate(['/consultant123123-number123']).then(page => {
+                window.location.reload();
+            });
+        }
+
+
+        if (!this.peso.includes('0') || !this.peso.includes('1') || !this.peso.includes('2') || !this.peso.includes('3') || !this.peso.includes('4') || !this.peso.includes('5') || !this.peso.includes('6') || !this.peso.includes('7') || !this.peso.includes('8') || !this.peso.includes('9')) {
+            await this.alertService.presentAlert('(valore numerico)','Inserire un peso corretto ','')
+            this.router.navigate(['/consultant123123-number123']).then(page => {
+                window.location.reload();
+            });
         }
         const reader = new FileReader();
         let arrayBuffer: any;
@@ -107,6 +117,7 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
             }
         }
 
+
         const id = (Math.random() + 1).toString(36).substring(7);
 
         this.ref = this.afStorage.ref(id);
@@ -119,8 +130,6 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
 
         await this.uploadProgress.subscribe(value => {
             progress = value
-            console.log(value)
-            if(value == 100) alert('Prodotto caricato')
             //// Fondamentale che il file sia caricato completamente, altrimenti il flusso andrà male
         })
 
@@ -151,10 +160,8 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
             await this.delay(15000)
 
 
-
         await this.ref.getDownloadURL().subscribe(value => {
             this.url = value
-            console.log(this.url)
 
             this.productsService.addProduct({
                 name: this.product_name,
@@ -168,10 +175,13 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
                 dimensioni: this.product_dimensioni,
                 city: '',
                 street: '',
-                cap:''
+                cap: ''
             }, this.product_name)
-            this.alertService.presentAlert('Prodotto aggiunto con successo', '', '')
         })
+
+        let prod = this.productsService.getProduct(this.product_name)
+        if (prod != null)
+            await this.alertService.presentAlert('Prodotto aggiunto con successo', '', '')
     }
 
 
@@ -182,7 +192,6 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     async spinner_delay() {
         this.openComponentService.spinner = true
         while (this.variable_to_wait === undefined) {
-            console.log(this.variable_to_wait)
             await this.delay(1000)
         }
         this.openComponentService.spinner = false

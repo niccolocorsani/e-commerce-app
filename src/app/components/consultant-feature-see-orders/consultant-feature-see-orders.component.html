@@ -1,0 +1,15 @@
+<ul *ngFor="let order of this.orders ">
+    <li>
+        {{order.id}}
+    </li>
+    <li>
+        {{order.client.name}}
+    </li>
+    <li>
+        {{order.products[0].price}}
+    </li>
+    <li>
+        {{order.client.mail}}
+    </li>
+    <hr>
+</ul>

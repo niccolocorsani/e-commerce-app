@@ -1,101 +1,114 @@
+<ion-row>
+    <ion-col offset="2" size-xl="8">
 <div id="log-in">
+            <span style="font-size: 2rem; font-family: Serif;">Registra un nuovo account
+            </span>
     <ion-card>
-        <ion-card-header>
-            <ion-card-title style="color: black; font-size: 2rem;">Registra un nuovo account
-            </ion-card-title>
-        </ion-card-header>
-    </ion-card>
-    <div class="container">
-        <div id="stepper1" class="bs-stepper">
-            <div class="bs-stepper-header">
-                <div class="step" data-target="#test-l-1">
-                    <button class="step-trigger">
-                        <span id="step1" class="bs-stepper-circle" style="background-color: #c1a977;">1</span>
-                        <span class="bs-stepper-label">Email</span>
-                    </button>
-                </div>
-                <div class="line"></div>
-                <div class="step" data-target="#test-l-2">
-                    <button class="step-trigger">
-                        <span id="step2" class="bs-stepper-circle" style="background-color: #c1a977;">2</span>
-                        <span class="bs-stepper-label">Password</span>
-                    </button>
-                </div>
-                <div class="line"></div>
-                <div class="step" data-target="#test-l-3">
-                    <button class="step-trigger">
-                        <span id="step3" class="bs-stepper-circle" style="background-color: #c1a977;">3</span>
-                        <span class="bs-stepper-label">Indirizzi</span>
-                    </button>
-                </div>
-                <div class="line"></div>
-                <div class="step" data-target="#test-l-4">
-                    <button class="step-trigger">
-                        <span id="step4" class="bs-stepper-circle" style="background-color: #c1a977;">4</span>
-                        <span class="bs-stepper-label">Dati personali</span>
-                    </button>
-                </div>
-            </div>
-            <div class="bs-stepper-content">
-                <form (ngSubmit)="onSubmit()">
-                    <div id="test-l-1" class="content">
-                        <div class="form-group">
-                            <lib-normal-input item='E-mail'
-                                                      (newItemEvent)="addEmail($event)"></lib-normal-input>
-                        </div>
-                        <ion-item button="true" (click)="next2()">Next</ion-item>
+        <img src="assets/images/imff.png" style="width:100%; height:50px">
+        <div class="container">
+            <div id="stepper1" class="bs-stepper">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#test-l-1">
+                        <button class="step-trigger">
+                            <span id="step1" class="bs-stepper-circle" style="background-color: #c1a977;">1</span>
+                            <span class="bs-stepper-label">Email</span>
+                        </button>
                     </div>
-                    <div id="test-l-2" class="content">
-                        <div class="form-group">
-                            <lib-input-password (newItemEvent)="addPassword_1($event)"></lib-input-password>
-                            <br/>
-                            <br/>
-                            <lib-input-password (newItemEvent)="addPassword_2($event)"></lib-input-password>
-                        </div>
-                        <ion-item button="true" (click)="next3()">Next</ion-item>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-2">
+                        <button class="step-trigger">
+                            <span id="step2" class="bs-stepper-circle" style="background-color: #c1a977;">2</span>
+                            <span class="bs-stepper-label">Password</span>
+                        </button>
                     </div>
-                    <div id="test-l-3" class="content text-center">
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-3">
+                        <button class="step-trigger">
+                            <span id="step3" class="bs-stepper-circle" style="background-color: #c1a977;">3</span>
+                            <span class="bs-stepper-label">Indirizzi</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-4">
+                        <button class="step-trigger">
+                            <span id="step4" class="bs-stepper-circle" style="background-color: #c1a977;">4</span>
+                            <span class="bs-stepper-label">Dati personali</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content">
+                    <form (ngSubmit)="onSubmit()">
+                        <div id="test-l-1" class="content">
+                            <div class="form-group">
+                                <lib-normal-input item='E-mail'
+                                                  (newItemEvent)="addEmail($event)"></lib-normal-input>
+                            </div>
+                            <ion-item button="true" (click)="next2()">Avanti</ion-item>
+                        </div>
+                        <div id="test-l-2" class="content">
+                            <div class="form-group">
+                                <lib-input-password (newItemEvent)="addPassword_1($event)"></lib-input-password>
+                                <br/>
+                                <br/>
+                                <lib-input-password (newItemEvent)="addPassword_2($event)"></lib-input-password>
+                            </div>
+                            <ion-item button="true" (click)="next3()">Avanti</ion-item>
+                        </div>
+                        <div id="test-l-3" class="content text-center">
 
-                        <div style="padding-left: 10px">
-                            <lib-normal-input [item]='city' (newItemEvent)="addCity($event)"></lib-normal-input>
+                            <div style="padding-left: 10px">
+                                <lib-normal-input item='Città' (newItemEvent)="addCity($event)"
+                                                  input_value="{{this.city_client}}"></lib-normal-input>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="padding-left: 10px">
+                                <lib-normal-input item='Indirizzo' (newItemEvent)="addStreet($event)"
+                                                  input_value="{{this.street_client}}"></lib-normal-input>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="padding-left: 10px">
+                                <lib-normal-input item='Cap' (newItemEvent)="addCap($event)"
+                                                  input_value="{{this.cap_client}}"></lib-normal-input>
+                            </div>
+                            <ion-item button="true" (click)="openModalLocation()">Ottieni la tua posizione su Google
+                            </ion-item>
+                            <ion-item button="true" (click)="next4()">Avanti</ion-item>
                         </div>
-                        <br/>
-                        <br/>
-                        <div style="padding-left: 10px">
-                            <lib-normal-input [item]='street' (newItemEvent)="addStreet($event)"></lib-normal-input>
+                        <div id="test-l-4" class="content text-center">
+                            <div style="padding-left: 10px">
+                                <lib-normal-input [item]='name' (newItemEvent)="addName($event)"></lib-normal-input>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="padding-left: 10px">
+                                <lib-normal-input [item]='surname'
+                                                  (newItemEvent)="addSurname($event)"></lib-normal-input>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div style="padding-left: 10px">
+                                <lib-normal-input [item]='phone' (newItemEvent)="addPhone($event)"></lib-normal-input>
+                            </div>
+                            <br/>
+                            <br/>
+                            <ion-item button="true" (click)="submitToFireBase()">Salva</ion-item>
                         </div>
-                        <br/>
-                        <br/>
-                        <div style="padding-left: 10px">
-                            <lib-normal-input [item]='cap' (newItemEvent)="addCap($event)"></lib-normal-input>
-                        </div>
-                        <ion-item button="true" (click)="openModalLocation()">Ottieni la tua posizione su Google
-                        </ion-item>
-                        <ion-item button="true" (click)="next4()">Next</ion-item>
-                    </div>
-                    <div id="test-l-4" class="content text-center">
-                        <div style="padding-left: 10px">
-                            <lib-normal-input [item]='name' (newItemEvent)="addName($event)"></lib-normal-input>
-                        </div>
-                        <br/>
-                        <br/>
-                        <div style="padding-left: 10px">
-                            <lib-normal-input [item]='surname' (newItemEvent)="addSurname($event)"></lib-normal-input>
-                        </div>
-                        <br/>
-                        <br/>
-                        <div style="padding-left: 10px">
-                            <lib-normal-input [item]='phone' (newItemEvent)="addPhone($event)"></lib-normal-input>
-                        </div>
-                        <br/>
-                        <br/>
-                        <ion-item button="true" (click)="submitToFireBase()">Salva</ion-item>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <app-social-register (newItemEvent)="addEmail($event)" (click)="next3()" (click)="addPassword_1('not_needed')"
-                         (click)="addPassword_2('not_needed')"></app-social-register>
-    <!-- <img src="assets/images/img1.jpeg">-->
+        <ion-row>
+            <ion-col offset="4.8">
+                <app-social-register (newItemEvent)="addEmail($event)" (click)="next3()"
+                                     (click)="addPassword_1('not_needed')"
+                                     (click)="addPassword_2('not_needed')"></app-social-register>
+                <!-- <img src="assets/images/img1.jpeg">-->
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
 </div>
+    </ion-col>
+</ion-row>

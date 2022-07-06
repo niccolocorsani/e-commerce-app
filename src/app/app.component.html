@@ -4,60 +4,60 @@
         <ion-header>
             <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
                 <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
-                <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
-                <a button href="https://www.google.it/" slot="end" style=" padding-right: 25px ;">BLOG</a>
             </ion-toolbar>
             <ion-toolbar style="  --ion-background-color: white;" size="small">
                 <div slot="end" style="cursor: pointer;" (click)="navigateToLogin()">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                             class="bi bi-person-fill bigger-and-colored" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                    </div>
                     <ion-label slot="end" id="logged">Registrati/Accedi</ion-label>
-                    <ion-icon style=" padding-right: 25px ;"
-                              name="man" slot="end" style="zoom:2.8;">
-                    </ion-icon>
                 </div>
                 <ion-label slot="end">&nbsp;&nbsp;&nbsp;</ion-label>
-                <div class="icon-badge" slot="end" style="cursor: pointer;" (click)="navigateToCarrello()">
-                    <ion-label slot="end">Carrello</ion-label>
+                <div class="icon-badge" slot="end" style="cursor: pointer;" (mouseover)="myOverFunction()"
+                     (mouseout)="myOutFunction()" (click)="navigateToCarrello()">
                     <ion-icon
-                            name="cart" slot="end" style=" padding-right: 25px" style="zoom:2.8;"></ion-icon>
+                            name="cart" slot="end" style=" padding-right: 25px" style="zoom:2.65;">
+                        <!--TODO
+                        <div id="carrello-card" slot="end" style="z-index: 1000;" *ngIf="mouseOverCarrello">sdfsd</div>
+                        -->
+                    </ion-icon>
                     <ion-badge id="badge" color="dark"></ion-badge>
+                    <br/>
+                    <ion-label slot="end">
+                        Carrello
+                    </ion-label>
                 </div>
                 <ion-label slot="end">&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
-                <ion-item button="true" style="padding-top: 0px; width: 200px" tooltip="Torna alla pagina iniziale"
-                          positionV="bottom" arrow (click)="returnHome()">
-                    <ion-icon
-                            name="home"></ion-icon>
-                </ion-item>
+                <div style="padding-top: 0px;  margin-left: 1% ; size: 500px" tooltip="Torna alla pagina iniziale"
+                     positionV="bottom" arrow (click)="returnHome()">
+                    <ion-icon size="large"
+                              name="home"></ion-icon>
+                    <a href="https://api.whatsapp.com/send?phone=3204852777"
+                       onclick="ga('send','event','Clics','whatsapp');"> 3294094200</a>
+                    <a href="https://www.facebook.com/messages/t/niccolocorsani"
+                       onclick="ga('send','event','Clics','whatsapp');"> facebook</a>
+                </div>
             </ion-toolbar>
         </ion-header>
-        <router-outlet ></router-outlet>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <app-cookies *ngIf="!this.globalVariableService.hideCookieCard"></app-cookies>
-        <br/>
-        <br/>
+        <div style="background-image: linear-gradient(180deg, #F5F5F5 0%, #F5F5F5 100%);">
+            <!-- capire perchè questo background rompe il componente e-commerce features-->
+            <router-outlet></router-outlet>
+            <app-cookies *ngIf="!this.globalVariableService.hideCookieCard"></app-cookies>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
         <ion-toolbar style="  --ion-background-color: #2e4937;" size="small">
             <ion-row>
                 <br/>
             </ion-row>
             <ion-row>
-                <ion-col offset="2">
+                <ion-col offset="1">
                     <ion-label>Condividi</ion-label>
                     <br/>
                     <br/>
@@ -68,32 +68,46 @@
                 </ion-col>
                 <ion-col>
                     <ion-label>Utility</ion-label>
-                    <p style="color: white;">Contattaci</p>
-                    <p style="color: white;">Termini d'acquisto</p>
-                    <p style="color: white;">Rimborsi</p>
+                    <div>
+                        <a style="color: white;" href="/contattaci">Contattaci</a></div>
+                    <div>
+                        <a style="color: white;" href="/termini-acquisto">Termini d'acquisto</a>
+                    </div>
+                    <div>
+                        <a style="color: white;" href="/rimborsi">Rimborsi</a>
+                    </div>
+                    <div>
+                        <a style="color: white;" href="/privacy-policy">Politica privacy</a>
+                    </div>
+                    <div>
+                        <a style="color: white;" href="/cookie-policy">Politica cookie</a>
+                    </div>
                 </ion-col>
                 <ion-col>
                     <ion-label>Pagamenti sicuri</ion-label>
                     <br/>
                     <br/>
-                    <p><img src="https://veniceoriginal.it/img/cms/grafica/payment.svg" alt="" width="244"
-                            height="20"></p>
+                    <div><img src="https://veniceoriginal.it/img/cms/grafica/payment.svg" alt="" width="244"
+                              height="20"></div>
                     <ion-label>Seguici su</ion-label>
                     <br/>
                     <br/>
-                    <p><a href="https://www.facebook.com/veniceoriginal" target="_blank"><img
-                            src="https://veniceoriginal.it/img/cms/grafica/icon-facebook_1.svg"
-                            style="width: 15px; margin-right: 15px;" alt="Pagina Facebook di VeniceOriginal"
-                            width="10" height="20"></a><a href="https://www.instagram.com/veniceoriginal/"
-                                                          target="_blank"><img style="width: 30px;"
-                                                                               src="https://veniceoriginal.it/img/cms/grafica/icon-instagram.svg"
-                                                                               alt="Pagina Instagram di Venice Original"
-                                                                               width="50"></a> <a
+                    <div><a href="https://www.facebook.com/veniceoriginal" target="_blank"><img class="zoom3"
+                                                                                                src="https://veniceoriginal.it/img/cms/grafica/icon-facebook_1.svg"
+                                                                                                style="width: 10px; margin-right: 10px;"
+                                                                                                alt="Pagina Facebook"
+                                                                                                width="10" height="20"></a><a
+                            href="https://www.instagram.com/veniceoriginal/"><img class="zoom3" style="width: 30px;"
+                                                                                  src="https://veniceoriginal.it/img/cms/grafica/icon-instagram.svg"
+                                                                                  alt="Pagina Instagram di Venice Original"
+                                                                                  width="50"></a> <a
                             href="https://www.youtube.com/channel/UCPJifmVgbI9-YbT_RMmuIpw" target="_blank"><img
+                            class="zoom3"
                             src="https://veniceoriginal.it/img/cms/grafica/icon-youtube.svg"
-                            style="margin-left: 15px;" width="40"></a></p>
+                            style="margin-left: 15px;" width="40"></a></div>
                 </ion-col>
             </ion-row>
+            <br/>
         </ion-toolbar>
     </ion-content>
 </ion-app>

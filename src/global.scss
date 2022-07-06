@@ -38,6 +38,9 @@ ion-item {
   cursor: pointer;
   padding-top: 5%;
   border-radius: 10% 10% 10% 10%;
+  margin-left: 30% ;
+  margin-right: 30% ;
+
 }
 
 ion-icon {
@@ -202,24 +205,22 @@ ion-button {
 }
 
 
-
-
 .zoom2 {
   transition: transform .6s; /* Animation */
 }
 
 .zoom2:hover {
-  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.2);
 }
 
 
+.zoom3 {
+  transition: transform 1.0s; /* Animation */
+}
 
-
-
-
-
-
-
+.zoom3:hover {
+  transform: scale(1.6);
+}
 
 
 //// Horizonatal scrolling  //https://codepen.io/kevinpowell/pen/ExbKBQa
@@ -243,5 +244,48 @@ div::-webkit-scrollbar {
   position: fixed;
   bottom: 0px;
   width: 100%;
+
 }
+
+
+.bigger-and-colored {
+  color: #c1a977;
+  size: 15rem;
+}
+
+span {
+  color: #415161;
+}
+
+div {
+  font-family: Serif;
+}
+
+a {
+  font-weight: lighter;
+}
+
+a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+  color: white;
+
+}
+
+p {
+  padding-top: 5%;
+  padding-left: 28%;
+  font-weight: bold;
+  size: auto;
+  color: #415161;
+  font-family: cursive;
+  font-size:1vw;
+}
+
+ion-button {
+  color: black;
+  --ion-color-base: var(--ion-color-light, #f4f5f8) !important;
+  --background: var(--ion-color-light, #f4f5f8) !important;
+}
+
 

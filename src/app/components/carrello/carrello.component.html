@@ -2,38 +2,51 @@
     <br/>
     <br/>
     <br/>
-    <div>
+    <br/>
+    <br/>
+    <br/>
+    <div style="padding-left:15% ; padding-right: 15%">
         <div *ngFor="let product of products ;let i = index">
-            <ion-col><img style="width: 10%; height: 10% "
+            <br/>
+            <br/>
+            <ion-col ><img style="width: 10%; height: 10% "
                           src="{{product.img_name_ref}}"
                           alt="Immagine non caricata" class="img-fluid">
+            </ion-col>
+            <ion-col>
                 <span> &nbsp; {{product.name}} &nbsp; </span>
+            </ion-col>
+            <ion-col>
                 <span> &nbsp;{{product.type}}&nbsp; </span>
+            </ion-col>
+            <ion-col>
                 <span> &nbsp; {{product.description}}&nbsp; </span>
             </ion-col>
             <ion-col (click)="removeProduct(i)" style="cursor: pointer;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                     fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                     fill="currentColor" class="bi bi-trash zoom3" viewBox="0 0 16 16">
                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                     <path fill-rule="evenodd"
                           d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                 </svg>
             </ion-col>
             <ion-col offset="10" id="price">
-                <span> <strong> &nbsp;&nbsp;{{product.price}}&nbsp;€ </strong> </span>
+                <span> <strong>{{product.price}}&nbsp;€ </strong> </span>
             </ion-col>
             <hr>
-            <ion-col offset="10" *ngIf="i == products.length - 1">
+            <ion-col offset-xl="10" offset-xs="7" *ngIf="i == products.length - 1">
                 <span>Totale: <strong> {{this.totalePrezzo}}  €</strong> </span>
             </ion-col>
         </div>
     </div>
 </ion-row>
 <ion-row>
-<br/>
     <br/>
     <br/>
-    <ion-col size-xl="6">
+    <br/>
+    <ion-col offset="4.5" size-xl="6">
+        <br/>
+        <br/>
         <ion-button color="medium" (click)="navigateToCheckOut()">
             Procedi al pagamento
         </ion-button>
@@ -41,4 +54,13 @@
             Continua lo shopping
         </ion-button>
     </ion-col>
+    <br/>
+    <br/>
+    <br/>    <br/>
+    <br/>
+    <br/>    <br/>
+    <br/>
+    <br/>    <br/>
+    <br/>
+    <br/>
 </ion-row>

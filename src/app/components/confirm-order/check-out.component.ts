@@ -4,8 +4,9 @@ import {FireBaseRequestClientService} from "../../services/firebase/fire-base-re
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
-import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
+import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
 import {Router} from "@angular/router";
+import {InitializeCurrentClientService} from "../../services/utility-services/initialize-current-client.service";
 
 @Component({
     selector: 'app-check-out',
@@ -19,58 +20,36 @@ export class CheckOutComponent implements OnInit {
     private products: any;
     totalPrice = 0
     addressesPresent = true;
-    city: any;
-    street: any;
-    cap: any;
+    namesPresents = true;
 
-    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService, private router: Router) {
+
+    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieService, private router: Router, private initializeCurrentClient : InitializeCurrentClientService) {
     }
 
     async ngOnInit() {
 
 
         this.stepper = new Stepper(document.querySelector('#stepper2'), {
-            linear: true,
+            linear: false,
             animation: true
         })
 
-        await this.myCookieService.initCookie()
-        await this.myCookieService.initCookieCredential()
-
-        let id = this.globalVariableService.currentLoggedUserId
-        this.client = await this.fireBaseClientService.getClient(id)
-        await this.fireBaseClientService.delay(500)
-
-        if (this.client == undefined) {
-            this.client = await this.fireBaseClientService.getClient(id)
-            await this.fireBaseClientService.delay(1000)
-        }
-        if (this.client == undefined) {
-            this.client = await this.fireBaseClientService.getClient(id)
-            await this.fireBaseClientService.delay(1000)
-        }
-        if (this.client == undefined) {
-            this.client = await this.fireBaseClientService.getClient(id)
-            await this.fireBaseClientService.delay(1000)
-        }
 
 
-        console.log(this.client)
+        await this.initializeCurrentClient.initialize_client()
+        this.client = this.globalVariableService.client
+
+
         this.products = this.client.products
-        this.products.shift()
-
         this.products.forEach(product => {
             this.totalPrice = this.totalPrice + product.price
         })
 
 
-        /////TODO da finire che se non è presente l'indirizzo a cui inviare le cose.. Lo chiede nello stepper, altrimenti lo mostra
+        if (this.client.street == undefined || this.client.street == '') this.addressesPresent = false
+        if (this.client.name == undefined || this.client.name == '') this.namesPresents = false
 
-        try {
-            this.client.street
-        } catch (e) {
-            this.addressesPresent = false
-        }
+
     }
 
 
@@ -78,25 +57,44 @@ export class CheckOutComponent implements OnInit {
         this.stepper.next()
     }
 
+
+    addCity(newitem: string) {
+        this.client.city = newitem;
+    }
+
+    addStreet(newitem: string) {
+        this.client.street = newitem;
+    }
+
+    addCap(newitem: string) {
+        this.client.cap = newitem;
+    }
+
+
+    addName(newitem: string) {
+        this.client.name = newitem
+
+    }
+
+    addSurname(newitem: string) {
+        this.client.surname = newitem
+    }
+
+    addPhone(newitem: string) {
+        this.client.phone = newitem
+    }
+
     onSubmit() {
         return false
     }
 
-    openPayments() {
+    async openPayments() {
+        await this.fireBaseClientService.addClient(this.client)
+        await this.fireBaseClientService.delay(100)
         this.router.navigate(['/payments']).then(page => {
             window.location.reload();
         });
     }
 
-    addCity($event: any) {
 
-    }
-
-    addStreet($event: any) {
-
-    }
-
-    addCap($event: any) {
-
-    }
 }

@@ -73,11 +73,9 @@ export class GeoLocationModalHelperComponent implements OnInit {
                     if (result != null) {
 
                         this.address = rsltAdrComponent;
-                        console.log(this.address)
                         this.city = this.address[2].long_name;
                         this.street = this.address[1].long_name;
                         this.cap = this.address[7].long_name;
-                        this.ionicAlert.presentAlert("La tua posizione: " + this.city + " " + this.street + " " + this.cap,'','')
                         this.modalController.dismiss({'city':this.city,'cap':this.cap,'street':this.street});
 
                     } else {

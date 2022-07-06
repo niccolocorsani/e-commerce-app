@@ -7934,10 +7934,10 @@
   "resolved" "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   "version" "2.6.2"
 
-"new-material-design-experiments@2.0.1":
-  "integrity" "sha512-6bUpySIBlj5JjZ5f0rDUHwrD2056FOyA+0YVrOF6nMPS8kDphUvPNhLaeZmfxY4P+nn7/v/JkmI0h4ZYenwFFg=="
-  "resolved" "https://registry.npmjs.org/new-material-design-experiments/-/new-material-design-experiments-2.0.1.tgz"
-  "version" "2.0.1"
+"new-material-design-experiments@^2.0.3":
+  "integrity" "sha512-GokVYB6d0o6B7T0WeOOcCmSItQFmLuQ/H8emKjUma27o6WKXw5Idl0SaDhfh/kGghzU3pthXIT1IzkyCtkj8Lg=="
+  "resolved" "https://registry.npmjs.org/new-material-design-experiments/-/new-material-design-experiments-2.0.3.tgz"
+  "version" "2.0.3"
   dependencies:
     "@angular/animations" "~13.0.0"
     "@angular/cdk" "13.3.6"

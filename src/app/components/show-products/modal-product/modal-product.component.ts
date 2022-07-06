@@ -26,16 +26,8 @@ export class ModalProductComponent implements OnInit {
     async aggiungiAlCarrello(product) {
 
 
-        var price = document.getElementById('price');
-        var total = document.getElementById('total')
-        total.style.position = "absolute";
-        total.style.left = price.style.left
 
 
-
-
-
-        console.log('Prodotto: ' + product.name + 'aggiunto al carrello')
         let badgeValue = document.getElementById('badge').textContent;
         if (badgeValue == '') badgeValue = '1'
         else {
@@ -54,7 +46,6 @@ export class ModalProductComponent implements OnInit {
         let client = new FirebaseClientResponse()
 
 
-
         // Ridondanza di chiamate perchè spersso non funzionano
         client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
         await this.fireBaseRequestClientService.delay(100)
@@ -63,7 +54,7 @@ export class ModalProductComponent implements OnInit {
 
             let client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
             client.products.push(product)
-            this.fireBaseRequestClientService.addClient(client)
+            await this.fireBaseRequestClientService.addClient(client)
             return
 
         }
@@ -71,7 +62,7 @@ export class ModalProductComponent implements OnInit {
 
             let client = await this.fireBaseRequestClientService.getClient(this.globalVariableService.currentLoggedUserId)
             client.products.push(product)
-            this.fireBaseRequestClientService.addClient(client)
+            await this.fireBaseRequestClientService.addClient(client)
             return
 
 

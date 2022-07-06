@@ -21,7 +21,7 @@ import {SocialLogInComponent} from "./components/social-log-in/social-log-in.com
 import {SocialRegisterComponent} from "./components/social-register/social-register.component";
 import {TooltipsModule} from "ionic-tooltips";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {firebaseConfig} from "../environments/environment";
+import {environment, environmentGoogleAnalytics, firebaseConfig} from "../environments/environment";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
@@ -45,6 +45,15 @@ import {
 import {CookiesComponent} from "./components/cookies/cookies.component";
 import {CookieService} from "ngx-cookie-service";
 import {GlobalErrorHandlerService} from "./services/global-error-handler/global-error-handler.service";
+import {
+    ConfirmRegistrationComponent
+} from "./components/confirm-pages/confirm-registration/confirm-registration.component";
+import {ConfirmPaymentComponent} from "./components/confirm-pages/confirm-payment/confirm-payment.component";
+import {ContattaciComponent} from "./static-pages/contattaci/contattaci.component";
+import {CookiePolicyComponent} from "./static-pages/cookie-policy/cookie-policy.component";
+import {PrivacyPolicyComponent} from "./static-pages/privacy-policy/privacy-policy.component";
+import {RimborsiComponent} from "./static-pages/rimborsi/rimborsi.component";
+import {TerminiAcquistoComponent} from "./static-pages/termini-acquisto/termini-acquisto.component";
 
 
 @NgModule({
@@ -65,7 +74,9 @@ import {GlobalErrorHandlerService} from "./services/global-error-handler/global-
         CheckOutComponent,
         GeoLocationModalHelperComponent,
         ConsultantFeatureSeeOrdersComponent,
-        CookiesComponent
+        CookiesComponent,
+        ConfirmRegistrationComponent,
+        ConfirmPaymentComponent
 
 
     ],
@@ -87,7 +98,8 @@ import {GlobalErrorHandlerService} from "./services/global-error-handler/global-
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule, RouterModule.forRoot([
+        }), MyLibModule, AngularFireStorageModule, MyLibModule, MyLibModule,
+        RouterModule.forRoot([
             {path: 'carrello', component: CarrelloComponent},
             {path: 'client', component: ClientComponent},
             {path: 'login', component: LogInComponent},
@@ -95,6 +107,15 @@ import {GlobalErrorHandlerService} from "./services/global-error-handler/global-
             {path: 'checkout', component: CheckOutComponent},
             {path: 'consultant123123-number123', component: BusinessConsultantComponent},
             {path: 'payments', component: PaymentsComponent},
+            {path: 'confirm-registration', component: ConfirmRegistrationComponent},
+            {path: 'contattaci', component: ContattaciComponent},
+            {path: 'cookie-policy', component: CookiePolicyComponent},
+            {path: 'privacy-policy', component: PrivacyPolicyComponent},
+            {path: 'rimborsi', component: RimborsiComponent},
+            {path: 'termini-acquisto', component: TerminiAcquistoComponent},
+
+
+
 
             {path: '', redirectTo: '/client', pathMatch: 'full'},
         ]),

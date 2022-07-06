@@ -3,7 +3,7 @@ import {CookieService} from "ngx-cookie-service";
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
-import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
+import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
 
 @Component({
     selector: 'app-cookies',
@@ -13,7 +13,7 @@ export class CookiesComponent implements OnInit {
 
     hideThis = true;
 
-    constructor(private cookieService: CookieService, private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService) {
+    constructor(private cookieService: CookieService, private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieService) {
     }
 
     async ngOnInit() {
@@ -29,9 +29,11 @@ export class CookiesComponent implements OnInit {
         let client = new FirebaseClientResponse()
         client.email = id
         let products = []
-        products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 3})
+        products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 0})
         client.products = products
-        this.fireBaseClientService.addClient(client)
+        await this.fireBaseClientService.addClient(client)
+        this.globalVariableService.currentLoggedUserId = client.email
+        alert(this.globalVariableService.currentLoggedUserId)
         this.globalVariableService.hideCookieCard = true
         await this.myCookieService.initCookie()
 

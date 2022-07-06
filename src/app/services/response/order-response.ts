@@ -5,14 +5,14 @@ export class OrderResponse {
 
 
     id: string;
-    product: FirebaseProductResponse;
+    products: any;
     client: FirebaseClientResponse
 
 
 
     constructor(data?: any) {
         this.id = data ? data.id : null;
-        this.product = data ? data.product : null;
+        this.products = data ? data.products : null;
         this.client = data ? data.client : null;
     }
 

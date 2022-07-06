@@ -7,7 +7,7 @@ import {OpenComponentsService} from "../open-components/open-components.service"
 @Injectable({
     providedIn: 'root'
 })
-export class MyCookieServiceService {
+export class MyCookieService {
 
     private variable_to_wait: any;
 
@@ -24,22 +24,24 @@ export class MyCookieServiceService {
             try {    //// questo try catch risolve il problema del  fatto che questa funzione fallisce spesso, ma riporvandola tre o 4 volte funziona, guarda blocco catch
                 this.globalVariableService.hideCookieCard = true
                 let client = await this.fireBaseClientService.getClient(cookie)
-                console.log(client.products)
                 this.variable_to_wait = client
                 await this.spinner_delay()
 
                 ////Wait
-                console.log(client)
                 if (client == null)
                     await this.delay(300)
                 await this.delay(100)
                 this.globalVariableService.currentLoggedUserId = cookie
                 ////Wait
-                let prods = client.products.filter((value, index, self) => index === self.findIndex((t) => (t.place === value.place && t.name === value.name)))
-                console.log(prods)
 
-                if (prods.length != 1)
-                    document.getElementById('badge').textContent = String(prods.length - 1)
+                client.products = client.products.filter((value, index, self) => index === self.findIndex((t) => (t.place === value.place && t.name === value.name)))
+
+                await this.fireBaseClientService.addClient(client)
+
+
+                client.products = client.products.filter(value => value.description != '' && value.name != '' && value.img_name_ref != '');
+                console.log(client.products)
+                document.getElementById('badge').textContent = String(client.products.length)
             } catch (e) {
                 await this.delay(1000)
                 console.log(e)
@@ -57,8 +59,10 @@ export class MyCookieServiceService {
 
         if (id != '') {
             let client = await this.fireBaseClientService.getClient(id)
+            this.variable_to_wait = client
+            await this.spinner_delay()
+
             while (client.email.includes('okie')) {
-                console.log(client)
                 client = await this.fireBaseClientService.getClient(id) //// la funzione va chiamata 2 volte perchè se no ritorna il cliente associato al cookie 'id' probabilmente perchè poco prima firebase aveva ritornato quel valore
                 await this.delay(100)
             }
@@ -70,16 +74,15 @@ export class MyCookieServiceService {
             document.getElementById("logged").textContent = client.email.split('-',).join('.').split('_',).join('@');
 
 
+            client.products = client.products.filter((value, index, self) => index === self.findIndex((t) => (t.place === value.place && t.name === value.name)))
 
-            client.products = client.products.filter((value, index, self) =>
-                index === self.findIndex((t) => (t.place === value.place && t.name === value.name))
-            )
+            this.fireBaseClientService.addClient(client.products)
+
+            client.products = client.products.filter(value => value.description != '' && value.name != '' && value.img_name_ref != '');
+
             await this.fireBaseClientService.addClient(client)
 
-            document.getElementById('badge').textContent = String(client.products.length - 1)
-
-
-
+            document.getElementById('badge').textContent = String(client.products.length)
         }
 
 
@@ -92,10 +95,23 @@ export class MyCookieServiceService {
 
     async spinner_delay() {
         this.openComponentService.spinner = true
+        let i = 0
         while (this.variable_to_wait === undefined) {
+            i++
             await this.delay(400)
             console.log(this.variable_to_wait)
+            if(i == 20) {
+                this.cookieService.delete('id')
+                this.cookieService.delete('stextile_mail')
+                this.cookieService.delete('stextile_password')
+                this.variable_to_wait = 'oo'
+            }
         }
         this.openComponentService.spinner = false
     }
 }
+
+function value(value: any) {
+    throw new Error('Function not implemented.');
+}
+

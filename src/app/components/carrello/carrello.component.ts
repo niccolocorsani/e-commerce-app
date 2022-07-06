@@ -7,7 +7,8 @@ import {FirebaseProductResponse} from "../../services/response/firebase-product-
 import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
-import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
+import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
+import {InitializeCurrentClientService} from "../../services/utility-services/initialize-current-client.service";
 
 @Component({
     selector: 'app-carrello',
@@ -21,45 +22,34 @@ export class CarrelloComponent implements OnInit {
     totalePrezzo = 0;
 
 
-    constructor(private openComponentsService: OpenComponentsService, private router: Router, private fireBaseClientService: FireBaseRequestClientService, private ionicAlert: AlertIonicService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieServiceService) {
+    constructor(private openComponentsService: OpenComponentsService, private router: Router, private fireBaseClientService: FireBaseRequestClientService, private ionicAlert: AlertIonicService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieService, private initializeCurrentClient: InitializeCurrentClientService) {
     }
 
 
     async ngOnInit() {
 
-
-        console.log('carrello')
-        let id = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
-        if (id.includes('ccedi')) // caso in cui utente non sia loggato
-            await this.myCookieService.initCookie()
-        await this.myCookieService.initCookieCredential()
-
-        if (this.globalVariableService.currentLoggedUserId == '')
-            alert('accetta i cookie o registrati per procedere con gli acquisti')// caso in cui utente non è ne registrato ne ha accettato i cookies
+        await this.initializeCurrentClient.initialize_client()
+        if (this.globalVariableService.currentLoggedUserId == '') {
+            await this.ionicAlert.presentAlert('Accetta i cookie o registrati per procedere con gli acquisti', '', '')// caso in cui utente non è ne registrato ne ha accettato i cookies
+            this.router.navigate(['/client']).then(page => {
+                window.location.reload();
+            });
+        }
 
         this.client = await this.fireBaseClientService.getClient(this.globalVariableService.currentLoggedUserId)
-
         await this.fireBaseClientService.delay(500)
-
         this.client = await this.fireBaseClientService.getClient(this.globalVariableService.currentLoggedUserId)
 
-        console.log(this.client)
         this.products = this.client.products
-
-        this.products = this.products.filter((value, index, self) =>
-            index === self.findIndex((t) => (t.place === value.place && t.name === value.name))
-        )
-        this.products = this.products.filter(product => product.description != '')
-
-        document.getElementById('badge').textContent = String(this.products.length)
-
-        console.log('Prodotti' + this.client.products)
-
-
+        this.products = this.client.products.filter((value, index, self) => index === self.findIndex((t) => (t.place === value.place && t.name === value.name)))
+        this.products = this.products.filter(value => value.description != '' && value.name != '' && value.img_name_ref != '');
         this.products.forEach(product => {
-            this.totalePrezzo =  this.totalePrezzo + Number(product.price)
-            console.log(this.totalePrezzo)
+            this.totalePrezzo = this.totalePrezzo + Number(product.price)
         })
+
+        document.getElementById("logged").textContent = this.globalVariableService.currentLoggedUserId.split('-',).join('.').split('_',).join('@');
+
+
     }
 
     navigateToProducts() {
@@ -77,13 +67,9 @@ export class CarrelloComponent implements OnInit {
 
     removeProduct(index: any) {
 
-        console.log('prima della rimozione ' + this.client.products)
 
+        this.client.products.splice(index, 1)
 
-        if (this.client.products[index + 1].description != '') {
-            this.client.products.splice(index + 1, 1)
-        }
-        console.log('dopo la rimozione ' + this.client.products)
         this.fireBaseClientService.addClient(this.client)
         //this.fireBaseClientService.addClient()
         // await this.fireBaseClientService.getClient(mail)

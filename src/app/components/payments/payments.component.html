@@ -1,16 +1,40 @@
+<ion-card>
 <ion-row>
-    <ion-col>
-        <div *ngIf="!paidFor">
-            <p>{{ totalOrders.description }}</p>
-        </div>
+    <ion-col offset="3.6" size-xl="2">
+        <ion-card>
+            <br/>
+            <br/>
+            <div>Riepilogo ordine</div>
+            <br/>
+            <br/>
+        </ion-card>
     </ion-col>
-</ion-row>
-<ion-row>
-    <div *ngIf=paidFor>
-        <h1>Yay, you bought a sweet couch!</h1>
-    </div>
-    <ion-col size-xl="8">
-        <div [hidden]="paidFor" #paypal></div>
-        <br/>
+    <ion-col offset="0.1" size-xl="2">
+        <ion-card>
+            <br/>
+            <br/>
+            <div><strong>Selezionare
+                metodo di pagamento</strong></div>
+            <div #paypal></div>
+            <br/>
+        </ion-card>
     </ion-col>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
 </ion-row>
+</ion-card>

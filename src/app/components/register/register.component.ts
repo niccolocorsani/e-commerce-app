@@ -12,6 +12,10 @@ import {
 import {GeoLocationModalHelperComponent} from "./geo-location-modal-helper/geo-location-modal-helper.component";
 import {CookieService} from "ngx-cookie-service";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
+import {MailServiceService} from "../../services/mail-notification-service/mail-service.service";
+import {
+    PushNotificationServiceService
+} from "../../services/mail-notification-service/push-notification-service.service";
 
 
 @Component({
@@ -23,9 +27,7 @@ export class RegisterComponent {
     password = 'Password'
     name = 'Nome'
     surname = 'Cognome'
-    street = 'Indirizzo'
-    cap = 'cap'
-    city = 'Città';
+
     phone = 'Numero di telefono';
 
 
@@ -46,13 +48,12 @@ export class RegisterComponent {
 
     private stepper: Stepper;
 
-    constructor(private cookieService: CookieService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService) {
+    constructor(private cookieService: CookieService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService, private mailService : MailServiceService, private pushNotificationService: PushNotificationServiceService) {
     }
 
     ngOnInit(): void {
-        console.log('Register')
         this.stepper = new Stepper(document.querySelector('#stepper1'), {
-            linear: true,
+            linear: false,
             animation: true
         })
     }
@@ -141,7 +142,7 @@ export class RegisterComponent {
         this.city_client = newItem;
     }
 
-    submitToFireBase() {
+    async submitToFireBase() {
 
         try {
             /// SE mail inserita con Google
@@ -151,7 +152,7 @@ export class RegisterComponent {
             /// SE mail inserita con Google
 
 
-      this.client.password = this.password_1
+            this.client.password = this.password_1
 
 
             this.client.name = this.name_client
@@ -163,13 +164,13 @@ export class RegisterComponent {
             this.products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 3})
             this.client.products = this.products
             this.fireBaseClientservice.addClient(this.client)
-            this.alertService.presentAlert('Utente registrato con successo', '', '')
             document.getElementById("logged").textContent = this.client.email.split('-',).join('.').split('_',).join('@');
             this.setLoginCookie(this.email_client, this.client.password)
             this.globalVariableService.currentLoggedUserId = this.email_client
-            this.router.navigate(['/client']).then(page => {
-                window.location.reload();
-            });
+            this.pushNotificationService.createPushNotification('Gmail')
+            this.mailService.sendMail('Utente ', this.client.email.split('-',).join('.').split('_',).join('@'))
+            await this.alertService.presentAlert('Utente registrato con successo, controlla il tuo indirizzo email per confermare la registrazione', '', '')
+            this.router.navigate(['/confirm-registration'])
         } catch (e) {
             this.alertService.presentAlert('Problema nella creazione nuovo utente', 'Ricontrolla i dati', '')
             this.stepper.to(1);
@@ -186,13 +187,10 @@ export class RegisterComponent {
         modal.onDidDismiss()
             .then((data) => {
 
-                this.cap = data.data['cap']
                 this.cap_client = data.data['cap'];
 
-                this.city = data.data['city']
                 this.city_client = data.data['city']
 
-                this.street = data.data['street']
                 this.street_client = data.data['street']; // Here's your selected user!
 
             });

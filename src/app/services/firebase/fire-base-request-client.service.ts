@@ -22,7 +22,7 @@ export class FireBaseRequestClientService {
 
     myObserver = {
         next: (value: any) => this.variable_to_wait = value,
-        error: (err: any) => alert('Observer got an error: ' + err + '..'),
+        error: (err: any) => console.log('Observer got an error: ' + err + '..'),
     };
 
     constructor(private db: AngularFireDatabase, private openComponentService: OpenComponentsService) {
@@ -38,20 +38,45 @@ export class FireBaseRequestClientService {
 
 
     public async getClient(client_key: string) {
+
+        client_key = client_key.split('.',).join('-').split('@',).join('_')
+
+
         await this.delay(100) //// Questo cosino qua mi risolve alcuni problemi, controllare poi se mettendo questo cosino qui anche nelle altre chiamate rest api non cambia il comportamento dell'applicazione
         this.db.object('clients/' + client_key).valueChanges()
-        .subscribe(this.myObserver);
+            .subscribe(this.myObserver);
         await this.spinner_delay()
+
+        // Questo controllo è necessario poichè vi deve essere sempre un elemento nei prodotti
+        // TODO riguardare se riprovando i flussi il comportamento del sistema non cambia
+        if ( this.variable_to_wait != undefined && this.variable_to_wait.products == undefined ) {
+            let products = []
+            products.push({description: "", id: "", img_name_ref: "", name: "", type: "", price: 0})
+            this.variable_to_wait.products = products
+            this.addClient(this.variable_to_wait)
+        }
+        // Questo controllo è necessario poichè vi deve essere sempre un elemento nei prodotti
+
+
         return this.variable_to_wait
     }
 
 
     public async addClient(client: FirebaseClientResponse) {
-        this.variable_to_wait = this.db.object('clients/' + client.email).update(client)
+
+        let client_key = client.email
+        client_key = client_key.split('.',).join('-').split('@',).join('_')
+
+        this.variable_to_wait = this.db.object('clients/' + client_key).update(client)
         await this.spinner_delay()
 
     }
 
+    /* public async addClient(client: FirebaseClientResponse) {
+         this.variable_to_wait = this.db.object('clients/' + client.email).update(client)
+         await this.spinner_delay()
+
+     }*/
 
     public async deleteClient(client_key: string) {
         this.variable_to_wait = this.db.object('clients/' + client_key).remove();
@@ -68,12 +93,7 @@ export class FireBaseRequestClientService {
     }
 
 
-
-
 //other methods
-
-
-
 
 
     delay(ms: number) {
@@ -88,8 +108,6 @@ export class FireBaseRequestClientService {
         }
         this.openComponentService.spinner = false
     }
-
-
 
 
 }

@@ -1,48 +1,49 @@
-<div id="log-in">
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title style="color: black; font-size: 2rem;">Accedi al tuo account
-            </ion-card-title>
-        </ion-card-header>
-    </ion-card>
-    <ion-row>
-        <br/>
-        <br/>
-        <br/>
-        <ion-col size-xl="4">
-            <br/>
-            <div style="padding-left: 10px">
-                <lib-input-error-handling [item]='eMail' input_value="{{this.eMail}}" (newItemEvent)="addEmail($event)"></lib-input-error-handling>
-            </div>
-            <br/>
-            <br/>
-            <div style="padding-left: 10px">
-                <lib-input-password (newItemEvent)="addPassword($event)"  input_value="{{this.input_value_cookie_password}}"></lib-input-password>
-            </div>
-            <br/>
-            <div style="padding-left: 10px">
-                <ion-item button="true" (click)="login()">Accedi</ion-item>
-            </div>
-            <div style="padding-left: 10px">
-                <ion-item button="true" (click)="apriRegisterComponent()">Non hai ancora un account? Creane ora qui
-                    uno
-                </ion-item>
-            </div>
-            <app-social-log-in></app-social-log-in>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-        </ion-col>
-        <ion-col offset="1" size-xl="3">
-            <img src="assets/images/img1.jpeg">
-        </ion-col>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-    </ion-row>
-</div>
+<ion-row>
+    <ion-col offset="2" size-xl="8">
+        <div id="log-in">
+            <span style="font-size: 2rem; font-family: Serif;">Accedi al tuo account
+            </span>
+            <ion-card>
+                <ion-row>
+                    <img src="assets/images/imff.png" style="width:100%; height:50px">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <ion-col size-xl="12">
+                        <br/>
+                        <div style="padding-left: 10px">
+                            <lib-input-error-handling [item]='eMail' input_value="{{this.eMail}}"
+                                                      (newItemEvent)="addEmail($event)"></lib-input-error-handling>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div style="padding-left: 10px">
+                            <lib-input-password (newItemEvent)="addPassword($event)"
+                                                input_value="{{this.input_value_cookie_password}}"></lib-input-password>
+                        </div>
+                        <br/>
+                        <ion-row>
+                            <ion-col offset="4.95">
+                                <div>
+                                    <ion-button (click)="login()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accedi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-button>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col offset="4.8">
+                        <app-social-log-in></app-social-log-in>
+                    </ion-col>
+                </ion-row>
+                <div>
+                    <ion-item button="true" style="margin-left: 30% ; margin-right: 30%"
+                              (click)="apriRegisterComponent()">Non
+                        hai ancora un account? Creane uno
+                    </ion-item>
+                    <br/>
+                </div>
+            </ion-card>
+        </div>
+    </ion-col>
+</ion-row>

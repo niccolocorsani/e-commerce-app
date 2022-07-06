@@ -1,106 +1,147 @@
-<div>
-    <div>
-        <div id="log-in">
-            <div class="container" >
-                <div id="stepper2" class="bs-stepper">
-                    <div class="bs-stepper-header">
-                        <div class="step" data-target="#test-l-1">
-                            <button class="step-trigger">
-                                <span id="step1" class="bs-stepper-circle" style="background-color: #c1a977;">1</span>
-                                <span class="bs-stepper-label">Indirizzi</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step" data-target="#test-l-2">
-                            <button class="step-trigger">
-                                <span id="step2" class="bs-stepper-circle" style="background-color: #c1a977;">2</span>
-                                <span class="bs-stepper-label">Informazioni</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step" data-target="#test-l-3">
-                            <button class="step-trigger">
-                                <span id="step3" class="bs-stepper-circle" style="background-color: #c1a977;">3</span>
-                                <span class="bs-stepper-label">Prodotti</span>
-                            </button>
-                        </div>
-                        <div class="line"></div>
-                        <div class="step" data-target="#test-l-4">
-                            <button class="step-trigger">
-                                <span id="step4" class="bs-stepper-circle" style="background-color: #c1a977;">4</span>
-                                <span class="bs-stepper-label">Totale</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bs-stepper-content">
-                        <form (ngSubmit)="onSubmit()">
-                            <div id="test-l-1" class="content">
-                                <div class="form-group" *ngIf="addressesPresent">
-                                    <div>
-                                        Indirizzo:  &nbsp;{{this.client.street}}
+<ion-row>
+    <ion-col offset="2" size-xl="8">
+        <div>
+            <span style="font-size: 2rem; font-family: Serif;">Procedi all'acquisto
+            </span>
+            <ion-card>
+                <div>
+                    <div>
+                        <div id="log-in">
+                            <div class="container">
+                                <div id="stepper2" class="bs-stepper">
+                                    <div class="bs-stepper-header">
+                                        <div class="step" data-target="#test-l-1">
+                                            <button class="step-trigger">
+                                                <span id="step1" class="bs-stepper-circle"
+                                                      style="background-color: #c1a977;">1</span>
+                                                <span class="bs-stepper-label">Indirizzi</span>
+                                            </button>
+                                        </div>
+                                        <div class="line"></div>
+                                        <div class="step" data-target="#test-l-2">
+                                            <button class="step-trigger">
+                                                <span id="step2" class="bs-stepper-circle"
+                                                      style="background-color: #c1a977;">2</span>
+                                                <span class="bs-stepper-label">Informazioni</span>
+                                            </button>
+                                        </div>
+                                        <div class="line"></div>
+                                        <div class="step" data-target="#test-l-3">
+                                            <button class="step-trigger">
+                                                <span id="step3" class="bs-stepper-circle"
+                                                      style="background-color: #c1a977;">3</span>
+                                                <span class="bs-stepper-label">Prodotti</span>
+                                            </button>
+                                        </div>
+                                        <div class="line"></div>
+                                        <div class="step" data-target="#test-l-4">
+                                            <button class="step-trigger">
+                                                <span id="step4" class="bs-stepper-circle"
+                                                      style="background-color: #c1a977;">4</span>
+                                                <span class="bs-stepper-label">Totale</span>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div>
-                                        Cap: &nbsp;{{this.client.cap}}
+                                    <div class="bs-stepper-content">
+                                        <form (ngSubmit)="onSubmit()">
+                                            <div id="test-l-1" class="content">
+                                                <div class="form-group" *ngIf="addressesPresent">
+                                                    <div>
+                                                        Indirizzo: &nbsp;{{this.client.street}}
+                                                    </div>
+                                                    <div>
+                                                        Cap: &nbsp;{{this.client.cap}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" *ngIf="!addressesPresent">
+                                                    <div style="padding-left: 10px">
+                                                        <lib-normal-input item='Città'
+                                                                          (newItemEvent)="addCity($event)"></lib-normal-input>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <div style="padding-left: 10px">
+                                                        <lib-normal-input item='Indirizzo'
+                                                                          (newItemEvent)="addStreet($event)"></lib-normal-input>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <div style="padding-left: 10px">
+                                                        <lib-normal-input item='Cap'
+                                                                          (newItemEvent)="addCap($event)"></lib-normal-input>
+                                                    </div>
+                                                </div>
+                                                <ion-item button="true" (click)="next()">Avanti</ion-item>
+                                            </div>
+                                            <div id="test-l-2" class="content">
+                                                <div class="form-group" *ngIf="namesPresents">
+                                                    <div>
+                                                        {{this.client.name}}
+                                                    </div>
+                                                    <div>
+                                                        {{this.client.surname}}
+                                                    </div>
+                                                    {{this.client.phone}}
+                                                    <ion-item button="true" (click)="next()">Avanti</ion-item>
+                                                </div>
+                                                <div class="form-group" *ngIf="!namesPresents">
+                                                    <div style="padding-left: 10px">
+                                                        <lib-normal-input item='Nome'
+                                                                          (newItemEvent)="addName($event)"></lib-normal-input>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <div style="padding-left: 10px">
+                                                        <lib-normal-input item='Cognome'
+                                                                          (newItemEvent)="addSurname($event)"></lib-normal-input>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <div style="padding-left: 10px">
+                                                        <lib-normal-input item='Numero di telefono'
+                                                                          (newItemEvent)="addPhone($event)"></lib-normal-input>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <ion-item button="true" (click)="next()">Avanti</ion-item>
+                                                </div>
+
+                                            </div>
+                                            <div id="test-l-3" class="content">
+                                                <div class="form-group">
+                                                    <div style="padding-left: 10px"
+                                                         *ngFor="let product of this.products">
+                                                        <div>
+                                                            <img src="{{this.product.img_name_ref}}" alt="" width="244">
+                                                            {{product.name}}
+                                                        </div>
+                                                    </div>
+                                                    <ion-item button="true" (click)="next()">Avanti</ion-item>
+                                                </div>
+                                            </div>
+                                            <div id="test-l-4" class="content">
+                                                <div class="form-group">
+                                                    <br/>
+                                                    <div style="padding-left: 10px">Spesa totale:
+                                                        <strong> {{this.totalPrice}}
+                                                            €</strong>
+                                                        <br/>
+                                                    </div>
+                                                    <ion-item button="true" (click)="openPayments()">Procedi al
+                                                        pagamento
+                                                    </ion-item>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="form-group" *ngIf="!addressesPresent">
-                                    <div style="padding-left: 10px">
-                                        <lib-normal-input [item]='city'
-                                                          (newItemEvent)="addCity($event)"></lib-normal-input>
-                                    </div>
-                                    <br/>
-                                    <br/>
-                                    <div style="padding-left: 10px">
-                                        <lib-normal-input [item]='street'
-                                                          (newItemEvent)="addStreet($event)"></lib-normal-input>
-                                    </div>
-                                    <br/>
-                                    <br/>
-                                    <div style="padding-left: 10px">
-                                        <lib-normal-input [item]='cap'
-                                                          (newItemEvent)="addCap($event)"></lib-normal-input>
-                                    </div>
-                                </div>
-                                <ion-item button="true" (click)="next()">Next</ion-item>
                             </div>
-                            <div id="test-l-2" class="content">
-                                <div class="form-group">
-                                    <div>
-                                        {{this.client.name}}
-                                    </div>
-                                    <div>
-                                        {{this.client.surname}}
-                                    </div>
-                                    {{this.client.phone}}
-                                    <ion-item button="true" (click)="next()">Next</ion-item>
-                                </div>
-                            </div>
-                            <div id="test-l-3" class="content">
-                                <div class="form-group">
-                                    <ul style="padding-left: 10px" *ngFor="let product of this.products">
-                                        <li>
-                                            <img src="{{this.product.img_name_ref}}" alt="" width="244">
-                                            {{product.name}}
-                                        </li>
-                                    </ul>
-                                    <ion-item button="true" (click)="next()">Next</ion-item>
-                                </div>
-                            </div>
-                            <div id="test-l-4" class="content">
-                                <div class="form-group">
-                                    <br/>
-                                    <div style="padding-left: 10px">Spesa totale: <strong> {{this.totalPrice}}
-                                        €</strong>
-                                        <br/>
-                                    </div>
-                                    <ion-item button="true" (click)="openPayments()">Procedi al pagamento</ion-item>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+                        <!-- <img src="assets/images/img1.jpeg">-->
                     </div>
                 </div>
-            </div>
+            </ion-card>
+
         </div>
-        <!-- <img src="assets/images/img1.jpeg">-->
-    </div>
-</div>
+    </ion-col>
+</ion-row>

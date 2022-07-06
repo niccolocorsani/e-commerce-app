@@ -1,8 +1,14 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
+import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
 import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
+import {FireBaseRequestOrderService} from "../../services/firebase/fire-base-request-order.service";
+import {OrderResponse} from "../../services/response/order-response";
+import {MailServiceService} from "../../services/mail-notification-service/mail-service.service";
+import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
+import {InitializeCurrentClientService} from "../../services/utility-services/initialize-current-client.service";
+import {Router} from "@angular/router";
 
 
 declare var paypal
@@ -27,65 +33,63 @@ export class PaymentsComponent implements OnInit {
 
     paidFor = false;
     private client = new FirebaseClientResponse();
+    private order = new OrderResponse()
 
-    constructor(private myCookieService: MyCookieServiceService, private globalVariableService: GlobalVariablesService, private fireBaseClientService: FireBaseRequestClientService) {
+    constructor(private myCookieService: MyCookieService, private globalVariableService: GlobalVariablesService, private fireBaseClientService: FireBaseRequestClientService, private fireBaseOrderService: FireBaseRequestOrderService, private firebaseProductRequestService: FireBaseRequestProductService, private mailService: MailServiceService, private initializeClientService: InitializeCurrentClientService, private router: Router) {
     }
 
     async ngOnInit() {
 
 
-        //// TODO ributtare questo pattern come inizializzazione di ogni componente
-        await this.myCookieService.initCookie()
-        await this.myCookieService.initCookieCredential()
-        let id = this.globalVariableService.currentLoggedUserId
-        this.client = await this.fireBaseClientService.getClient(id)
-        await this.fireBaseClientService.delay(500)
-        if (this.client == undefined) {
-            this.client = await this.fireBaseClientService.getClient(id)
-            await this.fireBaseClientService.delay(1000)
-        }
-        if (this.client == undefined) {
-            this.client = await this.fireBaseClientService.getClient(id)
-            await this.fireBaseClientService.delay(1000)
-        }
-        if (this.client == undefined) {
-            this.client = await this.fireBaseClientService.getClient(id)
-            await this.fireBaseClientService.delay(1000)
-        }
-        alert(this.client.email)
-        //// TODO ributtare questo pattern come inizializzazione di ogni componente
-
+        await this.initializeClientService.initialize_client()
+        this.client = this.globalVariableService.client
 
         paypal
             .Buttons({
                 createOrder: (data, actions) => {
-                    alert('create order')
                     return actions.order.create({
                         purchase_units: [
                             {
                                 description: this.totalOrders.description,
                                 amount: {
                                     currency_code: 'EUR',
-                                    value: 0.02
+                                    value: 0.01
                                 }
                             }
                         ]
                     });
                 },
                 onApprove: async (data, actions) => {
-                    alert('on approve')
+
                     const order = await actions.order.capture();
                     this.paidFor = true;
-                    console.log(order);
-                    this.client.products.splice(1)
-                    console.log(this.client)
+
+                    this.order.id = this.client.email
+                    this.order.products = this.client.products
+                    this.order.client = this.client
+                    await this.fireBaseOrderService.addOrder(this.order)
+                    await this.fireBaseOrderService.delay(400)
+                    this.mailService.sendMail('Le confermiamo che è avvenuto il pagamento con importo: ', this.client.email.split('-',).join('.').split('_',).join('@'))
+
+                    ////TODO mettere caso di cookie che manda email a cookie
+
+                    Array.prototype.forEach.call(this.client.products, product => {
+                        alert('rimosso ' + product.name)
+                        this.firebaseProductRequestService.deleteProduct(product.name)
+                    })
+
                     await this.fireBaseClientService.addClient(this.client)
+
+
+                    this.router.navigate(['/confirm-payment'])
+
                 },
                 onError: err => {
-                    console.log(err);
+                    alert('error')
                 }
             })
             .render(this.paypalElement.nativeElement);
+
     }
 
 

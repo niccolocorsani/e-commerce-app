@@ -19,7 +19,7 @@ export class PushNotificationServiceService {
 
     myObserver = {
         next: (value: any) => console.log(value),
-        error: (err: any) => alert('Observer got an error: ' + err + '..'),
+        error: (err: any) => console.log('Observer got an error: ' + err + '..'),
     };
 
     constructor(public http: HttpClient, private oneSignal: OneSignal) {

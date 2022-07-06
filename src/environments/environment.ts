@@ -23,3 +23,7 @@ export const firebaseConfig = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+export const environmentGoogleAnalytics = {
+  production: false,
+  ga: 'G-73WSX3H8QT'
+};

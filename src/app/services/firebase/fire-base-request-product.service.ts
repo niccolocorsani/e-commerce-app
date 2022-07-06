@@ -26,7 +26,7 @@ export class FireBaseRequestProductService {
 
     myObserver = {
         next: (value: any) => this.variable_to_wait = value,
-        error: (err: any) => alert('Observer got an error: ' + err + '..'),
+        error: (err: any) => console.log('Observer got an error: ' + err + '..'),
     };
 
     constructor(private alertController: AlertController, private functions: AngularFireFunctions, private db: AngularFireDatabase, private firestore: AngularFirestore, private afStorage: AngularFireStorage, private openComponentService: OpenComponentsService) {
@@ -35,7 +35,6 @@ export class FireBaseRequestProductService {
 ////CRUD
     public async getProducts() {
         this.db.list('/products').valueChanges().subscribe(this.myObserver);
-        console.log('getProducts API')
         await this.spinner_delay()
         return this.variable_to_wait
     }
@@ -50,19 +49,16 @@ export class FireBaseRequestProductService {
 
     public async addProduct(product: FirebaseProductResponse, product_key: string) {
         this.variable_to_wait = await this.db.object('products/' + product.name).update(product)
-        await this.spinner_delay()
     }
 
 
     public async deleteProduct(product_key: string) {
         this.variable_to_wait = await this.db.object('products/' + product_key).remove();
-        await this.spinner_delay()
     }
 
 ////CRUD
     public get_last_product_name(): any {
         this.db.list('/products').snapshotChanges().subscribe(val => {
-            console.log(val[val.length - 1].key)
             this.last_product = val[val.length - 1].key
         })
     }
@@ -70,12 +66,10 @@ export class FireBaseRequestProductService {
 //// Other methods
     public display_image(name: string, downloadUrl: string) {
 
-        console.log(downloadUrl)
         let url
         let img = document.getElementById('image2');
         img.setAttribute('src', downloadUrl);
         this.charged_image_ref = downloadUrl
-        console.log(this.charged_image_ref);
 
     }
 

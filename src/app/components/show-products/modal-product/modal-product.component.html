@@ -23,9 +23,27 @@
                 <br/>
                 Descrizione: {{this.product.description}}
             </div>
+            <div>
+                <br/>
+                Tipologia: {{this.product.type}}
+            </div>
+            <div>
+                <br/>
+                Peso: {{this.product.peso}}
+            </div>
+            <div>
+                <br/>
+                Dimensioni: {{this.product.dimensioni}}
+            </div>
+            <div>
+                <br/>
+                Materiale: {{this.product.materiale}}
+            </div>
             <br/>
+
             <br/> <br/>
             <br/>
+
             <ion-item button="true" (click)="aggiungiAlCarrello(this.product)"> Aggiungi al carrello</ion-item>
         </ion-col>
     </ion-row>

@@ -1,4 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {
+
+    ChangeDetectorRef,
+    Component,
+    HostListener,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
 import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
 import {FormBuilder,} from "@angular/forms";
@@ -6,7 +13,10 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {IonContent, ModalController} from "@ionic/angular";
 import {ModalProductComponent} from "./modal-product/modal-product.component";
-import {MyCookieServiceService} from "../../services/my-cookies-service/my-cookie-service.service";
+import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
+import {MailServiceService} from "../../services/mail-notification-service/mail-service.service";
+import {InitializeCurrentClientService} from "../../services/utility-services/initialize-current-client.service";
+import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
 
 @Component({
     selector: 'app-show-products',
@@ -16,39 +26,54 @@ import {MyCookieServiceService} from "../../services/my-cookies-service/my-cooki
 export class ShowProductsComponent implements OnInit {
 
     public listElements: Array<FirebaseProductResponse> = [];
+    private scrHeight: number;
+    private scrWidth: number;
+    display = true
 
 
-    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertIonic: AlertIonicService, public modalController: ModalController, private ionContent: IonContent, private myCookieService : MyCookieServiceService) {
+    @HostListener('window:resize', ['$event'])
+    getScreenSize(event?) {
+        this.scrHeight = window.innerHeight;
+        this.scrWidth = window.innerWidth;
+        if (this.scrWidth < 550) {
+            this.display = false
+        } else this.display = true
+
+    }
+
+
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertIonic: AlertIonicService, public modalController: ModalController, private ionContent: IonContent, private myCookieService: MyCookieService, private mailService: MailServiceService, private initializeClientService: InitializeCurrentClientService, private globalVariableService: GlobalVariablesService) {
+        this.getScreenSize();
     }
 
     async ngOnInit() {
 
-        let id = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')    //let mail = document.getElementById("logged").textContent.split('.',).join('-').split('@',).join('_')
-        if(id.includes('ccedi')) // caso in cui utente non sia loggato
-            await this.myCookieService.initCookie()
 
-
-        await this.myCookieService.initCookieCredential()
-
-
-
+        await this.initializeClientService.initialize_client()
+        console.log('ds')
 
         let scrolling = 0
         let i = 0
         this.listElements = await this.productsService.getProducts()
-        console.log(this.listElements)
         while (true) {
             document.getElementById('scroller').scrollTo({top: 0, left: scrolling, behavior: 'smooth'});
             i++
             scrolling = scrolling + document.getElementById('scroller').scrollWidth / 5
             await this.delay(5000)
+            await this.delay(100)
+
             if (i == 5) {
                 scrolling = -scrolling
                 i = 0
             }
         }
+
     }
 
+    async ngAfterViewInit() {
+
+        await this.ionContent.scrollToBottom(100)
+    }
 
     displayProductInfoModal(item: FirebaseProductResponse) {
         this.presentModal(item)

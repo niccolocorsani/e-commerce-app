@@ -27,13 +27,11 @@ export class SocialRegisterComponent implements OnInit {
 
     async logInWithFB() {
         await this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-        console.log(this.user)
         this.alertService.presentAlert('Ci sei quasi, inserisci nome, cognome, indirizzo e cap per completare', '', '')
     }
 
     async logInWithGoogle() {
         await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-        console.log(this.user)
         this.alertService.presentAlert('Ci sei quasi, inserisci nome, cognome, indirizzo e cap per completare', '', '')
 
     }
