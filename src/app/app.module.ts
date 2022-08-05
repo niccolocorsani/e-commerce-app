@@ -113,10 +113,6 @@ import {TerminiAcquistoComponent} from "./static-pages/termini-acquisto/termini-
             {path: 'privacy-policy', component: PrivacyPolicyComponent},
             {path: 'rimborsi', component: RimborsiComponent},
             {path: 'termini-acquisto', component: TerminiAcquistoComponent},
-
-
-
-
             {path: '', redirectTo: '/client', pathMatch: 'full'},
         ]),
     ],

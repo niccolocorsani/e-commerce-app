@@ -25,7 +25,7 @@
                         <ion-row>
                             <ion-col offset="4.95">
                                 <div>
-                                    <ion-button (click)="login()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accedi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-button>
+                                    <ion-button id="log-in-button" (click)="login()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accedi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-button>
                                 </div>
                             </ion-col>
                         </ion-row>
@@ -38,7 +38,7 @@
                 </ion-row>
                 <div>
                     <ion-item button="true" style="margin-left: 30% ; margin-right: 30%"
-                              (click)="apriRegisterComponent()">Non
+                             id="crea-account-button" (click)="apriRegisterComponent()">Non
                         hai ancora un account? Creane uno
                     </ion-item>
                     <br/>

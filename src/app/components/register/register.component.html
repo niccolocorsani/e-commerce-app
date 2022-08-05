@@ -72,7 +72,7 @@
                                 <lib-normal-input item='Cap' (newItemEvent)="addCap($event)"
                                                   input_value="{{this.cap_client}}"></lib-normal-input>
                             </div>
-                            <ion-item button="true" (click)="openModalLocation()">Ottieni la tua posizione su Google
+                            <ion-item button="true"  id="modal-get-location-button" (click)="openModalLocation()">Ottieni la tua posizione su Google
                             </ion-item>
                             <ion-item button="true" (click)="next4()">Avanti</ion-item>
                         </div>
@@ -93,7 +93,7 @@
                             </div>
                             <br/>
                             <br/>
-                            <ion-item button="true" (click)="submitToFireBase()">Salva</ion-item>
+                            <ion-item button="true"  id="fine-registrazione-button" (click)="submitToFireBase()">Salva</ion-item>
                         </div>
                     </form>
                 </div>
@@ -101,7 +101,7 @@
         </div>
         <ion-row>
             <ion-col offset="4.8">
-                <app-social-register (newItemEvent)="addEmail($event)" (click)="next3()"
+                <app-social-register  id="social-register-button" (newItemEvent)="addEmail($event)" (click)="next3()"
                                      (click)="addPassword_1('not_needed')"
                                      (click)="addPassword_2('not_needed')"></app-social-register>
                 <!-- <img src="assets/images/img1.jpeg">-->

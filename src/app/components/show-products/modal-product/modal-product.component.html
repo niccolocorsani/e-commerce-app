@@ -40,11 +40,12 @@
                 Materiale: {{this.product.materiale}}
             </div>
             <br/>
-
-            <br/> <br/>
             <br/>
-
-            <ion-item button="true" (click)="aggiungiAlCarrello(this.product)"> Aggiungi al carrello</ion-item>
+            <br/>
+            <br/>
+            <ion-item id="aggiungi-al-carrello-button" button="true" (click)="aggiungiAlCarrello(this.product)">
+                Aggiungi al carrello
+            </ion-item>
         </ion-col>
     </ion-row>
 </ion-grid>

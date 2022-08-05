@@ -20,7 +20,6 @@ npx cap init
 
 ionic capacitor copy android
 
-ionic cap open android
 
 cd android
 

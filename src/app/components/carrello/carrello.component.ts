@@ -10,6 +10,8 @@ import {GlobalVariablesService} from "../../services/utility-services/global-var
 import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
 import {InitializeCurrentClientService} from "../../services/utility-services/initialize-current-client.service";
 
+
+
 @Component({
     selector: 'app-carrello',
     templateUrl: './carrello.component.html'
