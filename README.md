@@ -19,6 +19,8 @@ The main tools and techniques we will employ are:
 - **Firebase**: For back-end implementation \[3\].
 - **Google Cloud Services**: For cross-platform development \[4\].
 - **Capacitor Android**: For cross-platform development \[5\].
+- **Python for some back-end functionality**: For cross-platform development \[5\].
+
 
 
 ...
@@ -30,7 +32,7 @@ Di seguito è possibile osservare alcune simulazioni di scenari tipici e flussi 
 
 
 
-![123](https://user-images.githubusercontent.com/79635059/153195959-f6761ac7-0aa6-4ac5-a26d-159ac1c8c9b7.gif)
+# questa è la gif::::![123](https://user-images.githubusercontent.com/79635059/153195959-f6761ac7-0aa6-4ac5-a26d-159ac1c8c9b7.gif)
 
 
 
@@ -58,11 +60,7 @@ Ricordarsi di dare il consenso alle notifiche push al browser a livello di siste
 
 # Strumenti e tecniche
 
-Come premesso precedentemente, il sistema utilizza il framework di angular material. Vi è la possibilità di utilizzare la libreria pubblicata nel repository npm:
-
-```
-npm i new-material-design-experiments
-```
+Tra gli altri strumenti utili nella realizzazione del
 
 
 # Project Documents
