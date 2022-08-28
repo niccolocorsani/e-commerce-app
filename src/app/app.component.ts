@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {OpenComponentsService} from "./services/open-components/open-components.service";
 import {NavigationEnd, NavigationExtras, Router} from "@angular/router";
 import {MailServiceService} from "./services/mail-notification-service/mail-service.service";
@@ -21,8 +21,22 @@ export class AppComponent implements OnInit {
 
     private client = new FirebaseClientResponse();
     mouseOverCarrello = false;
+    smallDevice = false;
+    private scrWidth: number;
+
+
+    @HostListener('window:resize', ['$event'])
+    getScreenSize(event?) {
+        this.scrWidth = window.innerWidth;
+        if (this.scrWidth < 550) {
+            this.smallDevice = false
+        } else this.smallDevice = true
+
+    }
 
     constructor(private openComponentsService: OpenComponentsService, private router: Router, private mailService: MailServiceService, private pushNotificationService: PushNotificationServiceService, private globalVariableService: GlobalVariablesService, private initializeCurrentClient: InitializeCurrentClientService, private titleService: Title) {
+        this.getScreenSize();
+        this.globalVariableService.smallDevice = this.smallDevice
 
 
         console.log('oo')

@@ -9,6 +9,7 @@ export class GlobalVariablesService {
   currentLoggedUserId = ''
   hideCookieCard = false
   client : any
+  smallDevice = false
 
 
   constructor() { }

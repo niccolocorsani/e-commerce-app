@@ -1,7 +1,7 @@
 import {
 
     ChangeDetectorRef,
-    Component,
+    Component, ElementRef,
     HostListener,
     OnInit,
     ViewChild
@@ -30,6 +30,13 @@ export class ShowProductsComponent implements OnInit {
     private scrWidth: number;
     display = true
 
+    @ViewChild('myDiv') myDiv: ElementRef<HTMLElement>;
+
+     triggerFalseClick() {
+        //TODO da finire... Guarda che da un errore nella console normaleeee Questo serve perchè quando lo schermo è piccolo non parte in automatico il video, ma forse cliccando play su di esso parte
+       // let el: HTMLElement = this.myDiv.nativeElement;
+       // el.click();
+    }
 
     @HostListener('window:resize', ['$event'])
     getScreenSize(event?) {
@@ -47,6 +54,9 @@ export class ShowProductsComponent implements OnInit {
     }
 
     async ngOnInit() {
+
+
+        this.triggerFalseClick()
 
 
         await this.initializeClientService.initialize_client()

@@ -1,134 +1,149 @@
 <ion-row>
-    <ion-col offset="1" size-xl="10">
+    <ion-col offsetXl="1" size-xl="10">
         <ion-row>
-            <ion-col offset="0.5">
-                <div style="font-size:108px; text-align:center;">
-                    <h5>
-                            <span style="font-family:cursive;font-size:6vw; ">Benvenuti nella mia bottega</span>
-                    </h5>
-                </div>
-            </ion-col>
-        </ion-row>
-        <ion-row *ngIf="display">
-            <ion-col>
-                <div id="scroller" class="media-scroller" style="cursor: pointer;">
-                    <div class="zoom2" (click)="apriProdotti('arredamento')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1641353989082-9b15fa661805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Arredamento</p>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('borse')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1641353989082-9b15fa661805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Borse e zaini</p>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('accessori')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Accessori</p>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('ecosostenibili')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Prodotti ecosostenibili </p>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('fashion')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Slow fashion</p>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('arazzi')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Arazzi</p>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('cuscini')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Cuscini</p>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('collane')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Collane</p>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('orecchini')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Orecchini</p>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('cappelli')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Cappelli</p>
-                        <br/>
-                    </div>
-                    <div class="zoom2" (click)="apriProdotti('sciarpe')">
-                        <br/>
-                        <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                             alt="">
-                        <p class="title">Sciarpe</p>
-                        <br/>
-                    </div>
-                </div>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <div *ngFor="let item of this.listElements">
-                <ion-card>
-                    <ion-col>
-                        <br/>
-                        <div style="margin-left: 30px; margin-right: 30px;" >
-                            <div style="cursor: pointer;" id="acquista-prodotto-button" (click)="displayProductInfoModal(item)">
-                                <div>
-                                    <br/>
-                                    <div class="zoom">
-                                        <img id="img-product" src="{{item.img_name_ref}}"  height="160vw">
-                                    </div>
-                                </div>
-                                <div style="font-family: Vollkorn">
-                                    <br/>
-                                    {{item.name}}
-                                </div>
-                                <hr class="solid">
-                                <div>
-                                    <strong>
-                                        {{item.description}}
-                                    </strong>
-                                </div>
-                                <div style="color: black">
-                                    <strong >
-                                        {{item.price}} &euro;
-                                    </strong>
-                                </div>
+            <div class="youtube-container">
+                <iframe #myDiv src="https://www.youtube.com/embed/3zuHajhWkTk?enablejsapi=1&amp;disablekb=1&amp;controls=0&amp;rel=0&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;playsinline=1&amp;showinfo=0&amp;modestbranding=1&amp;fs=0&amp;mute=1&amp;autoplay=1&loop=1&playlist=3zuHajhWkTk"></iframe>
+             </div>
+         </ion-row>
+         <br/>
+         <br/>
+         <br/>
+         <ion-row>
+             <ion-col>
+                 <div style="font-size:108px; text-align:center;">
+                     <h5>
+                         <span style="font-family:cursive;font-size:6vw; ">Benvenuti nella mia bottega</span>
+                     </h5>
+                 </div>
+             </ion-col>
+         </ion-row>
+         <br/>
+         <ion-row *ngIf="display">
+             <ion-col>
+                 <div id="scroller" class="media-scroller" style="cursor: pointer;">
+                     <div class="zoom2" (click)="apriProdotti('arredamento')">
+                         <br/>
+                         <img src="assets/images/Arredamento.png"
+                              alt="">
+                         <p class="title">Arredamento</p>
+                         <br/>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('borse')">
+                         <br/>
+                         <img src="assets/images/borse.png"
+                              alt="">
+                         <p class="title">Borse e zaini</p>
+                         <br/>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('accessori')">
+                         <br/>
+                         <img src="assets/images/acccessori.png"
+                              alt="">
+                         <p class="title">Accessori</p>
+                         <br/>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('ecosostenibili')">
+                         <br/>
+                         <img src="assets/images/ecosostenibili.png"
+                              alt="">
+                         <p class="title">Prodotti ecosostenibili </p>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('fashion')">
+                         <br/>
+                         <img src="assets/images/fashion.png"
+                              alt="">
+                         <p class="title">Slow fashion</p>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('arazzi')">
+                         <br/>
+                         <img src="assets/images/arazzi.png"
+                              alt="">
+                         <p class="title">Arazzi</p>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('cuscini')">
+                         <br/>
+                         <img src="assets/images/cucini.png"
+                              alt="">
+                         <p class="title">Cuscini</p>
+                         <br/>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('collane')">
+                         <br/>
+                         <img src="assets/images/collane.png"
+                              alt="">
+                         <p class="title">Collane</p>
+                         <br/>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('orecchini')">
+                         <br/>
+                         <img src="assets/images/orecchini.png"
+                              alt="">
+                         <p class="title">Orecchini</p>
+                         <br/>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('cappelli')">
+                         <br/>
+                         <img src="assets/images/cappelli.png"
+                              alt="">
+                         <p class="title">Cappelli</p>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('sciarpe')">
+                         <br/>
+                         <img src="assets/images/sciarpe.png"
+                              alt="">
+                         <p class="title">Sciarpe</p>
+                         <br/>
+                     </div>
+                 </div>
+             </ion-col>
+         </ion-row>
+         <ion-row>
+             <ion-col offset-xs="1.2" offsetXl="0" *ngFor="let item of this.listElements" size-xs="10" size-xl="2">
+                 <ion-card>
+                     <br/>
+                     <div style="margin-left: 3vw; margin-right: 2vw;">
+                         <div style="cursor: pointer;" id="acquista-prodotto-button"
+                              (click)="displayProductInfoModal(item)">
+                             <div>
+                                 <br/>
+                                 <ion-row>
+                                     <ion-col offset-xs="3" offset-xl="1">
+                                         <div class="zoom">
+                                             <img id="img-product" src="{{item.img_name_ref}}" height="170vh"
+                                                  width="100vw">
+                                             <!--TODO da riaggiustare per mettere height e width in funzione della relae dimensione dell'immagine!-->
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <div style="font-family: Vollkorn">
+                                <br/>
+                                {{item.name}}
+                            </div>
+                            <hr class="solid">
+                            <div>
+                                <strong>
+                                    {{item.description}}
+                                </strong>
+                            </div>
+                            <div style="color: black">
+                                <strong>
+                                    {{item.price}} &euro;
+                                </strong>
                             </div>
                         </div>
-                        <br/>
-                    </ion-col>
+                    </div>
+                    <br/>
                 </ion-card>
-            </div>
+
+            </ion-col>
         </ion-row>
     </ion-col>
 </ion-row>

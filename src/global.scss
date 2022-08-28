@@ -113,7 +113,7 @@ ion-icon {
 
 ion-title {
 
-  font-family: 'Vollkorn' !important;
+  font-family: 'Donegal One' !important;
   color: #c1a977;
   font-size: 0.8rem;
   font-weight: bold;
@@ -122,14 +122,14 @@ ion-title {
 
 
 ion-card-title {
-  font-family: 'Vollkorn' !important;
+  font-family: 'Donegal One' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
 }
 
 ion-card-subtitle {
-  font-family: 'Vollkorn' !important;
+  font-family: 'Donegal One' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
@@ -142,7 +142,7 @@ ion-icon {
 }
 
 a {
-  font-family: 'Vollkorn' !important;
+  font-family: 'Donegal One' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
@@ -150,7 +150,7 @@ a {
 }
 
 ion-label {
-  font-family: 'Vollkorn' !important;
+  font-family: 'Donegal One' !important;
   color: #c1a977;
   font-size: 1rem;
   font-weight: bold;
@@ -176,7 +176,7 @@ ion-item {
 
 
 ion-button {
-  font-family: 'Vollkorn' !important;
+  font-family: 'Donegal One' !important;
   color: #c1a977;
   text-transform: none
 
@@ -289,3 +289,20 @@ ion-button {
 }
 
 
+
+
+.youtube-container {
+  overflow: hidden;
+  width: 100%;
+  /* Keep it the right aspect-ratio */
+  aspect-ratio: 16/9;
+  /* No clicking/hover effects */
+}
+
+.youtube-container iframe {
+  /* Extend it beyond the viewport... */
+  width: 300%;
+  height: 100%;
+  /* ...and bring it back again */
+  margin-left: -100%;
+}

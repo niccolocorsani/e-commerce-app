@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {OpenComponentsService} from "../../services/open-components/open-components.service";
 import {Router} from "@angular/router";
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
-import {FirebaseClientResponse} from "../../services/response/firebase-client-response";
-import {FirebaseProductResponse} from "../../services/response/firebase-product-response";
-import {FireBaseRequestProductService} from "../../services/firebase/fire-base-request-product.service";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
 import {MyCookieService} from "../../services/my-cookies-service/my-cookie.service";
@@ -22,6 +19,7 @@ export class CarrelloComponent implements OnInit {
     products = []
     client
     totalePrezzo = 0;
+    nessunProdotto = false;
 
 
     constructor(private openComponentsService: OpenComponentsService, private router: Router, private fireBaseClientService: FireBaseRequestClientService, private ionicAlert: AlertIonicService, private globalVariableService: GlobalVariablesService, private myCookieService: MyCookieService, private initializeCurrentClient: InitializeCurrentClientService) {
@@ -48,6 +46,10 @@ export class CarrelloComponent implements OnInit {
         this.products.forEach(product => {
             this.totalePrezzo = this.totalePrezzo + Number(product.price)
         })
+
+        if(this.totalePrezzo == 0) this.nessunProdotto = true
+        else  this.nessunProdotto = false
+
 
         document.getElementById("logged").textContent = this.globalVariableService.currentLoggedUserId.split('-',).join('.').split('_',).join('@');
 

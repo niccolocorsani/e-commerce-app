@@ -85,15 +85,15 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
 
     async onFileChangeImage(event: any) {
 
-        if (this.product_peso == 10 || this.product_type == '' || this.product_name == '' || this.product_description == '' || this.product_price == '' || this.product_type == '') {
-            this.alertService.presentAlert('Riempire tutti i campi prima di procedere', '', '')
+        if (this.product_type == '' || this.product_name == '' || this.product_description == '' || this.product_price == '' || this.product_type == '') {
+            await this.alertService.presentAlert('Riempire tutti i campi prima di procedere', '', '')
             this.router.navigate(['/consultant123123-number123']).then(page => {
                 window.location.reload();
             });
         }
 
-
-        if (!this.peso.includes('0') || !this.peso.includes('1') || !this.peso.includes('2') || !this.peso.includes('3') || !this.peso.includes('4') || !this.peso.includes('5') || !this.peso.includes('6') || !this.peso.includes('7') || !this.peso.includes('8') || !this.peso.includes('9')) {
+  //// questo controllo verifica che il numero productpeso sia un numero e dal momento che precedentemente è stato applicato il metodo Number().. se ritornal Nan non è stato inserito un nemero parabile
+        if (isNaN(this.product_peso)) {
             await this.alertService.presentAlert('(valore numerico)','Inserire un peso corretto ','')
             this.router.navigate(['/consultant123123-number123']).then(page => {
                 window.location.reload();
