@@ -54,6 +54,7 @@ import {CookiePolicyComponent} from "./static-pages/cookie-policy/cookie-policy.
 import {PrivacyPolicyComponent} from "./static-pages/privacy-policy/privacy-policy.component";
 import {RimborsiComponent} from "./static-pages/rimborsi/rimborsi.component";
 import {TerminiAcquistoComponent} from "./static-pages/termini-acquisto/termini-acquisto.component";
+import {TendinaComponent} from "./components/tendina/tendina.component";
 
 
 @NgModule({
@@ -76,8 +77,8 @@ import {TerminiAcquistoComponent} from "./static-pages/termini-acquisto/termini-
         ConsultantFeatureSeeOrdersComponent,
         CookiesComponent,
         ConfirmRegistrationComponent,
-        ConfirmPaymentComponent
-
+        ConfirmPaymentComponent,
+        TendinaComponent
 
     ],
     entryComponents: [],

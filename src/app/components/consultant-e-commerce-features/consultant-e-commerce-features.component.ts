@@ -43,7 +43,7 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
     url: any;
 
 
-    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertService: AlertIonicService, private openComponentService: OpenComponentsService, private router : Router) {
+    constructor(private productsService: FireBaseRequestProductService, private fb: FormBuilder, private cd: ChangeDetectorRef, private afStorage: AngularFireStorage, private alertService: AlertIonicService, private openComponentService: OpenComponentsService, private router: Router) {
     }
 
     ngOnInit() {
@@ -92,9 +92,9 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
             });
         }
 
-  //// questo controllo verifica che il numero productpeso sia un numero e dal momento che precedentemente è stato applicato il metodo Number().. se ritornal Nan non è stato inserito un nemero parabile
+        //// questo controllo verifica che il numero productpeso sia un numero e dal momento che precedentemente è stato applicato il metodo Number().. se ritornal Nan non è stato inserito un nemero parabile
         if (isNaN(this.product_peso)) {
-            await this.alertService.presentAlert('(valore numerico)','Inserire un peso corretto ','')
+            await this.alertService.presentAlert('(valore numerico)', 'Inserire un peso corretto ', '')
             this.router.navigate(['/consultant123123-number123']).then(page => {
                 window.location.reload();
             });
@@ -167,9 +167,9 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
                 name: this.product_name,
                 price: Number(this.product_price),
                 id: '',
-                description: this.description,
+                description: this.product_description,
                 img_name_ref: this.url,
-                type: this.type,
+                type: this.product_type,
                 peso: this.product_peso,
                 materiale: this.product_materiale,
                 dimensioni: this.product_dimensioni,
@@ -179,9 +179,14 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
             }, this.product_name)
         })
 
-        let prod = this.productsService.getProduct(this.product_name)
-        if (prod != null)
-            await this.alertService.presentAlert('Prodotto aggiunto con successo', '', '')
+        let prod = await this.productsService.getProduct(this.product_name)
+        while (prod.name != null) {
+            await this.delay(1000)
+            prod = await this.productsService.getProduct(this.product_name)
+        }
+
+        await this.alertService.presentAlert('Prodotto aggiunto con successo', '', '')
+
     }
 
 

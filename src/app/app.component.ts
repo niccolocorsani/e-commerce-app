@@ -39,12 +39,11 @@ export class AppComponent implements OnInit {
         this.globalVariableService.smallDevice = this.smallDevice
 
 
-        console.log('oo')
         document.addEventListener('click', e => {
             let element = <HTMLElement>e.target
             for (let i = 0; i < 5; i++) {
                 if (element.id != null) {
-
+                    console.log(String(element.id))
                     gtag('event', String(element.id), {event_label: String(element.id)});
                     break
                 }

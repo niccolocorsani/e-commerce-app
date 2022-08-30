@@ -33,7 +33,6 @@ export class CookiesComponent implements OnInit {
         client.products = products
         await this.fireBaseClientService.addClient(client)
         this.globalVariableService.currentLoggedUserId = client.email
-        alert(this.globalVariableService.currentLoggedUserId)
         this.globalVariableService.hideCookieCard = true
         await this.myCookieService.initCookie()
 

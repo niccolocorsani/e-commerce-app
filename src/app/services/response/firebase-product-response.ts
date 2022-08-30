@@ -13,7 +13,7 @@ export class FirebaseProductResponse {
     cap = ''
     city = ''
     materiale = ''
-    dimensioni = ''
+    dimensioni = '30x30'
 
 
 

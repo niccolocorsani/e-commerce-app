@@ -10,26 +10,18 @@
             <div class="col-md-5 ">
                 <div class="row  align-items-center">
                     <div class="col-6 text-center">
-                        <a href="https://www.veniceoriginal.it/it/cornici-e-specchi/1191-cornice-nera-in-vetro-di-murano.html">
-                            <img src="https://www.veniceoriginal.it/4587-medium_default/cornice-nera-in-vetro-di-murano.jpg"
-                                 alt="Cornice nera in vetro di Murano" class="img-fluid">
-                        </a>
+
+                            <img src="{{this.product.img_name_ref}}"
+                                 >
                     </div>
                     <div class="col ">
-                        <div class="pb-1">
-                            <span><a
-                                    href="https://www.veniceoriginal.it/it/cornici-e-specchi/1191-cornice-nera-in-vetro-di-murano.html">Cornice nera in vetro di Murano</a></span>
-                        </div>
-                        <span class="text-muted">2 x</span> <span>70,00&nbsp;€</span>
+                        <span class="text-muted"></span> <span>{{this.product.price}}&nbsp;€</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-7">
                 <div>
-                    <p>Ci sono 4 articoli nel tuo carrello.</p>
-                    <p>
-                        <strong>Totale prodotti:</strong>&nbsp;360,00&nbsp;€
-                    </p>
+
                     <div class="cart-content-btn" (click)="navigateToCarrello()">
                         <a routerLink="/carrello"
                            class="btn btn-primary btn-block btn-lg mb-2">Procedi con il checkout</a>

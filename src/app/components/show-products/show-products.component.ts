@@ -106,7 +106,9 @@ export class ShowProductsComponent implements OnInit {
     }
 
 
-    apriProdotti(tipologia: string) {
+    async apriProdotti(tipologia: string) {
+
+        this.listElements = await this.productsService.getProducts()
 
         if (tipologia === 'arredamento') {
             this.listElements = this.listElements.filter(
@@ -153,7 +155,7 @@ export class ShowProductsComponent implements OnInit {
                 product => product.type === 'sciarpe');
         }
 
-        this.ionContent.scrollToPoint(0, 300, 300);
+        this.ionContent.scrollToPoint(0, 10000, 400);
     }
 
 }

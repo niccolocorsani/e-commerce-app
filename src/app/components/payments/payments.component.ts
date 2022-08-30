@@ -74,7 +74,6 @@ export class PaymentsComponent implements OnInit {
                     ////TODO mettere caso di cookie che manda email a cookie
 
                     Array.prototype.forEach.call(this.client.products, product => {
-                        alert('rimosso ' + product.name)
                         this.firebaseProductRequestService.deleteProduct(product.name)
                     })
 

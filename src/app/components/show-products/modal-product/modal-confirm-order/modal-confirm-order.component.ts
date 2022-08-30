@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
 
@@ -7,6 +7,9 @@ import {ModalController} from "@ionic/angular";
     templateUrl: './modal-confirm-order.component.html'
 })
 export class ModalConfirmOrderComponent implements OnInit {
+
+
+    @Input() product
 
     constructor(private router: Router, public modalController: ModalController) {
     }

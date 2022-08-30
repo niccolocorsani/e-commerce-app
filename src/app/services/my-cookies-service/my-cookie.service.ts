@@ -71,7 +71,8 @@ export class MyCookieService {
             await this.fireBaseClientService.addClient(client)
 
             this.globalVariableService.currentLoggedUserId = client.email
-            document.getElementById("logged").textContent = client.email.split('-',).join('.').split('_',).join('@');
+            if(client.email.includes("@"))
+             document.getElementById("logged").textContent = client.email.split('-',).join('.').split('_',).join('@');
 
 
             client.products = client.products.filter((value, index, self) => index === self.findIndex((t) => (t.place === value.place && t.name === value.name)))
