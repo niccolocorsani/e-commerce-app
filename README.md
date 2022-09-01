@@ -43,7 +43,7 @@ Di seguito è possibile osservare alcune simulazioni di scenari tipici e flussi 
 # Istruzioni per testare il sistema
 
 Il sistema si trova distribuito al link di seguito:
-https://spring-ship-344311.firebaseapp.com/folder/Inbox
+https://spring-ship-344311.web.app/client
 
 Tuttavia se è necessario usuffruire di tutte le features che offre il sistema è necessario fare l'installazione del sistema in locale. Ciò è dovuto al fatto che il sistema si appoggia a prodotti di terze parti ad esempio "Google Login" o "Google maps" che risultano registrati solo sotto il dominio di "localhost".
 Per installare e testare il software fare il clone del progetto ed eseguire il comando:
