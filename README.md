@@ -32,7 +32,10 @@ Di seguito è possibile osservare alcune simulazioni di scenari tipici e flussi 
 
 
 
-# questa è la gif::::![123](https://user-images.githubusercontent.com/79635059/153195959-f6761ac7-0aa6-4ac5-a26d-159ac1c8c9b7.gif)
+# Some Demo and Gif
+
+![info-software-tesi](https://user-images.githubusercontent.com/79635059/187912161-ebaefe57-90fd-4a9a-b2ac-de9166d9301f.gif)
+
 
 
 
