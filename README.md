@@ -83,7 +83,7 @@ Remember to consent to push notifications to the browser at the operating system
 
 # Project Documents
 
-Final report: [report.pdf](https://github.com/niccolocorsani/front-end-hci/files/8044499/Client-Consultant-App-Bagdanov.pdf)
+Final report:
 
 
 
