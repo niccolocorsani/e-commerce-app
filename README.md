@@ -8,7 +8,7 @@
 - **Students**: Niccolò Corsani
 - **CFUs**: 9
 
-Il progetto prevede lo sviluppo di un applicativo Ecommerce in grado di gestire automaticamente vari aspetti della compra vendita, di pubblicità dei prodotti e di gestione degli aspetti commerciali legati agli acquisti
+The project involves the development of an Ecommerce application capable of automatically managing various aspects of buying and selling, product advertising and management of commercial aspects related to purchases.
 
 # Tecniche e strumenti
 
