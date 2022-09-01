@@ -51,6 +51,7 @@ export class CarrelloComponent implements OnInit {
         else  this.nessunProdotto = false
 
 
+        if(!this.globalVariableService.currentLoggedUserId.includes("okie"))
         document.getElementById("logged").textContent = this.globalVariableService.currentLoggedUserId.split('-',).join('.').split('_',).join('@');
 
 
