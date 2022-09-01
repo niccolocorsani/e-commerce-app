@@ -48,6 +48,10 @@ Add Product
 
 ![info-software-tesi](https://user-images.githubusercontent.com/79635059/187937069-8aa1f4d3-e31e-4a4a-bd4a-d196ccc69a99.gif)
 
+Check orders
+<img width="1727" alt="Schermata 2022-09-01 alle 16 21 22" src="https://user-images.githubusercontent.com/79635059/187937589-8a14704c-794d-44dd-897b-c3218c57c690.png">
+
+
 
 
 
