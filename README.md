@@ -19,7 +19,7 @@ The main tools and techniques we will employ are:
 - **Firebase**: For back-end implementation \[3\].
 - **Google Cloud Services**: For cross-platform development \[4\].
 - **Capacitor Android**: For cross-platform development \[5\].
-- **Python for some back-end functionality**: For cross-platform development \[5\].
+- **Python for some back-end functionality**: For some BackEnd functionality  \[6\].
 
 
 
@@ -64,28 +64,21 @@ Consultant features for android
 
 # Istruzioni per testare il sistema
 
-Il sistema si trova distribuito al link di seguito:
-https://spring-ship-344311.web.app/client
 
-Tuttavia se è necessario usuffruire di tutte le features che offre il sistema è necessario fare l'installazione del sistema in locale. Ciò è dovuto al fatto che il sistema si appoggia a prodotti di terze parti ad esempio "Google Login" o "Google maps" che risultano registrati solo sotto il dominio di "localhost".
-Per installare e testare il software fare il clone del progetto ed eseguire il comando:
+The system is distributed at the link below: https://spring-ship-344311.web.app/client
+
+However, you must use all the features that the system offers you need to do the system installation locally. This is due to the fact that the system relies on third-party products such as "Google Login" or "Google maps" which are registered only under the domain of "localhost". To install and test the software, clone the project and run the command:
 
 ```
  npm i --legacy-peer-deps
  ```
-Successivamente eseguire il comando:
-```
+Then run the command:```
 ionic serve
 ```
-Aprire adesso il browser alla pagina http://localhost:8100/client
+Now open your browser at http://localhost:8100/client
 
-Ricordarsi di dare il consenso alle notifiche push al browser a livello di sistema operativo per poterle utilizzare nel sistema.
+Remember to consent to push notifications to the browser at the operating system level in order to use them on the system.
 
-
-
-# Strumenti e tecniche
-
-Tra gli altri strumenti utili nella realizzazione del
 
 
 # Project Documents
