@@ -34,7 +34,7 @@ Di seguito è possibile osservare alcune simulazioni di scenari tipici e flussi 
 
 # Some Demo and Gif
 
-Buy product without registration:
+Buy product without registration
 
 
 ![info-software-tesi](https://user-images.githubusercontent.com/79635059/187912161-ebaefe57-90fd-4a9a-b2ac-de9166d9301f.gif)
@@ -44,6 +44,9 @@ New registration
 
 ![info-software-tesi](https://user-images.githubusercontent.com/79635059/187915092-4ae718a4-76c9-4081-9ac7-16743aa86af7.gif)
 
+Add Product
+
+![info-software-tesi](https://user-images.githubusercontent.com/79635059/187937069-8aa1f4d3-e31e-4a4a-bd4a-d196ccc69a99.gif)
 
 
 
