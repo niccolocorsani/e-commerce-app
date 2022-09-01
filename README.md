@@ -79,6 +79,8 @@ Now open your browser at http://localhost:8100/client
 
 Remember to consent to push notifications to the browser at the operating system level in order to use them on the system.
 
+As for the android system, it is possible to download the .apk file in the repository directly from the phone. Once the application has been installed, it can be run.
+
 
 
 # Project Documents
