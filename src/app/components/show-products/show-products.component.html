@@ -21,14 +21,6 @@
          <ion-row *ngIf="display">
              <ion-col>
                  <div id="scroller" class="media-scroller" style="cursor: pointer;">
-                     <div class="zoom2" (click)="apriProdotti('arredamento')">
-                         <br/>
-                         <img src="assets/images/arazzi.png"
-                              alt="">
-                         <p class="title">Arredamento</p>
-                         <br/>
-                         <br/>
-                     </div>
                      <div class="zoom2" (click)="apriProdotti('borse')">
                          <br/>
                          <img src="assets/images/borse.png"
@@ -92,6 +84,14 @@
                          <img src="assets/images/collane.png"
                               alt="">
                          <p class="title">Cappelli</p>
+                         <br/>
+                     </div>
+                     <div class="zoom2" (click)="apriProdotti('arredamento')">
+                         <br/>
+                         <img src="assets/images/arazzi.png"
+                              alt="">
+                         <p class="title">Arredamento</p>
+                         <br/>
                          <br/>
                      </div>
                      <div class="zoom2" (click)="apriProdotti('sciarpe')">

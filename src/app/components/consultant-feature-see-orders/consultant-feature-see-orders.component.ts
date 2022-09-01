@@ -16,6 +16,8 @@ export class ConsultantFeatureSeeOrdersComponent implements OnInit {
   async ngOnInit() {
 
     this.orders = await this.firebaseRequestOrderService.getOrders()
+    console.log('orders')
+    console.log(this.orders)
     await this.firebaseRequestOrderService.delay(1000)
 
 

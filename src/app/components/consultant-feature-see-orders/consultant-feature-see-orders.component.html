@@ -1,15 +1,27 @@
-<ul *ngFor="let order of this.orders ">
+<br/>
+<br/>
+
+<ul *ngFor="let order  of this.orders ">
     <li>
-        {{order.id}}
+       id ordine: {{order.id.replace('ookie','')}}
     </li>
     <li>
-        {{order.client.name}}
+      email cliente  {{order.client.email}}
     </li>
     <li>
-        {{order.products[0].price}}
+        città:   {{order.client.city}} indirizzo: {{order.client.street}} cap: {{order.client.cap}}
     </li>
     <li>
-        {{order.client.mail}}
+        numero telefono cliente  {{order.client.phone}}
     </li>
+    <li>
+        <ul *ngFor="let product  of this.order.products ">
+            <li>
+             nome prodotto   {{product.name}}
+            </li>
+            <li>
+              prezzo prodotto  {{product.price}} &euro;
+            </li>
+        </ul>
     <hr>
 </ul>
