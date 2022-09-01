@@ -3,7 +3,6 @@ import {SocialAuthService, SocialUser} from "angularx-social-login";
 import {FacebookLoginProvider, GoogleLoginProvider} from "angularx-social-login";
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {FireBaseRequestClientService} from "../../services/firebase/fire-base-request-client.service";
-import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -14,7 +13,7 @@ export class SocialLogInComponent implements OnInit {
 
     user = new SocialUser();
 
-    constructor(private authService: SocialAuthService, private fireBaseclientService: FireBaseRequestClientService, private alertService: AlertIonicService, private cookieService: CookieService) {
+    constructor(private authService: SocialAuthService, private fireBaseclientService: FireBaseRequestClientService, private alertService: AlertIonicService) {
     }
 
     ngOnInit(): void {
@@ -48,7 +47,9 @@ export class SocialLogInComponent implements OnInit {
 
 
     setLoginCookie(mail: string, password: string) {
-        this.cookieService.set('stextile_mail', mail, 1);
-        this.cookieService.set('stextile_password', password, 1);
+
+        document.cookie = 'cookie_user='+mail+'; expires= 31 Dec 2023 23:59:59 GMT; Secure;'
+        document.cookie = 'pass_cookie='+password+'; expires= 31 Dec 2023 23:59:59 GMT; Secure;'
+
     }
 }

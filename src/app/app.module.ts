@@ -43,7 +43,6 @@ import {
     ConsultantFeatureSeeOrdersComponent
 } from "./components/consultant-feature-see-orders/consultant-feature-see-orders.component";
 import {CookiesComponent} from "./components/cookies/cookies.component";
-import {CookieService} from "ngx-cookie-service";
 import {GlobalErrorHandlerService} from "./services/global-error-handler/global-error-handler.service";
 import {
     ConfirmRegistrationComponent
@@ -114,6 +113,7 @@ import {TendinaComponent} from "./components/tendina/tendina.component";
             {path: 'privacy-policy', component: PrivacyPolicyComponent},
             {path: 'rimborsi', component: RimborsiComponent},
             {path: 'termini-acquisto', component: TerminiAcquistoComponent},
+            {path: 'confirm-payment', component: ConfirmPaymentComponent},
             {path: '', redirectTo: '/client', pathMatch: 'full'},
         ]),
     ],
@@ -140,7 +140,7 @@ import {TendinaComponent} from "./components/tendina/tendina.component";
                     }
                 ]
             } as SocialAuthServiceConfig,
-        }, CookieService,
+        },
     ],
     bootstrap: [AppComponent],
     exports: []

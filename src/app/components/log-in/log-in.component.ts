@@ -5,7 +5,6 @@ import {FirebaseClientResponse} from "../../services/response/firebase-client-re
 import {AlertIonicService} from "../../services/alert-popup-ionic/alert-ionic.service";
 import {Router} from "@angular/router";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
-import {CookieService} from "ngx-cookie-service";
 
 @Component({
     selector: 'app-log-in',
@@ -24,14 +23,30 @@ export class LogInComponent implements OnInit {
 
     client_firebase = new FirebaseClientResponse()
 
-    constructor(private cookieService: CookieService, private openComponentsService: OpenComponentsService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, private globalVariables: GlobalVariablesService) {
+    constructor( private openComponentsService: OpenComponentsService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, private globalVariables: GlobalVariablesService) {
     }
 
+
+    getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
     ngOnInit(): void {
 
 
-        let mail = this.cookieService.get('stextile_mail')
-        let password = this.cookieService.get('stextile_password')
+        let mail = this.getCookie('cookie_user')
+        let password = this.getCookie('pass_cookie')
         if (mail != '') {
             this.eMail = mail
             this.email_client = mail
@@ -98,8 +113,10 @@ export class LogInComponent implements OnInit {
             this.globalVariables.currentLoggedUserId = document.getElementById("logged").textContent
         } else this.alertService.presentAlert('Password errata', '', '')
 
-        this.cookieService.set('stextile_mail', this.client_firebase.email)
-        this.cookieService.set('stextile_password', this.client_firebase.password)
+
+        document.cookie = 'cookie_user='+this.client_firebase.email+'; expires= 31 Dec 2023 23:59:59 GMT; Secure;'
+        document.cookie = 'pass_cookie='+this.client_firebase.password+'; expires= 31 Dec 2023 23:59:59 GMT; Secure;'
+
 
         this.router.navigate(['/client']).then(page => {
             window.location.reload();

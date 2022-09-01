@@ -84,7 +84,9 @@ export class PaymentsComponent implements OnInit {
 
                 },
                 onError: err => {
-                    alert('error')
+                    // TODO da cambiare quando torna paypal
+                    alert('')
+                    this.router.navigate(['/confirm-payment'])
                 }
             })
             .render(this.paypalElement.nativeElement);

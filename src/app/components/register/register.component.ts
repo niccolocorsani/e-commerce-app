@@ -10,7 +10,6 @@ import {
     ModalConfirmOrderComponent
 } from "../show-products/modal-product/modal-confirm-order/modal-confirm-order.component";
 import {GeoLocationModalHelperComponent} from "./geo-location-modal-helper/geo-location-modal-helper.component";
-import {CookieService} from "ngx-cookie-service";
 import {GlobalVariablesService} from "../../services/utility-services/global-variables.service";
 import {MailServiceService} from "../../services/mail-notification-service/mail-service.service";
 import {
@@ -48,7 +47,7 @@ export class RegisterComponent {
 
     private stepper: Stepper;
 
-    constructor(private cookieService: CookieService, private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService, private mailService : MailServiceService, private pushNotificationService: PushNotificationServiceService) {
+    constructor( private fireBaseClientservice: FireBaseRequestClientService, private alertService: AlertIonicService, private router: Router, public modalController: ModalController, private globalVariableService: GlobalVariablesService, private mailService : MailServiceService, private pushNotificationService: PushNotificationServiceService) {
     }
 
     ngOnInit(): void {
@@ -199,8 +198,13 @@ export class RegisterComponent {
     }
 
     setLoginCookie(mail: string, password: string) {
-        this.cookieService.set('stextile_mail', mail, 1);
-        this.cookieService.set('stextile_password', password, 1);
+
+
+
+        document.cookie = 'cookie_user='+mail+'; expires= 31 Dec 2023 23:59:59 GMT; Secure;'
+        document.cookie = 'pass_cookie='+password+'; expires= 31 Dec 2023 23:59:59 GMT; Secure;'
+
+
     }
 
 }

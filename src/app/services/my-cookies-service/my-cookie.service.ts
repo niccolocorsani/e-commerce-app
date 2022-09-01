@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {CookieService} from "ngx-cookie-service";
 import {FireBaseRequestClientService} from "../firebase/fire-base-request-client.service";
 import {GlobalVariablesService} from "../utility-services/global-variables.service";
 import {OpenComponentsService} from "../open-components/open-components.service";
@@ -11,12 +10,12 @@ export class MyCookieService {
 
     private variable_to_wait: any;
 
-    constructor(public cookieService: CookieService, private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private openComponentService: OpenComponentsService) {
+    constructor(private fireBaseClientService: FireBaseRequestClientService, private globalVariableService: GlobalVariablesService, private openComponentService: OpenComponentsService) {
     }
 
 
     async initCookie() {
-        let cookie = this.cookieService.get('id')
+        let cookie = this.getCookie('my_cookie')
         console.log('cookie: ' + cookie)
 
         if (cookie != '') {
@@ -54,13 +53,23 @@ export class MyCookieService {
     }
 
     async initCookieCredential() {
-        let id = this.cookieService.get('stextile_mail')
-        let password = this.cookieService.get('stextile_password')
+
+
+        let id = this.getCookie('cookie_user')
+        let password = this.getCookie('pass_cookie')
 
         if (id != '') {
             let client = await this.fireBaseClientService.getClient(id)
             this.variable_to_wait = client
             await this.spinner_delay()
+
+
+
+            //TODO 31 agosto ricontrollare se può essere un danno e eventualmente levarlo
+            while (client == undefined) {
+                 client = await this.fireBaseClientService.getClient(id)
+            }
+            //TODO 31 agosto ricontrollare se può essere un danno e eventualmente levarlo
 
             while (client.email.includes('okie')) {
                 client = await this.fireBaseClientService.getClient(id) //// la funzione va chiamata 2 volte perchè se no ritorna il cliente associato al cookie 'id' probabilmente perchè poco prima firebase aveva ritornato quel valore
@@ -71,8 +80,8 @@ export class MyCookieService {
             await this.fireBaseClientService.addClient(client)
 
             this.globalVariableService.currentLoggedUserId = client.email
-            if(client.email.includes("@"))
-             document.getElementById("logged").textContent = client.email.split('-',).join('.').split('_',).join('@');
+            if(!client.email.includes("okie"))
+            document.getElementById("logged").textContent = client.email.split('-',).join('.').split('_',).join('@');
 
 
             client.products = client.products.filter((value, index, self) => index === self.findIndex((t) => (t.place === value.place && t.name === value.name)))
@@ -101,16 +110,35 @@ export class MyCookieService {
             i++
             await this.delay(400)
             console.log(this.variable_to_wait)
-            if(i == 20) {
-                this.cookieService.delete('id')
-                this.cookieService.delete('stextile_mail')
-                this.cookieService.delete('stextile_password')
-                this.variable_to_wait = 'oo'
+            if (i == 6) {
+                this.variable_to_wait = 'ok'
+                //   this.cookieService.delete('my_cookie')
+                //   this.cookieService.delete('cookie_user')
+                //  this.cookieService.delete('pass_cookie')
+                //  this.variable_to_wait = 'oo'
             }
         }
         this.openComponentService.spinner = false
     }
+
+
+    getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 }
+
 
 function value(value: any) {
     throw new Error('Function not implemented.');

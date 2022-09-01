@@ -35,6 +35,48 @@ export class InitializeCurrentClientService {
             this.client = await this.fireBaseClientService.getClient(id)
             await this.fireBaseClientService.delay(1000)
         }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+        if (this.client == undefined) {
+            this.client = await this.fireBaseClientService.getClient(id)
+            await this.fireBaseClientService.delay(1000)
+        }
+
         //// TODO ributtare questo pattern come inizializzazione di ogni componente
         this.globalVariableService.client = this.client
     }
