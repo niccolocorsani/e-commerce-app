@@ -100,12 +100,12 @@ In this way it was possible to obtain a prototype of the Email service for free.
 
 1.	Geolocation: https://angular-maps.com/
 2.	https://material.angular.io/
-https://medium.com/letsboot/translate-angular-4-apps-with-ngx-translate-83302fb6c10d
-3. https://capacitorjs.com/docs/android
-4.	Push-Notification service OneSignal: https://onesignal.com/blog/how-to-integrate-push-notifications-in-angular/
-5.	Social Authentication:  https://www.npmjs.com/package/angularx-social-login
-6.	Social sharing content: https://stackblitz.com/edit/social-sharing?file=src%2Fapp%2Fshare-button%2Fshare-button.component.html
-7.	Python Email SMTP service: https://realpython.com/python-send-email/
+3. https://medium.com/letsboot/translate-angular-4-apps-with-ngx-translate-83302fb6c10d
+4. https://capacitorjs.com/docs/android
+5.	Push-Notification service OneSignal: https://onesignal.com/blog/how-to-integrate-push-notifications-in-angular/
+6.	Social Authentication:  https://www.npmjs.com/package/angularx-social-login
+7.	Social sharing content: https://stackblitz.com/edit/social-sharing?file=src%2Fapp%2Fshare-button%2Fshare-button.component.html
+8.	Python Email SMTP service: https://realpython.com/python-send-email/
 
 
 
