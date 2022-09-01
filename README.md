@@ -62,7 +62,7 @@ Consultant features for android
 
 
 
-# Istruzioni per testare il sistema
+# Instructions for testing the system
 
 
 The system is distributed at the link below: https://spring-ship-344311.web.app/client
@@ -72,7 +72,8 @@ However, you must use all the features that the system offers you need to do the
 ```
  npm i --legacy-peer-deps
  ```
-Then run the command:```
+Then run the command:
+```
 ionic serve
 ```
 Now open your browser at http://localhost:8100/client
