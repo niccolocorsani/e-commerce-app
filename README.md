@@ -26,10 +26,9 @@ The main tools and techniques we will employ are:
 ...
 
 
-# Simulazione del progetto
+# Simulation of the project
 
-Di seguito è possibile osservare alcune simulazioni di scenari tipici e flussi di eventi che un utente può eseguire
-
+Below you can see some simulations of typical scenarios and event flows that a user can perform
 
 
 # Some Demo and Gif
@@ -88,17 +87,25 @@ Final report: [report.pdf](https://github.com/niccolocorsani/front-end-hci/files
 
 
 
+# Some other technical details
+
+For the implementation of the email service, a system based on the SMTP protocol, Python and an Email provider (mailersend) has been implemented.
+In this way it was possible to obtain a prototype of the Email service for free.
+
 
 
 # Bibliography
 
 1.	Geolocation: https://angular-maps.com/
-2.	Rest API: https://angular.io/guide/http,
+2.	https://material.angular.io/
 https://medium.com/letsboot/translate-angular-4-apps-with-ngx-translate-83302fb6c10d
+3. https://capacitorjs.com/docs/android
 4.	Push-Notification service OneSignal: https://onesignal.com/blog/how-to-integrate-push-notifications-in-angular/
 5.	Social Authentication:  https://www.npmjs.com/package/angularx-social-login
 6.	Social sharing content: https://stackblitz.com/edit/social-sharing?file=src%2Fapp%2Fshare-button%2Fshare-button.component.html
-7.	Tooltip: https://github.com/zyra/ionic-tooltips
+7.	Python Email SMTP service: https://realpython.com/python-send-email/
+
+
 
 
 
