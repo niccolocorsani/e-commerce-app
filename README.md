@@ -93,8 +93,8 @@ As for the android system, it is possible to download the .apk file in the repos
 # Project Documents
 Final report:
 
-[Progetto HCI.docx](https://github.com/niccolocorsani/e-textile/files/9480758/Progetto.HCI.docx)
 
+[Human computer interaction report.pdf](https://github.com/niccolocorsani/e-textile/files/9480779/Human.computer.interaction.report.pdf)
 
 
 
