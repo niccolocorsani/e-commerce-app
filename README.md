@@ -58,7 +58,9 @@ Consultant features for android
 
 
 
+# Comments
 
+The application was developed on two different platforms. In particular, the functionality of adding products for sale has been developed in both the web and the Android mobile platform. The choice to develop this functionality on a Mobile platform is due to the best management of any security problems.
 
 
 # Instructions for testing the system
