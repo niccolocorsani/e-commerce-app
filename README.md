@@ -49,7 +49,10 @@ to access the consultant's features, navigate to the following address: http://l
 Check orders
 <img width="1727" alt="Schermata 2022-09-01 alle 16 21 22" src="https://user-images.githubusercontent.com/79635059/187937589-8a14704c-794d-44dd-897b-c3218c57c690.png">
 
-Consultant features for android
+Consultant features for android.
+This type of view works in the same way as the view shown above.
+To see the implementation of the Android project see: https://github.com/niccolocorsani/CMS-android-angular
+
 <div>
 <img width="395" alt="Schermata 2022-09-01 alle 16 32 05" src="https://user-images.githubusercontent.com/79635059/187944301-150af750-3512-4dfa-9eb3-a539d6efd3cf.png">
 <img width="394" alt="Schermata 2022-09-01 alle 16 32 18" src="https://user-images.githubusercontent.com/79635059/187944312-863d072f-0808-4dae-b7d0-9992f40b8136.png">
