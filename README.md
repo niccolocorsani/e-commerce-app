@@ -100,7 +100,7 @@ Final report:
 
 For the implementation of the email service, a system based on the SMTP protocol, Python and an Email provider (mailersend) has been implemented.
 In this way it was possible to obtain a prototype of the Email service for free.
-
+Some features of angular material have been encapsulated within a library so that they can be used in multiple projects, offering specific APIs for their construction. These features had been deployed at https://www.npmjs.com/package/angular-material-things-experiments
 
 
 # Bibliography
