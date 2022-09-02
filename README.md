@@ -26,9 +26,6 @@ The main tools and techniques we will employ are:
 ...
 
 
-# Simulation of the project
-
-Below you can see some simulations of typical scenarios and event flows that a user can perform
 
 
 # Some Demo and Gif
@@ -44,6 +41,8 @@ New registration
 ![info-software-tesi](https://user-images.githubusercontent.com/79635059/187915092-4ae718a4-76c9-4081-9ac7-16743aa86af7.gif)
 
 Add Product
+
+to access the consultant's features, navigate to the following address: http://localhost:8100/consultant123123-number123
 
 ![info-software-tesi](https://user-images.githubusercontent.com/79635059/187937069-8aa1f4d3-e31e-4a4a-bd4a-d196ccc69a99.gif)
 
