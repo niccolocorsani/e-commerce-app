@@ -133,6 +133,7 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
             //// Fondamentale che il file sia caricato completamente, altrimenti il flusso andrà male
         })
 
+        await this.spinner_delay_static(7000) // TODO questo aspettare è utile perchè se no, l'immagine su firebase viene caricata, ma poi il sistema va in errore se si prova ad aggiungere il prodotto al db prima che sia completamente caricata
 
         await this.delay(1000)
 
@@ -158,6 +159,7 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
             await this.delay(12000)
         if (progress != 100)
             await this.delay(15000)
+
 
 
         await this.ref.getDownloadURL().subscribe(value => {
@@ -199,6 +201,12 @@ export class ConsultantECommerceFeaturesComponent implements OnInit {
         while (this.variable_to_wait === undefined) {
             await this.delay(1000)
         }
+        this.openComponentService.spinner = false
+    }
+    async spinner_delay_static(time: any) {
+        this.openComponentService.spinner = true
+            await this.delay(time)
+
         this.openComponentService.spinner = false
     }
 
