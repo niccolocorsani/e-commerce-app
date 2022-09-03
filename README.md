@@ -92,9 +92,9 @@ As for the android system, it is possible to download the .apk file in the repos
 
 # Project Documents
 Final report:
+[human computer interaction report.pdf](https://github.com/niccolocorsani/e-textile/files/9482963/human.computer.interaction.report.pdf)
 
 
-[Human computer interaction report.pdf](https://github.com/niccolocorsani/e-textile/files/9480779/Human.computer.interaction.report.pdf)
 
 
 
