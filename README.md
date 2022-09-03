@@ -4,9 +4,9 @@
 # Overview
 
 - **Academic Year**: 2021-2022
-- **Project Title**: Client consultant interaction application
 - **Students**: Niccolò Corsani
 - **CFUs**: 9
+
 
 The project involves the development of an Ecommerce application capable of automatically managing various aspects of buying and selling, product advertising and management of commercial aspects related to purchases.
 
