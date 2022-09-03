@@ -19,7 +19,7 @@ The main tools and techniques we will employ are:
 - **Firebase**: For back-end implementation \[3\].
 - **Google Cloud Services**: For cross-platform development \[4\].
 - **Capacitor Android**: For cross-platform development \[5\].
-- **Python for some back-end functionality**: For some BackEnd functionality  \[6\].
+- **Python for some back-end functionality**: For Email service functionality  \[6\].
 
 
 
